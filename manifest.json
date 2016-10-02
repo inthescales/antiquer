@@ -1,7 +1,7 @@
 {
 "manifest_version": 2,
     "name": "Diaeresizer",
-    "description": "Adds diaereses to common words.",
+    "description": "Display diaereses instead of other spelling forms.",
     "version": "1.0",
     "icons": { 
         "16": "icon16.png",
@@ -20,6 +20,6 @@
         }
     ],
     "web_accessible_resources": [
-        "words.json"
+        "diaereses.json"
     ]
 }

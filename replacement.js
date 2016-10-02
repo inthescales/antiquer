@@ -1,4 +1,35 @@
-var elements = document.getElementsByTagName('*');
+﻿var elements = document.getElementsByTagName('*');
+
+/*
+    Adds a diaeresis to an input vowel.
+*/
+function diaeresizeVowel(vowel) {
+
+    switch(vowel) {
+        case "a":
+            return "ä";
+        case "e":
+            return "ë";
+        case "i":
+            return "ï";
+        case "o":
+            return "ö";
+        case "u":
+            return "ü";
+        case "A":
+            return "Ä";
+        case "E":
+            return "Ë";
+        case "I":
+            return "Ï";
+        case "O":
+            return "Ö";
+        case "U":
+            return "Ü";
+    }
+    
+    return vowel;
+}
 
 /*
     Takes in a template word and an input word, and returns that input word with the same
@@ -48,7 +79,7 @@ function matchCase(template, input) {
     Replaces the text of the page's elements based on the replacement scheme specified by
     the input array.
 */
-function replace(words) {
+function replace(words, prefixes) {
 
     for (var i = 0; i < elements.length; i++) {
         var element = elements[i];
@@ -60,18 +91,32 @@ function replace(words) {
                 var text = node.nodeValue;
                 var replacedText = text;
                 
-                for (var n = 0; n < words.length; n++) {
-               
-                    //var regex = new RegExp("([\W^])(" + words[n][0]+")","gi");
-                    var word = words[n][0]
-                    var regex = new RegExp("\\b" + word,"gi");
-                    replacedText = replacedText.replace(regex, function(match) {
-                        //alert($0 + " - " + match);
-                        alert("HERE");
-                        return matchCase(match, words[n][1]);
-                    });
-                    
-                }                
+                // Replace prefixes
+                if (prefixes != null && prefixes.length > 0) {
+                    for (var n = 0; n < prefixes.length; n++) {
+                        
+                        var prefix = prefixes[n];
+                        var regex = new RegExp("\\b" + prefix + "\\-[aeiouAEIOU]", "gi");
+                        replacedText = replacedText.replace(regex, function(match) {
+
+                            return match.substring(0, prefix.length) + diaeresizeVowel(match[match.length-1]);
+                        });
+                    }
+                }
+                
+                // Replace full words
+                if (words != null && words.length > 0) {
+                    for (var n = 0; n < words.length; n++) {
+
+                        var word = words[n][0]
+                        var regex = new RegExp("\\b" + word, "gi");
+                        replacedText = replacedText.replace(regex, function(match) {
+
+                            return matchCase(match, words[n][1]);
+                        });
+                        
+                    }
+                }
 
                 if (replacedText !== text) {
                     element.replaceChild(document.createTextNode(replacedText), node);
@@ -93,10 +138,12 @@ request.onreadystatechange = function () {
     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         
         var response = request.responseText;
-        var words = JSON.parse(response);
+        var parsed = JSON.parse(response);
+        var words = parsed["words"];
+        var prefixes = parsed["prefixes"];
         
-        if (words != null && words.length > 0) {
-            replace(words);
+        if (words != null || prefixes != null && words.length > 0) {
+            replace(words, prefixes);
         }
 
     }
