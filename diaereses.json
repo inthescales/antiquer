@@ -8,6 +8,7 @@
 	"words": [
 		["baal", "baäl"],
 		["beelzebub", "beëlzebub"],
+        ["chloe\\b", "chloë"],
 		["cooperat", "coöperat"],
 		["coordinat", "coördinat"],
 		["dais", "daïs"],
@@ -34,6 +35,7 @@
 		["reinspir", "reïnspir"],
 		["reinvest", "reïnvest"],
         ["whereas", "whereäs"],
+        ["zoe\\b", "zoë"],
 		["zoolog", "zoölog"]
 	]
 

@@ -1,4 +1,5 @@
-﻿var elements = document.getElementsByTagName('*');
+﻿var words = null;
+var prefixes = null;
 
 /*
     Adds a diaeresis to an input vowel.
@@ -76,55 +77,80 @@ function matchCase(template, input) {
 }
 
 /*
-    Replaces the text of the page's elements based on the replacement scheme specified by
-    the input array.
+    Walk all nodes from the input node down, replacing the text for text nodes.
 */
-function replace(words, prefixes) {
+function walk(node) {
 
-    for (var i = 0; i < elements.length; i++) {
-        var element = elements[i];
+	var child, next;
 
-        for (var j = 0; j < element.childNodes.length; j++) {
-            var node = element.childNodes[j];
+	switch ( node.nodeType )  
+	{
+		case 1:  // Element
+		case 9:  // Document
+		case 11: // Document fragment
+			child = node.firstChild;
+			while ( child ) 
+			{
+				next = child.nextSibling;
+				walk(child);
+				child = next;
+			}
+			break;
 
-            if (node.nodeType === 3) {
-                var text = node.nodeValue;
-                var replacedText = text;
-                
-                // Replace prefixes
-                if (prefixes != null && prefixes.length > 0) {
-                    for (var n = 0; n < prefixes.length; n++) {
-                        
-                        var prefix = prefixes[n];
-                        var regex = new RegExp("\\b" + prefix + "\\-[aeiouAEIOU]", "gi");
-                        replacedText = replacedText.replace(regex, function(match) {
+		case 3: // Text node
+			handleNode(node);
+			break;
+	}
 
-                            return match.substring(0, prefix.length) + diaeresizeVowel(match[match.length-1]);
-                        });
-                    }
-                }
-                
-                // Replace full words
-                if (words != null && words.length > 0) {
-                    for (var n = 0; n < words.length; n++) {
+}
 
-                        var word = words[n][0]
-                        var regex = new RegExp("\\b" + word, "gi");
-                        replacedText = replacedText.replace(regex, function(match) {
+/*
+    Handle a particular node, replacing its text.
+*/
+function handleNode(textNode) {
 
-                            return matchCase(match, words[n][1]);
-                        });
-                        
-                    }
-                }
+    var text = textNode.nodeValue;
 
-                if (replacedText !== text) {
-                    element.replaceChild(document.createTextNode(replacedText), node);
-                }
-            }
+	text = replace(text);
+	
+	textNode.nodeValue = text;
+}
+
+
+/*
+    Find and replace instances of words that can take diaereses according to the JSON file.
+*/
+function replace(text) {
+
+    var output = text;
+    // Replace prefixes
+    if (prefixes != null && prefixes.length > 0) {
+        for (var n = 0; n < prefixes.length; n++) {
+            
+            var prefix = prefixes[n];
+            var regex = new RegExp("\\b" + prefix + "\\-[aeiouAEIOU]", "gi");
+            output = output.replace(regex, function(match) {
+
+                return match.substring(0, prefix.length) + diaeresizeVowel(match[match.length-1]);
+            });
+        }
+    }
+    
+    // Replace full words
+    if (words != null && words.length > 0) {
+
+        for (var n = 0; n < words.length; n++) {
+
+            var word = words[n][0]
+            var regex = new RegExp("\\b" + word, "gi");
+            output = output.replace(regex, function(match) {
+                return matchCase(match, words[n][1]);
+            });
+            
         }
     }
 
+    return output
 }
 
 /*
@@ -136,14 +162,14 @@ request.open('GET', url, true);
 request.send(null);
 request.onreadystatechange = function () {
     if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-        
+    
         var response = request.responseText;
         var parsed = JSON.parse(response);
-        var words = parsed["words"];
-        var prefixes = parsed["prefixes"];
+        words = parsed["words"];
+        prefixes = parsed["prefixes"];
         
         if (words != null || prefixes != null && words.length > 0) {
-            replace(words, prefixes);
+            walk(document.body)
         }
 
     }
