@@ -1,5 +1,12 @@
-﻿var words = null;
+﻿/*
+    Global variables storing replacement targets
+*/
+var words = null;
 var prefixes = null;
+
+// =======================================================
+// TEXT MANIPULATION
+// =======================================================
 
 /*
     Adds a diaeresis to an input vowel.
@@ -77,47 +84,6 @@ function matchCase(template, input) {
 }
 
 /*
-    Walk all nodes from the input node down, replacing the text for text nodes.
-*/
-function walk(node) {
-
-	var child, next;
-
-	switch ( node.nodeType )  
-	{
-		case 1:  // Element
-		case 9:  // Document
-		case 11: // Document fragment
-			child = node.firstChild;
-			while ( child ) 
-			{
-				next = child.nextSibling;
-				walk(child);
-				child = next;
-			}
-			break;
-
-		case 3: // Text node
-			handleNode(node);
-			break;
-	}
-
-}
-
-/*
-    Handle a particular node, replacing its text.
-*/
-function handleNode(textNode) {
-
-    var text = textNode.nodeValue;
-
-	text = replace(text);
-	
-	textNode.nodeValue = text;
-}
-
-
-/*
     Find and replace instances of words that can take diaereses according to the JSON file.
 */
 function replace(text) {
@@ -153,6 +119,89 @@ function replace(text) {
     return output
 }
 
+// =======================================================
+// DOM TRAVERSAL
+// =======================================================
+
+/*
+    Walk all nodes from the input node down, replacing the text for text nodes.
+*/
+function walk(node) {
+
+	var child, next;
+
+    child = node.firstChild;
+    while ( child ) 
+    {
+        next = child.nextSibling;
+        walk(child);
+        child = next;
+    }
+    
+    if (node.nodeType == 3) {
+        handleNode(node);
+    }
+}
+
+/*
+    Handle a particular node, replacing its text.
+*/
+function handleNode(textNode) {
+
+    var text = textNode.nodeValue;
+
+	text = replace(text);
+	
+	textNode.nodeValue = text;
+}
+
+function updateTitle() {
+    
+    var newTitle = replace(document.title);
+    if (document.title != newTitle) {
+        document.title = newTitle;
+    }
+}
+
+/*
+    Observe changes to the DOM to handle additional changes
+*/
+var observer = new MutationObserver(onMutation);
+observer.observe(document, {
+    childList: true, // report added/removed nodes
+    subtree: true   // observe any descendant elements
+});
+
+function onMutation(mutations) {
+
+    for (var i = 0, len = mutations.length; i < len; i++) {
+    
+        var added = mutations[i].addedNodes;
+        for (var j = 0, lenAdded = added.length; j < lenAdded; j++) {            
+            walk(added[j]);
+        }
+    }
+}
+
+/*
+    Observe changes to the page title
+*/
+var observer = new MutationObserver(onTitleMutation);
+observer.observe(document.querySelector('title'), {
+    subtree: true,
+    characterData: true,
+    childList: true
+});
+
+function onTitleMutation(mutations) {
+
+    updateTitle();
+}
+
+// =======================================================
+// DRIVER
+// =======================================================
+
 /*
     Read in JSON file specifying words to replace, then call replace to alter the words.
 */
@@ -170,6 +219,7 @@ request.onreadystatechange = function () {
         
         if (words != null || prefixes != null && words.length > 0) {
             walk(document.body)
+            updateTitle();
         }
 
     }
