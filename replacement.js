@@ -3,6 +3,7 @@
 */
 var words = null;
 var prefixes = null;
+var level = "off";
 
 // =======================================================
 // TEXT MANIPULATION
@@ -94,9 +95,14 @@ function replace(text) {
         for (var n = 0; n < prefixes.length; n++) {
             
             var prefix = prefixes[n];
-            var regex = new RegExp("\\b" + prefix + "\\-[aeiouAEIOU]", "gi");
+            var regex = null;
+            if (level == "low") {
+                regex = new RegExp("\\b" + prefix + "\\-" + prefix[prefix.length-1], "gi");
+            }
+            else if (level == "high") {
+                regex = new RegExp("\\b" + prefix + "\\-[aeiouAEIOU]", "gi");
+            }
             output = output.replace(regex, function(match) {
-
                 return match.substring(0, prefix.length) + diaeresizeVowel(match[match.length-1]);
             });
         }
@@ -205,22 +211,51 @@ function onTitleMutation(mutations) {
 /*
     Read in JSON file specifying words to replace, then call replace to alter the words.
 */
-var url = chrome.runtime.getURL("diaereses.json")
-var request = new XMLHttpRequest();
-request.open('GET', url, true);
-request.send(null);
-request.onreadystatechange = function () {
-    if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
-    
-        var response = request.responseText;
-        var parsed = JSON.parse(response);
-        words = parsed["words"];
-        prefixes = parsed["prefixes"];
+function drive() {
+    var url = chrome.runtime.getURL("diaereses.json")
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.send(null);
+    request.onreadystatechange = function () {
+        if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         
-        if (words != null || prefixes != null && words.length > 0) {
-            walk(document.body)
-            updateTitle();
-        }
+            var response = request.responseText;
+            var parsed = JSON.parse(response);
+            
+            words = parsed["low"]["words"];
+            prefixes = parsed["low"]["prefixes"];
 
+            if (level == "high") {
+                words = words.concat(parsed["high"]["words"]);
+                prefixes = prefixes.concat(parsed["high"]["prefixes"]);
+            }
+            
+            if (words != null || prefixes != null && words.length > 0) {
+                walk(document.body)
+                updateTitle();
+            }
+
+        }
     }
 }
+
+// =======================================================
+// START POINT
+// =======================================================
+
+/*
+    Get stored data and drive the script with the value recovered, or "low" on failure.
+*/
+chrome.storage.local.get("level", function(result) {
+   
+    if (result["level"] != undefined && result["level"] != null) {
+    
+        level = result["level"]
+    }
+    
+    if (level == "off") {
+        return;
+    }
+
+    drive();
+});

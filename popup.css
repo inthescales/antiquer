@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+    text-color: black;
+    margin: 0px;
+}
+
+button {
+    width: 144px;
+    height: 33px;
+    text-align: center;
+    margin: 3px;
+    padding: 0px;
+    background-color: #E8E8E8;
+}
+
+button.buttonOff {
+    border: none;
+    border-color: none;
+}
+
+button.buttonOn {
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: red;
+}
+
+button:hover {
+    background-color: lightgray;
+}
+
+button:active {
+    background-color: #B0B0B0;
+}
+
+button:focus {
+    outline-color: red;
+}
