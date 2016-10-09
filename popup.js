@@ -53,9 +53,10 @@ document.getElementById('buttonOff').addEventListener('click', selectOff);
 document.getElementById('buttonLow').addEventListener('click', selectLow);
 document.getElementById('buttonHigh').addEventListener('click', selectHigh);
 
-chrome.storage.local.get("level", function(result) {
+chrome.storage.local.get( {"level" : "low"}, function(result) {
 
     var level = result["level"];
+    
     updateScreen(level);
     updateIcon(level);
 });

@@ -2,7 +2,7 @@
 "manifest_version": 2,
     "name": "Diaeresizer",
     "description": "Display diaereses instead of other spelling forms.",
-    "version": "1.0",
+    "version": "1.2",
     "icons": { 
         "16": "icon16.png",
         "48": "icon48.png",
