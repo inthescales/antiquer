@@ -1,21 +1,33 @@
 body {
     background-color: white;
-    text-color: black;
+    text-color: #040404;
     margin: 0px;
+    font-size:14px;
+}
+
+.sectionDiv {
+    padding: 5px;
+    margin: 2px;
+    background-color: #F2F2F2;
+    border-radius: 4px;
 }
 
 button {
-    width: 144px;
-    height: 33px;
-    text-align: center;
-    margin: 3px;
+    width: 142px;
+    height: 28px;
+    align:center;
+    margin: 0px auto 5px auto ;
     padding: 0px;
-    background-color: #E8E8E8;
+    display:block;
+    text-align: center;
+    
+    background-color: #E2E2E2;
 }
 
 button.buttonOff {
-    border: none;
-    border-color: none;
+    border: 1px solid;
+    border-color: gray;
+    border-radius: 4px;
 }
 
 button.buttonOn {
@@ -29,9 +41,21 @@ button:hover {
 }
 
 button:active {
-    background-color: #B0B0B0;
+    background-color: #C5C5C5;
 }
 
 button:focus {
     outline-color: red;
+}
+
+a {
+    color: red;
+}
+
+.line {
+    margin: auto 5px 4px 5px;
+    display: inline-block;
+    height: 1px;
+    width: 45px;
+    background-color: #F2F2F2;
 }

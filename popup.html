@@ -3,10 +3,35 @@
   <head>
     <link href="popup.css" rel="stylesheet" type="text/css">
   </head>
-  <body style="width: 150px">
-    <button id="buttonOff">Off</button>
-    <button id="buttonLow">Standard</button>
-    <button id="buttonHigh">Thorough</button>
-    <script type="text/javascript" src="popup.js"></script>
+  <body style="width: 160px">
+  
+    <div id="header_div">
+        <table style="margin: 2px auto auto auto; width: 120px; display: block;">
+            <tr>
+                <td>
+                    <img src="popup_icon.png" style="width: 16px; height: 21px; display: inline-block; margin: 0px 2px 0px 2px; padding: 0px;"></img>
+                </td>
+                <td>
+                    <p style="display:inline-block; margin: auto; width: 84px; padding: 0px; line-height: 100%; font-weight: bold; font-size: 115%;">Diaeresizer</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+  
+    <div class="sectionDiv"  id="buttons_div">
+        <p style="text-align: center; margin: 0px 0px 5px 0px;">replacement level:</p>
+        <button id="buttonOff">Off</button>
+        <button id="buttonLow">Standard</button>
+        <button id="buttonHigh">Thorough</button>
+    </div>
+    
+    <div style="text-align: center; margin: 5px auto;">
+    
+        <div class="line"></div>
+        <a href="http://www.sinuousrill.com/projects/Diaeresizer_en.html" target="_blank">About</a>
+        <div class="line"></div>
+    </div>
+    
+    <script class="sectionDiv"  type="text/javascript" src="popup.js"></script>
   </body>
 </html>
