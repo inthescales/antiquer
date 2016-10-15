@@ -1,5 +1,5 @@
 ﻿{
-	"low": {
+    "low": {
 		"prefixes": [
 			"co",
 			"de",
@@ -16,7 +16,7 @@
 		],
 		"words": [
             ["caique", "caïque"],
-			["chloe\\b", "chloë"],
+			["chloe.", "chloë"],
 			["coed", "coëd"],
 			["cooperat", "coöperat"],
 			["coordinat", "coördinat"],
@@ -45,7 +45,7 @@
 			["reescalat", "reëscalat"],
 			["reevaluat", "reëvaluat"],
 			["reexamin", "reëxamin"],
-			["zoe\\b", "zoë"],
+			["zoe.", "zoë"],
 			["zoolog", "zoölog"]
 		]
 	},

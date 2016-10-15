@@ -1,9 +1,9 @@
 ﻿/*
     Global variables storing replacement targets
 */
-var words = null;
-var prefixes = null;
+var trie = null;
 var level = "off";
+var dashing = "off";
 
 var startTime = Date.now();
 
@@ -90,41 +90,184 @@ function matchCase(template, input) {
     Find and replace instances of words that can take diaereses according to the JSON file.
 */
 function replace(text) {
-return;
-    var output = text;
-    // Replace prefixes
-    if (prefixes != null && prefixes.length > 0) {
-        for (var n = 0; n < prefixes.length; n++) {
+
+    var output = "";
+    
+    var current = null;
+    var atBoundary = true;
+    var word = "";
+    var letter = "";
+    
+    function flush(letter) {
+        output += word + letter;
+        word = "";
+    }
+    
+    function atEnd(i) {
+        
+        if (i == text.length - 1) {
+            return true;
+        }
+        
+        var nextLetter = text.charAt(i+1);
+        return isBoundary(nextLetter);
+    }
+    
+    for (var i = 0; i < text.length; i++) {
+    
+        letter = text.charAt(i);
+        var compLetter = text.charAt(i).toLowerCase();
+        
+        if (isBoundary(letter) && letter != "-" ) {
+            flush(letter);
+            atBoundary = isBoundary(letter);
+            continue;
+        }
+
+        if (current == null) {
             
-            var prefix = prefixes[n];
-            var regex = null;
-            if (level == "low") {
-                regex = new RegExp("\\b" + prefix + "\\-" + prefix[prefix.length-1], "gi");
+            if (atBoundary) {
+                var node = trie[compLetter];
+                if (node != null && can_access(node["levels"], level)) {
+                    //alert("Starting new track with letter: " + letter);
+                    current = node;
+                }
             }
-            else if (level == "high") {
-                regex = new RegExp("\\b" + prefix + "\\-[aeiouAEIOU]", "gi");
+            
+            if (current == null) {
+                output += letter;
             }
-            output = output.replace(regex, function(match) {
-                return match.substring(0, prefix.length) + diaeresizeVowel(match[match.length-1]);
-            });
+            
+        } else if (current["following"] != null) {
+        
+            var next = current["following"][compLetter];
+            if (next == null) {
+                current = null;
+                //alert("Flushing (" + word + letter + ") at no-next");
+                flush(letter);
+                
+            } else if (can_access(next["levels"], level)) {
+            
+                current = next;
+                if (current["word"] != null && !(current["final"] == true && !atEnd(i)) ) {
+                
+                    output += matchCase(word + letter, current["word"]);
+                    word = "";
+                    current = null;
+                } else if (letter == "-" && i < text.length - 1) {
+                
+                    current = null;
+                    //alert("Flushing (" + word + letter + "at dashing");
+                    flush("");
+                    var nextLetter = text.charAt(i+1);
+                    if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
+                        output += diaeresizeVowel(nextLetter);
+                        letter = nextLetter;
+                        i += 1;
+                    } else {
+                        output += "-";
+                    }
+                } else {
+                    
+                }
+            }
+        } else {
+            alert("!!!!!");
+            current = null;
+            flush(letter);
+        }
+        
+        if (current != null) {
+            word += letter;
+        } 
+        
+        //alert(word + ", " + output);
+        
+        atBoundary = isBoundary(letter);
+        
+    }
+    
+    output += word;
+
+    return output
+}
+
+// Replacement helpers ------------------------------------
+
+/*function isLetter(character) {
+
+    return character.length === 1 && /\w/.test(character);
+}
+
+function isBoundary(character) {
+
+    return character.length === 1 && /\W/.test(character);
+}*/
+
+function isLetter(character) {
+
+    return !isBoundary(character);
+    //return ((character >= "a" && character <= "z") || (character >= "A" && character <= "Z"));
+    //return character.length === 1 && /\w/.test(character);
+}
+
+function isBoundary(character) {
+
+    switch (character) {
+        case " ":
+        case ".":
+        case ",":
+        case ";":
+        case "-":
+        case "\n":
+        case "\r":
+        case "\t":
+            return true;
+        default:
+            return false;
+    }
+}
+
+function can_access(arr, level) {
+
+    var allowed = [];
+    switch (level) {
+        case "low":
+            allowed = ["low"]; break;
+        case "high":
+            allowed = ["low", "high"]; break;
+        default:
+            break;
+    }
+
+    for (var i = 0; i < arr.length; i++) {
+        for (var j = 0; j < allowed.length; j++) {
+            if (arr[i] == allowed[j]) {
+                return true;
+            }
         }
     }
     
-    // Replace full words
-    if (words != null && words.length > 0) {
+    return false;
+}
 
-        for (var n = 0; n < words.length; n++) {
-
-            var word = words[n][0]
-            var regex = new RegExp("\\b" + word, "gi");
-            output = output.replace(regex, function(match) {
-                return matchCase(match, words[n][1]);
-            });
-            
-        }
+function isVowel(letter) {
+    
+    switch(letter) {
+        case "a":
+        case "e":
+        case "i":
+        case "o":
+        case "u":
+        case "A":
+        case "E":
+        case "I":
+        case "O":
+        case "U":
+            return true;
+        default:
+            return false;
     }
-
-    return output
 }
 
 // =======================================================
@@ -158,8 +301,11 @@ function handleNode(textNode) {
 
     var text = textNode.nodeValue;
 
-	text = replace(text);
-	
+    if (text.length > 0) {
+
+        text = replace(text);
+    }
+    
 	textNode.nodeValue = text;
 }
 
@@ -182,11 +328,13 @@ observer.observe(document, {
 
 function onMutation(mutations) {
 
-    for (var i = 0, len = mutations.length; i < len; i++) {
-    
-        var added = mutations[i].addedNodes;
-        for (var j = 0, lenAdded = added.length; j < lenAdded; j++) {            
-            walk(added[j]);
+    if (trie != null) {
+        for (var i = 0, len = mutations.length; i < len; i++) {
+        
+            var added = mutations[i].addedNodes;
+            for (var j = 0, lenAdded = added.length; j < lenAdded; j++) {            
+                walk(added[j]);
+            }
         }
     }
 }
@@ -203,7 +351,9 @@ observer.observe(document.querySelector('title'), {
 
 function onTitleMutation(mutations) {
 
-    updateTitle();
+    if (trie != null) {
+        updateTitle();
+    }
 }
 
 // =======================================================
@@ -214,7 +364,7 @@ function onTitleMutation(mutations) {
     Read in JSON file specifying words to replace, then call replace to alter the words.
 */
 function drive() {
-    var url = chrome.runtime.getURL("diaereses.json")
+    var url = chrome.runtime.getURL("trie.json")
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.send(null);
@@ -222,17 +372,9 @@ function drive() {
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         
             var response = request.responseText;
-            var parsed = JSON.parse(response);
-            
-            words = parsed["low"]["words"];
-            prefixes = parsed["low"]["prefixes"];
+            trie = JSON.parse(response);
 
-            if (level == "high") {
-                words = words.concat(parsed["high"]["words"]);
-                prefixes = prefixes.concat(parsed["high"]["prefixes"]);
-            }
-            
-            if (words != null || prefixes != null && words.length > 0) {
+            if (trie != null) {
                 walk(document.body)
                 updateTitle();
             }
@@ -240,8 +382,8 @@ function drive() {
         }
     }
     
-    var endTime = Date.now();
-    alert(endTime - startTime);
+    //var endTime = Date.now();
+    //alert(endTime - startTime);
 }
 
 // =======================================================
@@ -254,11 +396,12 @@ function drive() {
 chrome.storage.local.get({"level" : "low"}, function(result) {
    
     level = result["level"]
-
     
     if (level == "off") {
         return;
     }
+    
+    dashing = level;
 
     drive();
 });
