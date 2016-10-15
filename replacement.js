@@ -213,12 +213,35 @@ function isLetter(character) {
 
 function isBoundary(character) {
 
+    if (character.charCodeAt(0) <= 47) {
+        return true;
+    }
+    
     switch (character) {
+        case "\0":
         case " ":
         case ".":
         case ",":
         case ";":
         case "-":
+        case "~":
+        case "\"":
+        case "_":
+        case "+":
+        case "=":
+        case "(":
+        case ")":
+        case "[":
+        case "]":
+        case "{":
+        case "}":
+        case "<":
+        case ">":
+        case "?":
+        case "/":
+        case "'":
+        case "`":
+        case "\\":
         case "\n":
         case "\r":
         case "\t":
