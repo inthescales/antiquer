@@ -5,6 +5,8 @@ var words = null;
 var prefixes = null;
 var level = "off";
 
+var startTime = Date.now();
+
 // =======================================================
 // TEXT MANIPULATION
 // =======================================================
@@ -88,7 +90,7 @@ function matchCase(template, input) {
     Find and replace instances of words that can take diaereses according to the JSON file.
 */
 function replace(text) {
-
+return;
     var output = text;
     // Replace prefixes
     if (prefixes != null && prefixes.length > 0) {
@@ -237,6 +239,9 @@ function drive() {
 
         }
     }
+    
+    var endTime = Date.now();
+    alert(endTime - startTime);
 }
 
 // =======================================================

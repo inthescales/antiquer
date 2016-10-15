@@ -4,9 +4,18 @@
 			"co",
 			"de",
 			"pre",
-			"re"
+			"re",
+            "micro",
+            "anti",
+            "auto",
+			"intra",
+			"proto",
+            "unco",
+            "gastro",
+            "hydro"
 		],
 		"words": [
+            ["caique", "caïque"],
 			["chloe\\b", "chloë"],
 			["coed", "coëd"],
 			["cooperat", "coöperat"],
@@ -16,9 +25,11 @@
 			["deemphasi", "deëmphasi"],
 			["deenable", "deënable"],
 			["deescalat", "deëscalat"],
+            ["microorganism", "microörganism"],
 			["naif", "naïf"],
 			["naiv", "naïv"],
 			["noel", "noël"],
+            ["noosphere", "noösphere"],
 			["preempt", "preëmpt"],
 			["preeminen", "preëminen"],
 			["preexist", "preëxist"],
@@ -40,13 +51,11 @@
 	},
 	"high": {
 		"prefixes": [
-			"anti",
-			"intra",
-			"proto",
-			"auto"
+
 		],
 		"words": [
 			["antiinflam", "antiïnflam"],
+            ["archai", "archaï"],
 			["autoimmun", "autoïmmun"],
 			["averroes", "averroës"],
 			["baal", "baäl"],
@@ -54,11 +63,15 @@
 			["dais", "daïs"],
 			["deity", "deïty"],
 			["naiad", "naïad"],
+            ["noesis", "noësis"],
+            ["oocyte", "oöcyte"],
 			["orthoep", "orthoëp"],
 			["preamble", "preämble"],
+            ["protozoon", "protozoön"],
 			["raphael", "raphaël"],
 			["react", "reäct"],
 			["readdress", "reäddress"],
+            ["rearchitect", "reärchitect"],
 			["rearrang", "reärrang"],
 			["reassess", "reässess"],
 			["reignit", "reïgnit"],
@@ -66,6 +79,8 @@
 			["reinspir", "reïnspir"],
 			["reinvest", "reïnvest"],
 			["reup", "reüp"],
+            ["reuse", "reüse"],
+            ["reusing", "reüsing"],
 			["whereas", "whereäs"]
 		]
 	}
