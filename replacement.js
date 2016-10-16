@@ -129,7 +129,6 @@ function replace(text) {
             if (atBoundary) {
                 var node = trie[compLetter];
                 if (node != null && can_access(node["levels"], level)) {
-                    //alert("Starting new track with letter: " + letter);
                     current = node;
                 }
             }
@@ -143,7 +142,6 @@ function replace(text) {
             var next = current["following"][compLetter];
             if (next == null) {
                 current = null;
-                //alert("Flushing (" + word + letter + ") at no-next");
                 flush(letter);
                 
             } else if (can_access(next["levels"], level)) {
@@ -157,7 +155,6 @@ function replace(text) {
                 } else if (letter == "-" && i < text.length - 1) {
                 
                     current = null;
-                    //alert("Flushing (" + word + letter + "at dashing");
                     flush("");
                     var nextLetter = text.charAt(i+1);
                     if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
@@ -167,22 +164,17 @@ function replace(text) {
                     } else {
                         output += "-";
                     }
-                } else {
-                    
                 }
             }
         } else {
-            alert("!!!!!");
             current = null;
             flush(letter);
         }
         
         if (current != null) {
             word += letter;
+                
         } 
-        
-        //alert(word + ", " + output);
-        
         atBoundary = isBoundary(letter);
         
     }
@@ -303,17 +295,22 @@ function isVowel(letter) {
 function walk(node) {
 
 	var child, next;
-
-    child = node.firstChild;
-    while ( child ) 
-    {
-        next = child.nextSibling;
-        walk(child);
-        child = next;
-    }
     
-    if (node.nodeType == 3) {
-        handleNode(node);
+    child = node.firstChild;
+    switch (node.nodeType) {
+        case 1:
+        case 9:
+        case 11:
+            while ( child ) {
+                next = child.nextSibling;
+                walk(child);
+                child = next;
+            }
+            break;
+            
+        case 3:
+            handleNode(node);
+            break;
     }
 }
 
@@ -325,7 +322,7 @@ function handleNode(textNode) {
     var text = textNode.nodeValue;
 
     if (text.length > 0) {
-
+    
         text = replace(text);
     }
     
