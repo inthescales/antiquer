@@ -55,10 +55,12 @@ function matchCase(template, input) {
     var profile = [];
     var skipped = 0;
     var needsChange = false;
+    var isProper = true;
     
     for (var i = 0; i < template.length; i++) {
         
         if (template[i] == "-") {
+        
             skipped += 1;
             continue;
         }
@@ -66,20 +68,33 @@ function matchCase(template, input) {
         if (template[i] == template[i].toUpperCase()) {
             profile[i-skipped] = 1;
             needsChange = true;
+            if (i > 0 && i < template.length - 1) {
+                isProper = false;
+            }
         } else {
             profile[i-skipped] = 0;
+            if (i == 0) {
+                isProper = false;
+            }
         }
     }
-
+    
+    if (isProper && skipped > 0) {
+        profile[profile.length-1] = 0;
+    }
+    
     if (needsChange && profile.length == input.length) {
+    
         var output = ""
         for (var i = 0; i < input.length; i++) {
+        
             if (profile[i] == 0) {
-                output += input[i];
+                output += input[i].toLowerCase();
             } else {
                 output += input[i].toUpperCase();
             }
         }
+        
         return output;
     }
     
@@ -155,15 +170,15 @@ function replace(text) {
                 } else if (letter == "-" && i < text.length - 1) {
                 
                     current = null;
-                    flush("");
                     var nextLetter = text.charAt(i+1);
                     if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
-                        output += diaeresizeVowel(nextLetter);
+                        output += matchCase(word + "-" + nextLetter, word + diaeresizeVowel(nextLetter));
                         letter = nextLetter;
                         i += 1;
                     } else {
                         output += "-";
                     }
+                    word = "";
                 }
             }
         } else {
