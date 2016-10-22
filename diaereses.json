@@ -60,7 +60,8 @@
 			["averroes", "averroës"],
 			["baal", "baäl"],
 			["beelzebub", "beëlzebub"],
-			["dais", "daïs"],
+			["dais.", "daïs"],
+            ["daises", "daïses"],
 			["deity", "deïty"],
 			["naiad", "naïad"],
             ["noesis", "noësis"],
@@ -78,9 +79,13 @@
 			["reimplement", "reïmplement"],
 			["reinspir", "reïnspir"],
 			["reinvest", "reïnvest"],
+            ["reopen", "reöpen"],
+            ["reorder", "reörder"],
+            ["reorganiz", "reörganiz"],
 			["reup", "reüp"],
             ["reuse", "reüse"],
             ["reusing", "reüsing"],
+            ["staid", "staïd"],
 			["whereas", "whereäs"]
 		]
 	}
