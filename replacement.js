@@ -135,6 +135,7 @@ function replace(text) {
         
         if (isBoundary(letter) && letter != "-" ) {
             flush(letter);
+            current = null;
             atBoundary = isBoundary(letter);
             continue;
         }
