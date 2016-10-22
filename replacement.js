@@ -175,10 +175,11 @@ function replace(text) {
                         output += matchCase(word + "-" + nextLetter, word + diaeresizeVowel(nextLetter));
                         letter = nextLetter;
                         i += 1;
+                        word = "";
                     } else {
+                        flush("");
                         output += "-";
                     }
-                    word = "";
                 }
             }
         } else {
