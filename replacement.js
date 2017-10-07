@@ -314,7 +314,6 @@ function walk(node) {
 	var child, next;
     
     child = node.firstChild;
-	
     switch (node.nodeType) {
         case 1:
         case 9:
@@ -371,10 +370,10 @@ function onMutation(mutations) {
 
     if (trie != null) {
         for (var i = 0, len = mutations.length; i < len; i++) {
-        		
+
             var added = mutations[i].addedNodes;
             for (var j = 0, lenAdded = added.length; j < lenAdded; j++) {
-				walk(added[j]);
+                walk(added[j]);
             }
         }
     }
