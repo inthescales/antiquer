@@ -12,7 +12,7 @@ imagedir="resources"
 developdir="develop"
 releasedir="release"
 
-images="${imagedir}/16x.png ${imagedir}/16x_bw.png ${imagedir}/48x.png ${imagedir}/48x_bw.png ${imagedir}/128x.png ${imagedir}/128x_bw.png ${imagedir}/popup_icon.png"
+images="${imagedir}/icon_16x.png ${imagedir}/icon_16x_bw.png ${imagedir}/icon_48x.png ${imagedir}/icon_48x_bw.png ${imagedir}/icon_128x.png ${imagedir}/icon_128x_bw.png ${imagedir}/popup_icon.png"
 
 if test "$mode" == "$mode_develop"
 then
@@ -24,8 +24,9 @@ then
     echo "Bundling for develop"
     
     mkdir $developdir
+    mkdir "${developdir}/${imagedir}"
     cp $sourcedir/* $developdir
-    cp $images $developdir
+    cp $images "${developdir}/${imagedir}"
 
     echo "Bundled successfully"
 
@@ -41,8 +42,8 @@ then
 
     mkdir $releasedir
     cp $sourcedir/* $releasedir
-    cp $images $releasedir
-    zip -rj $extension_name.zip $releasedir/*
+    zip -rj $extension_name.zip $releasedir
+    zip $extension_name.zip $images
     rm -rf $releasedir
 
     echo "Bundled successfully"

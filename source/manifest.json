@@ -1,12 +1,13 @@
 {
 "manifest_version": 2,
     "name": "Diaeresizer",
+    "short_name": "Diaeresizer",
     "description": "Display diaereses instead of other spelling forms.",
-    "version": "1.3",
+    "version": "1.4",
     "icons": { 
-        "16": "icon16.png",
-        "48": "icon48.png",
-        "128": "icon128.png"
+        "16": "resources/icon_16x.png",
+        "48": "resources/icon_48x.png",
+        "128": "resources/icon_128x.png"
     },
     "browser_action": {
       "default_title": "Diaeresizer",

@@ -41,8 +41,10 @@ function updateScreen(level) {
 
 function updateIcon(level) {
 
-    var iconPath16 = (level != "off") ? "icon16.png" : "icon16_bw.png";
-    var iconPath48 = (level != "off") ? "icon48.png" : "icon48_bw.png";
+    var resourcesDir = "resources";
+    
+    var iconPath16 = resourcesDir + "/" + ((level != "off") ? "icon_16x.png" : "icon_16x_bw.png");
+    var iconPath48 = resourcesDir + "/" + ((level != "off") ? "icon_48x.png" : "icon_48x_bw.png");
     
     chrome.browserAction.setIcon({
         path: {19: iconPath16, 38: iconPath48}
