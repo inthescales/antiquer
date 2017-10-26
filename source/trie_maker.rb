@@ -64,7 +64,7 @@ def add_word(word, level)
     for i in 0..word.length-1
             
         letter = word[i]
-        
+        #puts letter + ", "
         if letter == "."
             current.final = true
             return current
@@ -102,16 +102,16 @@ d_json.each {|key, value|
     words = value["words"]
     
     for prefix in prefixes 
-    
         final_node = add_word(prefix, level)
         dash_node = Node.new("-", level)        
         final_node["-"] = dash_node
     end
     
     for word in words
-        final_node = add_word(word[0], level)
-        final_node.word = word[1]
-        
+        for i in 0...(word.length-1)
+            final_node = add_word(word[i], level)
+            final_node.word = word[word.length-1]
+        end
     end
 }
 

@@ -2,7 +2,8 @@
     Global variables storing replacement targets
 */
 var trie = null;
-var level = "off";
+var diaeresis_level = "off";
+var ligature_level = "off";
 var dashing = "off";
 
 var startTime = Date.now();
@@ -144,7 +145,7 @@ function replace(text) {
             
             if (atBoundary) {
                 var node = trie[compLetter];
-                if (node != null && can_access(node["levels"], level)) {
+                if (node != null && can_access(node["levels"])) {
                     current = node;
                 }
             }
@@ -156,11 +157,12 @@ function replace(text) {
         } else if (current["following"] != null) {
         
             var next = current["following"][compLetter];
+            
             if (next == null) {
                 current = null;
                 flush(letter);
                 
-            } else if (can_access(next["levels"], level)) {
+            } else if (can_access(next["levels"])) {
             
                 current = next;
                 if (current["word"] != null && !(current["final"] == true && !atEnd(i)) ) {
@@ -182,6 +184,9 @@ function replace(text) {
                         output += "-";
                     }
                 }
+            } else {
+                current = null;
+                flush(letter);
             }
         } else {
             current = null;
@@ -260,14 +265,27 @@ function isBoundary(character) {
     }
 }
 
-function can_access(arr, level) {
+function can_access(arr) {
 
     var allowed = [];
-    switch (level) {
+    switch (diaeresis_level) {
         case "low":
-            allowed = ["low"]; break;
+            allowed = ["diaeresis_low"];
+            break;
         case "high":
-            allowed = ["low", "high"]; break;
+            allowed = ["diaeresis_low", "diaeresis_high"];
+            break;
+        default:
+            break;
+    }
+    switch (ligature_level) {
+        case "low":
+            allowed = allowed.concat("ligature_low");
+            break;
+        case "high":
+            allowed = allowed.concat("ligature_high");
+            break;
+            
         default:
             break;
     }
@@ -433,15 +451,17 @@ function drive() {
 /*
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
-chrome.storage.local.get({"level" : "low"}, function(result) {
+chrome.storage.local.get({"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {
    
-    level = result["level"]
+    diaeresis_level = result["diaeresis_level"];
+    ligature_level = result["ligature_level"];
     
-    if (level == "off") {
+    if (diaeresis_level == "off" && ligature_level == "off") {
         return;
     }
     
-    dashing = level;
+    console.log(diaeresis_level);
+    dashing = diaeresis_level;
 
     drive();
 });
