@@ -58,10 +58,11 @@ function matchCase(template, input) {
     var needsChange = false;
     var isProper = true;
     
+    console.log(template);
+
     for (var i = 0; i < template.length; i++) {
         
         if (template[i] == "-") {
-        
             skipped += 1;
             continue;
         }
@@ -78,8 +79,21 @@ function matchCase(template, input) {
                 isProper = false;
             }
         }
+        console.log(template[i] + ": " + profile[i-skipped]);
+        
+        console.log(skipped + ", " + input[i-skipped] + ", " + template[i]);
+        if (i < template.length-1
+        && ((input[i-skipped].toLowerCase() == "æ" && template[i].toLowerCase() == "a" && template[i+1].toLowerCase() == "e")
+          || (input[i-skipped].toLowerCase() == "œ" && template[i].toLowerCase() == "o" && template[i+1].toLowerCase() == "e"))) {
+            
+            console.log("Skipping");
+            if (profile[i-skipped] == 1) {
+                i += 1;
+            }
+            skipped += 1;
+        }
     }
-    
+
     if (isProper && skipped > 0) {
         profile[profile.length-1] = 0;
     }
@@ -109,14 +123,23 @@ function replace(text) {
 
     var output = "";
     
-    var current = null;
-    var atBoundary = true;
-    var word = "";
+    var match_buffer = "";
+    var current_node = null;
+    var matched_word = "";
     var letter = "";
     
+    var atBoundary = true;
+    
     function flush(letter) {
-        output += word + letter;
-        word = "";
+
+        if (matched_word != "") {
+            output += matched_word;
+            matched_word = "";
+        }
+        
+        current_node = null;
+        output += match_buffer + letter;
+        match_buffer = "";
     }
     
     function atEnd(i) {
@@ -136,72 +159,66 @@ function replace(text) {
         
         if (isBoundary(letter) && letter != "-" ) {
             flush(letter);
-            current = null;
             atBoundary = isBoundary(letter);
             continue;
         }
 
-        if (current == null) {
+        if (current_node == null) {
             
             if (atBoundary) {
                 var node = trie[compLetter];
                 if (node != null && can_access(node["levels"])) {
-                    current = node;
+                    current_node = node;
                 }
             }
             
-            if (current == null) {
-                output += letter;
-            }
-            
-        } else if (current["following"] != null) {
+        } else if (current_node["following"] != null) {
         
-            var next = current["following"][compLetter];
+            var next = current_node["following"][compLetter];
             
-            if (next == null) {
-                current = null;
-                flush(letter);
-                
-            } else if (can_access(next["levels"])) {
+            if (next != null && can_access(next["levels"])) {
             
-                current = next;
-                if (current["word"] != null && !(current["final"] == true && !atEnd(i)) ) {
+                current_node = next;
                 
-                    output += matchCase(word + letter, current["word"]);
-                    word = "";
-                    current = null;
-                } else if (letter == "-" && i < text.length - 1) {
-                
-                    current = null;
-                    var nextLetter = text.charAt(i+1);
-                    if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
-                        output += matchCase(word + "-" + nextLetter, word + diaeresizeVowel(nextLetter));
-                        letter = nextLetter;
-                        i += 1;
-                        word = "";
-                    } else {
-                        flush("");
-                        output += "-";
-                    }
-                }
             } else {
-                current = null;
-                flush(letter);
+                flush("");
             }
         } else {
-            current = null;
-            flush(letter);
+            flush("");
         }
         
-        if (current != null) {
-            word += letter;
+        if (current_node != null) {
+            
+            if (current_node["word"] != null && !(current_node["final"] == true && !atEnd(i))) {
                 
-        } 
+                matched_word = matchCase(match_buffer + letter, current_node["word"]);
+                match_buffer = "";
+                    
+            } else if (letter == "-" && i < text.length - 1) {
+            
+                var nextLetter = text.charAt(i+1);
+                
+                if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
+                    output += matchCase(match_buffer + "-" + nextLetter, match_buffer + diaeresizeVowel(nextLetter));
+                    current_node = null;
+                    match_buffer = "";
+                    letter = nextLetter;
+                    i += 1;
+                } else {
+                    flush("-");
+                }
+            } else {
+                match_buffer += letter;
+            }
+        } else {
+            output += letter;
+        }
+        
         atBoundary = isBoundary(letter);
         
     }
     
-    output += word;
+    output += match_buffer;
 
     return output
 }
