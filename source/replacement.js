@@ -57,8 +57,6 @@ function matchCase(template, input) {
     var skipped = 0;
     var needsChange = false;
     var isProper = true;
-    
-    console.log(template);
 
     for (var i = 0; i < template.length; i++) {
         
@@ -79,14 +77,11 @@ function matchCase(template, input) {
                 isProper = false;
             }
         }
-        console.log(template[i] + ": " + profile[i-skipped]);
         
-        console.log(skipped + ", " + input[i-skipped] + ", " + template[i]);
         if (i < template.length-1
         && ((input[i-skipped].toLowerCase() == "æ" && template[i].toLowerCase() == "a" && template[i+1].toLowerCase() == "e")
           || (input[i-skipped].toLowerCase() == "œ" && template[i].toLowerCase() == "o" && template[i+1].toLowerCase() == "e"))) {
             
-            console.log("Skipping");
             if (profile[i-skipped] == 1) {
                 i += 1;
             }
@@ -190,7 +185,7 @@ function replace(text) {
         if (current_node != null) {
             
             if (current_node["word"] != null && !(current_node["final"] == true && !atEnd(i))) {
-                
+               
                 matched_word = matchCase(match_buffer + letter, current_node["word"]);
                 match_buffer = "";
                     
@@ -218,7 +213,7 @@ function replace(text) {
         
     }
     
-    output += match_buffer;
+    output += matched_word + match_buffer;
 
     return output
 }
@@ -245,6 +240,11 @@ function isLetter(character) {
 function isBoundary(character) {
 
     if (character.charCodeAt(0) <= 47) {
+        return true;
+    }
+    
+    if (character.charCodeAt(0) >= 128
+     && character.charCodeAt(0) <= 160) {
         return true;
     }
     
