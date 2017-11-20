@@ -6,12 +6,29 @@ function setDiaeresisLevel(level) {
         
         chrome.tabs.reload();
         updateView();
-        //updateScreen(diaeresis_level, ligature_level);
-        //updateIcon(diaeresis_level, ligature_level);
+        updateDiaeresisButtons(diaeresis_level);
+        updateIcon(diaeresis_level, ligature_level);
+    });
+}
+
+function setLigatureLevel(level) {  
+    
+    chrome.storage.local.set({"ligature_level" : level}, function() {
+        
+        chrome.tabs.reload();
+        updateView();
+        updateLigatureButtons(ligature_level);
+        updateIcon(diaeresis_level, ligature_level);
     });
 }
 
 function updateScreen(diaeresis_level, ligature_level) {
+    
+    updateDiaeresisButtons(diaeresis_level);
+    updateLigatureButtons(ligature_level);
+}
+
+function updateDiaeresisButtons(level) {
 
     var diaeresisOffButton = document.getElementById('diaeresisOffButton');
     var diaeresisLowButton = document.getElementById('diaeresisLowButton');
@@ -20,9 +37,23 @@ function updateScreen(diaeresis_level, ligature_level) {
     var onClass = "buttonOn";
     var offClass = "buttonOff";
     
-    diaeresisOffButton.className = (diaeresis_level == "off") ? onClass : offClass;
-    diaeresisLowButton.className = (diaeresis_level == "low") ? onClass : offClass;
-    diaeresisHighButton.className = (diaeresis_level == "high") ? onClass : offClass;    
+    diaeresisOffButton.className = (level == "off") ? onClass : offClass;
+    diaeresisLowButton.className = (level == "low") ? onClass : offClass;
+    diaeresisHighButton.className = (level == "high") ? onClass : offClass;
+}
+
+function updateLigatureButtons(level) {
+    
+    var ligatureOffButton = document.getElementById('ligatureOffButton');
+    var ligatureLowButton = document.getElementById('ligatureLowButton');
+    var ligatureHighButton = document.getElementById('ligatureHighButton');
+    
+    var onClass = "buttonOn";
+    var offClass = "buttonOff";
+    
+    ligatureOffButton.className = (level == "off") ? onClass : offClass;
+    ligatureLowButton.className = (level == "low") ? onClass : offClass;
+    ligatureHighButton.className = (level == "high") ? onClass : offClass;  
 }
 
 function updateIcon(diaeresis_level, ligature_level) {
@@ -40,6 +71,10 @@ function updateIcon(diaeresis_level, ligature_level) {
 document.getElementById('diaeresisOffButton').addEventListener('click', function(){ setDiaeresisLevel("off"); });
 document.getElementById('diaeresisLowButton').addEventListener('click', function(){ setDiaeresisLevel("low"); });
 document.getElementById('diaeresisHighButton').addEventListener('click', function(){ setDiaeresisLevel("high"); });
+
+document.getElementById('ligatureOffButton').addEventListener('click', function(){ setLigatureLevel("off"); });
+document.getElementById('ligatureLowButton').addEventListener('click', function(){ setLigatureLevel("low"); });
+document.getElementById('ligatureHighButton').addEventListener('click', function(){ setLigatureLevel("high"); });
 
 function updateView() {
     chrome.storage.local.get( {"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {

@@ -52,6 +52,14 @@ a {
     color: red;
 }
 
+.small-line {
+    margin: auto 5px 4px 5px;
+    display: inline-block;
+    height: 1px;
+    width: 30px;
+    background-color: #F2F2F2;
+}
+
 .line {
     margin: auto 5px 4px 5px;
     display: inline-block;

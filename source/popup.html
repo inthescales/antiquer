@@ -5,33 +5,39 @@
   </head>
   <body style="width: 160px" tabindex=0>
   
-    <div id="header_div">
-        <table style="margin: 2px auto auto auto; width: 120px; display: block;">
-            <tr>
-                <td>
-                    <img src="resources/popup_icon.png" style="width: 16px; height: 21px; display: inline-block; margin: 0px 2px 0px 2px; padding: 0px;"></img>
-                </td>
-                <td>
-                    <p style="display:inline-block; margin: auto; width: 84px; padding: 0px; line-height: 100%; font-weight: bold; font-size: 115%;">Diaeresizer</p>
-                </td>
-            </tr>
-        </table>
-    </div>
-  
-    <div class="sectionDiv"  id="buttons_div">
-        <p style="text-align: center; margin: 0px 0px 5px 0px;">replacement level:</p>
-        <button id="diaeresisOffButton">Off</button>
-        <button id="diaeresisLowButton">Standard</button>
-        <button id="diaeresisHighButton">Thorough</button>
-    </div>
+    <div style="margin: 2px">
     
-    <div style="text-align: center; margin: 5px auto;">
+        <div style="text-align: center; margin: 5px auto;">
+            <div class="small-line"></div>
+            <span style="line-height: 100%; font-weight: bold; font-size: 115%;">Antiquer</span>
+            <div class="small-line"></div>
+        </div>
+      
+        <div class="sectionDiv"  id="diaereses_div">
+            <p style="text-align: center; margin: 0px 0px 5px 0px;">diaereses</p>
+            <button id="diaeresisOffButton" class="buttonOff">Off</button>
+            <button id="diaeresisLowButton" class="buttonOff">Standard</button>
+            <button id="diaeresisHighButton" class="buttonOff">Thorough</button>
+        </div>
+        
+        <div style="margin: 4px"></div>
+        
+        <div class="sectionDiv"  id="ligatures_div">
+            <p style="text-align: center; margin: 0px 0px 5px 0px;">ligatures</p>
+            <button id="ligatureOffButton" class="buttonOff">Off</button>
+            <button id="ligatureLowButton" class="buttonOff">Standard</button>
+            <button id="ligatureHighButton" class="buttonOff">Thorough</button>
+        </div>
+        
+        <div style="text-align: center; margin: 5px auto;">
+        
+            <div class="line"></div>
+            <a href="http://www.sinuousrill.com/projects/Diaeresizer_en.html" target="_blank">About</a>
+            <div class="line"></div>
+        </div>
+        
+        <script class="sectionDiv"  type="text/javascript" src="popup.js"></script>
     
-        <div class="line"></div>
-        <a href="http://www.sinuousrill.com/projects/Diaeresizer_en.html" target="_blank">About</a>
-        <div class="line"></div>
     </div>
-    
-    <script class="sectionDiv"  type="text/javascript" src="popup.js"></script>
   </body>
 </html>

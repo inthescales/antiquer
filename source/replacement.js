@@ -469,7 +469,7 @@ function drive() {
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
 chrome.storage.local.get({"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {
-   
+
     diaeresis_level = result["diaeresis_level"];
     ligature_level = result["ligature_level"];
     
