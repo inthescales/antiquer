@@ -1,12 +1,47 @@
-﻿/*
-    Global variables storing replacement targets
-*/
+﻿// =======================================================
+// GLOBAL VARIABLES
+// =======================================================
+
 var trie = null;
 var diaeresis_level = "off";
 var ligature_level = "off";
 var dashing = "off";
 
 var startTime = Date.now();
+
+// =======================================================
+// DATA MANAGEMENT
+// =======================================================
+
+function browserIs(queryName) {
+    
+    var browserName = navigator.userAgent;
+    if ((verOffset=browserName.indexOf(queryName))!=-1) {
+        return true;
+    }
+    
+    return false;
+}
+
+function getData(block) {
+    
+    if (browserIs("Chrome")) {
+        chrome.storage.local.get({"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {
+            var diaeresis_level = result["diaeresis_level"];
+            var ligature_level = result["ligature_level"];
+            block(diaeresis_level, ligature_level);
+        });
+        
+    } else if (browserIs("Firefox")) {
+        var diaeresis_level = localStorage.getItem("diaeresis_level");
+        var ligature_level = localStorage.getItem("ligature_level");
+
+        if (diaeresis_level == null) diaeresis_level = "low";
+        if (ligature_level == null) ligature_level = "low";
+        
+        block(diaeresis_level, ligature_level);
+    }
+}
 
 // =======================================================
 // TEXT MANIPULATION
@@ -300,6 +335,7 @@ function can_access(arr) {
             allowed = allowed.concat("ligature_low");
             break;
         case "high":
+            allowed = allowed.concat("ligature_low");
             allowed = allowed.concat("ligature_high");
             break;
             
@@ -468,11 +504,12 @@ function drive() {
 /*
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
-chrome.storage.local.get({"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {
-
-    diaeresis_level = result["diaeresis_level"];
-    ligature_level = result["ligature_level"];
     
+getData( function(d_level, l_level) {
+    
+    diaeresis_level = d_level
+    ligature_level = l_level
+
     if (diaeresis_level == "off" && ligature_level == "off") {
         return;
     }

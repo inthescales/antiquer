@@ -1,10 +1,15 @@
 #!/bin/sh
 
-extension_name="diaeresizer"
+extension_name="antiquer"
+
 mode=$1
 mode_develop="develop"
 mode_release="release"
 mode_clean="clean"
+
+platform=$2
+platform_chrome="chrome"
+platform_firefox="firefox"
 
 sourcedir="source"
 imagedir="resources"

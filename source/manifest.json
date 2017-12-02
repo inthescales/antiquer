@@ -1,8 +1,8 @@
 {
 "manifest_version": 2,
-    "name": "Diaeresizer",
-    "short_name": "Diaeresizer",
-    "description": "Display diaereses instead of other spelling forms.",
+    "name": "Antiquer",
+    "short_name": "Antiquer",
+    "description": "Add diaereses and ligatures to English text.",
     "version": "1.4",
     "icons": { 
         "16": "resources/icon_16x.png",
@@ -10,7 +10,7 @@
         "128": "resources/icon_128x.png"
     },
     "browser_action": {
-      "default_title": "Diaeresizer",
+      "default_title": "Antiquer",
       "default_popup": "popup.html"
     },
     "permissions": [
