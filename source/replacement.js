@@ -1,4 +1,4 @@
-﻿// =======================================================
+// =======================================================
 // GLOBAL VARIABLES
 // =======================================================
 
@@ -33,12 +33,14 @@ function getData(block) {
         
     } else if (browserIs("Firefox")) {
         
-        let result = browser.storage.local.get({
+        let promise = browser.storage.local.get({
             diaeresisLevel: "low",
             ligatureLevel: "low"
         });
-            
-        block(result["diaeresisLevel"], result["ligatureLevel"]);
+        
+        promise.then(function(args) {
+            block(args["diaeresisLevel"], args["ligatureLevel"]);
+        });
     }
 }
 
