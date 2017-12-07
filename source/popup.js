@@ -15,20 +15,21 @@ function browserIs(queryName) {
 function getData(block) {
     
     if (browserIs("Chrome")) {
-        chrome.storage.local.get({"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {
-            var diaeresis_level = result["diaeresis_level"];
-            var ligature_level = result["ligature_level"];
-            block(diaeresis_level, ligature_level);
+        
+        chrome.storage.local.get({"diaeresisLevel" : "low", "ligatureLevel" : "low"}, function(result) {
+            block(result["diaeresisLevel"], result["ligatureLevel"]);
         });
         
     } else if (browserIs("Firefox")) {
-        var diaeresis_level = localStorage.getItem("diaeresis_level");
-        var ligature_level = localStorage.getItem("ligature_level");
-
-        if (diaeresis_level == null) diaeresis_level = "low";
-        if (ligature_level == null) ligature_level = "low";
         
-        block(diaeresis_level, ligature_level);
+        let result = browser.storage.local.get({
+            diaeresisLevel: "low",
+            ligatureLevel: "low"
+        });
+        
+        alert(result["diaeresisLevel"]);
+            
+        block(result["diaeresisLevel"], result["ligatureLevel"]);
     }
 }
 
@@ -40,21 +41,23 @@ function setDiaeresisLevel(level) {
     
     if (browserIs("Chrome")) {
         
-        chrome.storage.local.set({"diaeresis_level" : level}, function() {
+        chrome.storage.local.set({"diaeresisLevel" : level}, function() {
             
             chrome.tabs.reload();
             updateView();
-            updateDiaeresisButtons(diaeresis_level);
-            updateIcon(diaeresis_level, ligature_level);
+            updateDiaeresisButtons(diaeresisLevel);
+            updateIcon(diaeresisLevel, ligatureLevel);
         });
         
     } else if (browserIs("Firefox")) {
         
-        localStorage.setItem("diaeresis_level", level);
+        browser.storage.local.set({
+            diaeresisLevel: level
+        });
+
         browser.tabs.reload();
         updateView();
-        updateDiaeresisButtons(diaeresis_level);
-        updateIcon(diaeresis_level, ligature_level);
+        updateDiaeresisButtons(diaeresisLevel);
     }
 }
 
@@ -63,21 +66,24 @@ function setLigatureLevel(level) {
     
     if (browserIs("Chrome")) {
         
-        chrome.storage.local.set({"ligature_level" : level}, function() {
+        chrome.storage.local.set({"ligatureLevel" : level}, function() {
             
             chrome.tabs.reload();
             updateView();
-            updateLigatureButtons(ligature_level);
-            updateIcon(diaeresis_level, ligature_level);
+            updateLigatureButtons(ligatureLevel);
+            updateIcon(diaeresisLevel, ligatureLevel);
         });
         
     } else if (browserIs("Firefox")) {
         
-        localStorage.setItem("ligature_level", level);
+        console.log("THERE");
+        browser.storage.local.set({
+            ligatureLevel: level
+        });
+
         browser.tabs.reload();
         updateView();
-        updateDiaeresisButtons(diaeresis_level);
-        updateIcon(diaeresis_level, ligature_level);
+        updateDiaeresisButtons(diaeresisLevel);
     }
 }
 
@@ -85,10 +91,10 @@ function setLigatureLevel(level) {
 // UI PRESENTATION
 // =======================================================
 
-function updateScreen(diaeresis_level, ligature_level) {
+function updateScreen(diaeresisLevel, ligatureLevel) {
     
-    updateDiaeresisButtons(diaeresis_level);
-    updateLigatureButtons(ligature_level);
+    updateDiaeresisButtons(diaeresisLevel);
+    updateLigatureButtons(ligatureLevel);
 }
 
 function updateDiaeresisButtons(level) {
@@ -119,12 +125,12 @@ function updateLigatureButtons(level) {
     ligatureHighButton.className = (level == "high") ? onClass : offClass;  
 }
 
-function updateIcon(diaeresis_level, ligature_level) {
+function updateIcon(diaeresisLevel, ligatureLevel) {
 
     var resourcesDir = "resources";
     
-    var iconPath16 = resourcesDir + "/" + ((diaeresis_level != "off") ? "icon_16x.png" : "icon_16x_bw.png");
-    var iconPath48 = resourcesDir + "/" + ((diaeresis_level != "off") ? "icon_48x.png" : "icon_48x_bw.png");
+    var iconPath16 = resourcesDir + "/" + ((diaeresisLevel != "off") ? "icon_16x.png" : "icon_16x_bw.png");
+    var iconPath48 = resourcesDir + "/" + ((diaeresisLevel != "off") ? "icon_48x.png" : "icon_48x_bw.png");
     
     chrome.browserAction.setIcon({
         path: {19: iconPath16, 38: iconPath48}
@@ -141,9 +147,9 @@ document.getElementById('ligatureHighButton').addEventListener('click', function
 
 function updateView() {
     
-    getData( function(diaeresis_level, ligature_level) {
-        updateScreen(diaeresis_level, ligature_level);
-        updateIcon(diaeresis_level, ligature_level);
+    getData( function(diaeresisLevel, ligatureLevel) {
+        updateScreen(diaeresisLevel, ligatureLevel);
+        updateIcon(diaeresisLevel, ligatureLevel);
     });
 }
 

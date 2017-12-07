@@ -3,8 +3,8 @@
 // =======================================================
 
 var trie = null;
-var diaeresis_level = "off";
-var ligature_level = "off";
+var diaeresisLevel = "off";
+var ligatureLevel = "off";
 var dashing = "off";
 
 var startTime = Date.now();
@@ -26,20 +26,19 @@ function browserIs(queryName) {
 function getData(block) {
     
     if (browserIs("Chrome")) {
-        chrome.storage.local.get({"diaeresis_level" : "low", "ligature_level" : "low"}, function(result) {
-            var diaeresis_level = result["diaeresis_level"];
-            var ligature_level = result["ligature_level"];
-            block(diaeresis_level, ligature_level);
+        
+        chrome.storage.local.get({"diaeresisLevel" : "low", "ligatureLevel" : "low"}, function(result) {
+            block(result["diaeresisLevel"], result["ligatureLevel"]);
         });
         
     } else if (browserIs("Firefox")) {
-        var diaeresis_level = localStorage.getItem("diaeresis_level");
-        var ligature_level = localStorage.getItem("ligature_level");
-
-        if (diaeresis_level == null) diaeresis_level = "low";
-        if (ligature_level == null) ligature_level = "low";
         
-        block(diaeresis_level, ligature_level);
+        let result = browser.storage.local.get({
+            diaeresisLevel: "low",
+            ligatureLevel: "low"
+        });
+            
+        block(result["diaeresisLevel"], result["ligatureLevel"]);
     }
 }
 
@@ -320,7 +319,7 @@ function isBoundary(character) {
 function can_access(arr) {
 
     var allowed = [];
-    switch (diaeresis_level) {
+    switch (diaeresisLevel) {
         case "low":
             allowed = ["diaeresis_low"];
             break;
@@ -330,7 +329,7 @@ function can_access(arr) {
         default:
             break;
     }
-    switch (ligature_level) {
+    switch (ligatureLevel) {
         case "low":
             allowed = allowed.concat("ligature_low");
             break;
@@ -505,17 +504,17 @@ function drive() {
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
     
-getData( function(d_level, l_level) {
+getData( function(dLevel, lLevel) {
     
-    diaeresis_level = d_level
-    ligature_level = l_level
+    diaeresisLevel = dLevel
+    ligatureLevel = lLevel
 
-    if (diaeresis_level == "off" && ligature_level == "off") {
+    if (diaeresisLevel == "off" && ligatureLevel == "off") {
         return;
     }
     
-    console.log(diaeresis_level);
-    dashing = diaeresis_level;
+    console.log(diaeresisLevel);
+    dashing = diaeresisLevel;
 
     drive();
 });
