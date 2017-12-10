@@ -10,41 +10,6 @@ var dashing = "off";
 var startTime = Date.now();
 
 // =======================================================
-// DATA MANAGEMENT
-// =======================================================
-
-function browserIs(queryName) {
-    
-    var browserName = navigator.userAgent;
-    if ((verOffset=browserName.indexOf(queryName))!=-1) {
-        return true;
-    }
-    
-    return false;
-}
-
-function getData(block) {
-    
-    if (browserIs("Chrome")) {
-        
-        chrome.storage.local.get({"diaeresisLevel" : "low", "ligatureLevel" : "low"}, function(result) {
-            block(result["diaeresisLevel"], result["ligatureLevel"]);
-        });
-        
-    } else if (browserIs("Firefox")) {
-        
-        let promise = browser.storage.local.get({
-            diaeresisLevel: "low",
-            ligatureLevel: "low"
-        });
-        
-        promise.then(function(args) {
-            block(args["diaeresisLevel"], args["ligatureLevel"]);
-        });
-    }
-}
-
-// =======================================================
 // TEXT MANIPULATION
 // =======================================================
 
