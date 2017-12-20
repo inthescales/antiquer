@@ -22,8 +22,15 @@ images="${imagedir}/icon_16x.png ${imagedir}/icon_16x_bw.png ${imagedir}/icon_48
 # Builds the trie used to find words for replacement
 build_trie() {
 
-    rm source/trie.json
-    ruby trie/make_trie.rb > source/trie.json
+    echo "Building trie"
+    
+    targetdir=$1
+    
+    cd trie
+    ruby trie_maker.rb
+    mv "trie.json" "../${targetdir}/trie.json"
+    cd ..
+    
     echo "Built trie"
 }
 
@@ -54,7 +61,7 @@ prepend()
 }
 
 # Validate arguments
-if test "${platform}" != "${platform_chrome}" && test "${platform}" != "${platform_firefox}"
+if test "${platform}" != "${platform_chrome}" && test "${platform}" != "${platform_firefox}" && test "$mode" != "$mode_clean"
 then
 
     echo "Error: invalid platform"
@@ -66,8 +73,8 @@ if test "$mode" == "$mode_develop"
 then
 
     echo "Cleaning..."
-    
     rm -rf $developdir
+    echo "Clean finished"
     
     echo "Bundling for develop"
     
@@ -76,6 +83,7 @@ then
     cp $sourcedir/* $developdir
     cp $images "${developdir}/${imagedir}"
     
+    build_trie "${developdir}"
     compile "${developdir}"
 
     echo "Bundled successfully"
@@ -84,14 +92,15 @@ elif test "$mode" == "$mode_release"
 then
 
     echo "Cleaning..."
-
     rm -rf $releasedir
     rm $extension_name.zip
+    echo "Clean finished"
     
     echo "Bundling for release"
 
     mkdir $releasedir
     cp $sourcedir/* $releasedir
+    build_trie "${releasedir}"
     compile "${releasedir}"
     
     zip -rj $extension_name.zip $releasedir
@@ -108,5 +117,7 @@ then
     rm -rf $developdir
     rm -rf $releasedir
     rm $extension_name.zip
+    
+    echo "Clean finished"
 
 fi
