@@ -1,6 +1,6 @@
 require 'json'
 
-d_file = File.open("diaereses.json", "r:UTF-8")
+d_file = File.open("patterns.json", "r:UTF-8")
 d_string = d_file.read
 d_string = d_string[1..-1]
 d_json = JSON.parse(d_string)

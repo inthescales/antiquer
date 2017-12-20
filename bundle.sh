@@ -30,10 +30,7 @@ compile()
     replacement="${targetdir}/replacement.js"
     popup="${targetdir}/popup.js"
     common="common/common_${platform}.js"
-  
-   #cat "${common} ${replacement} > ${replacement}2"
-    #cat "${common} ${popup} > ${popup}2"
-    
+      
     prepend "${common}" "${replacement}"
     prepend "${common}" "${popup}"
     
