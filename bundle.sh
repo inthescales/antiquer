@@ -17,7 +17,15 @@ imagedir="resources"
 developdir="develop"
 releasedir="release"
 
-images="${imagedir}/icon_16x.png ${imagedir}/icon_16x_bw.png ${imagedir}/icon_48x.png ${imagedir}/icon_48x_bw.png ${imagedir}/icon_128x.png ${imagedir}/icon_128x_bw.png ${imagedir}/popup_icon.png"
+images="${imagedir}/icon_16x.png ${imagedir}/icon_16x_bw.png ${imagedir}/icon_48x.png ${imagedir}/icon_48x_bw.png ${imagedir}/icon_128x.png ${imagedir}/icon_128x_bw.png"
+
+# Builds the trie used to find words for replacement
+build_trie() {
+
+    rm source/trie.json
+    ruby trie/make_trie.rb > source/trie.json
+    echo "Built trie"
+}
 
 # Prepares files with shared javascript code.
 # Arguments:
