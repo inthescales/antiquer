@@ -4,52 +4,18 @@
 
 function setDiaeresisLevel(level) {  
     
-    if (browserIs("Chrome")) {
-        
-        chrome.storage.local.set({"diaeresisLevel" : level}, function() {
-            
-            chrome.tabs.reload();
-            updateView();
-            updateDiaeresisButtons(diaeresisLevel);
-            updateIcon(diaeresisLevel, ligatureLevel);
-        });
-        
-    } else if (browserIs("Firefox")) {
-        
-        browser.storage.local.set({
-            diaeresisLevel: level
-        });
-
-        browser.tabs.reload();
+    saveData({"diaeresisLevel": level}, function() {
         updateView();
-        updateDiaeresisButtons(diaeresisLevel);
-    }
+        reloadTab();
+    });
 }
 
 function setLigatureLevel(level) {  
     
-    
-    if (browserIs("Chrome")) {
-        
-        chrome.storage.local.set({"ligatureLevel" : level}, function() {
-            
-            chrome.tabs.reload();
-            updateView();
-            updateLigatureButtons(ligatureLevel);
-            updateIcon(diaeresisLevel, ligatureLevel);
-        });
-        
-    } else if (browserIs("Firefox")) {
-        
-        console.log("THERE");
-        browser.storage.local.set({
-            ligatureLevel: level
-        });
-
-        browser.tabs.reload();
+    saveData({"ligatureLevel": level}, function() {
         updateView();
-        updateDiaeresisButtons(diaeresisLevel);
-    }
+        reloadTab();
+    });
 }
 
 // =======================================================
@@ -94,10 +60,10 @@ function updateIcon(diaeresisLevel, ligatureLevel) {
 
     var resourcesDir = "resources";
     
-    var iconPath16 = resourcesDir + "/" + ((diaeresisLevel != "off") ? "icon_16x.png" : "icon_16x_bw.png");
-    var iconPath48 = resourcesDir + "/" + ((diaeresisLevel != "off") ? "icon_48x.png" : "icon_48x_bw.png");
+    var iconPath16 = resourcesDir + "/" + (!(diaeresisLevel == "off" && ligatureLevel == "off") ? "icon_16x.png" : "icon_16x_bw.png");
+    var iconPath48 = resourcesDir + "/" + (!(diaeresisLevel == "off" && ligatureLevel == "off") ? "icon_48x.png" : "icon_48x_bw.png");
     
-    chrome.browserAction.setIcon({
+    setIcon({
         path: {19: iconPath16, 38: iconPath48}
     });
 }

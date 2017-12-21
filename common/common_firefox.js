@@ -16,5 +16,19 @@ function getData(block) {
     });
 }
 
+function saveData(data, block) {
+    
+    browser.storage.local.set(data);
+    block();
+}
+
+function reloadTab() {
+    browser.tabs.reload();
+}
+
+function setIcon(obj) {
+    browser.browserAction.setIcon(obj);
+}
+
 // End of import *****************************************
 

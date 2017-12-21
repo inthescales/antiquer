@@ -11,5 +11,18 @@ function getData(block) {
     });
 }
 
+function saveData(data, block) {
+    
+    chrome.storage.local.set(data, block);
+}
+
+function reloadTab() {
+    chrome.tabs.reload();
+}
+
+function setIcon(obj) {
+    chrome.browserAction.setIcon(obj);
+}
+
 // End of import *****************************************
 
