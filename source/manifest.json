@@ -11,6 +11,7 @@
     },
     "browser_action": {
       "default_title": "Antiquer",
+      "default_icon": "resources/icon_48x.png",
       "default_popup": "popup.html"
     },
     "permissions": [
