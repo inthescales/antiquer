@@ -63,7 +63,7 @@ function updateIcon(diaeresisLevel, ligatureLevel) {
     var iconPath16 = resourcesDir + "/" + (!(diaeresisLevel == "off" && ligatureLevel == "off") ? "icon_16x.png" : "icon_16x_bw.png");
     var iconPath48 = resourcesDir + "/" + (!(diaeresisLevel == "off" && ligatureLevel == "off") ? "icon_48x.png" : "icon_48x_bw.png");
     
-    setIcon({
+    chrome.action.setIcon({
         path: {19: iconPath16, 38: iconPath48}
     });
 }
