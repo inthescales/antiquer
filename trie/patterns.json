@@ -12,7 +12,7 @@
 			"proto",
             "unco",
             "gastro",
-            "hydro"
+            "hydro",
             "agro"
 		],
 		"words": [
@@ -23,7 +23,7 @@
             ["coopt", "coöpt"],
 			["cooperat", "coöperat"],
 			["coordinat", "coördinat"],
-            ["cryptozoolog", "cryptozoölog"]
+            ["cryptozoolog", "cryptozoölog"],
 			["deelevate", "deëlevate"],
 			["deemphasi", "deëmphasi"],
 			["deenable", "deënable"],
@@ -43,6 +43,7 @@
             ["reemerg", "reëmerg"],
 			["reenabl", "reënabl"],
 			["reenact", "reënact"],
+            ["reengage", "reëngage"],
 			["reenlighten", "reënlighten"],
 			["reenlist", "reënlist"],
 			["reenter", "reënter"],
@@ -94,6 +95,7 @@
 			["reinspir", "reïnspir"],
             ["reinstrument", "reïnstrument"],
 			["reinvest", "reïnvest"],
+            ["reoffend", "reöffend"],
             ["reopen", "reöpen"],
             ["reorder", "reörder"],
             ["reorganiz", "reörganiz"],
