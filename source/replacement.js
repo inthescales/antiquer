@@ -7,8 +7,6 @@ var diaeresisLevel = "off";
 var ligatureLevel = "off";
 var dashing = "off";
 
-var startTime = Date.now();
-
 // =======================================================
 // TEXT MANIPULATION
 // =======================================================
@@ -17,7 +15,6 @@ var startTime = Date.now();
     Adds a diaeresis to an input vowel.
 */
 function diaeresizeVowel(vowel) {
-
     switch(vowel) {
         case "a":
             return "ä";
@@ -50,17 +47,14 @@ function diaeresizeVowel(vowel) {
     
     Returns the input word with the case pattern of the template. If the words are of unequal
     lengths, returns the input unaltered.
-    
 */
 function matchCase(template, input) {
-
     var profile = [];
     var skipped = 0;
     var needsChange = false;
     var isProper = true;
 
     for (var i = 0; i < template.length; i++) {
-        
         if (template[i] == "-") {
             skipped += 1;
             continue;
@@ -95,7 +89,6 @@ function matchCase(template, input) {
     }
     
     if (needsChange && profile.length == input.length) {
-    
         var output = ""
         for (var i = 0; i < input.length; i++) {
         
@@ -116,7 +109,6 @@ function matchCase(template, input) {
     Find and replace instances of words that can take diaereses according to the JSON file.
 */
 function replace(text) {
-
     var output = "";
     
     var match_buffer = "";
@@ -127,7 +119,6 @@ function replace(text) {
     var atBoundary = true;
     
     function flush(letter) {
-
         if (matched_word != "") {
             output += matched_word;
             matched_word = "";
@@ -139,7 +130,6 @@ function replace(text) {
     }
     
     function atEnd(i) {
-        
         if (i == text.length - 1) {
             return true;
         }
@@ -149,7 +139,6 @@ function replace(text) {
     }
     
     for (var i = 0; i < text.length; i++) {
-    
         letter = text.charAt(i);
         var compLetter = text.charAt(i).toLowerCase();
         
@@ -169,7 +158,6 @@ function replace(text) {
             }
             
         } else if (current_node["following"] != null) {
-        
             var next = current_node["following"][compLetter];
             
             if (next != null && can_access(next["levels"])) {
@@ -184,7 +172,6 @@ function replace(text) {
         }
         
         if (current_node != null) {
-            
             if (current_node["word"] != null && !(current_node["final"] == true && !atEnd(i))) {
                
                 matched_word = matchCase(match_buffer + letter, current_node["word"]);
@@ -211,7 +198,6 @@ function replace(text) {
         }
         
         atBoundary = isBoundary(letter);
-        
     }
     
     output += matched_word + match_buffer;
@@ -284,7 +270,6 @@ function isBoundary(character) {
 }
 
 function can_access(arr) {
-
     var allowed = [];
     switch (diaeresisLevel) {
         case "low":
@@ -321,7 +306,6 @@ function can_access(arr) {
 }
 
 function isVowel(letter) {
-    
     switch(letter) {
         case "a":
         case "e":
@@ -347,7 +331,6 @@ function isVowel(letter) {
     Walk all nodes from the input node down, replacing the text for text nodes.
 */
 function walk(node) {
-
 	var child, next;
     
     child = node.firstChild;
@@ -372,7 +355,6 @@ function walk(node) {
     Handle a particular node, replacing its text.
 */
 function handleNode(textNode) {
-
     var text = textNode.nodeValue;
 
     if (text.length > 0) {
@@ -383,11 +365,12 @@ function handleNode(textNode) {
 			textNode.nodeValue = newText;
 		}
     }
-    
 }
 
+/*
+    Run replacement on the page title.
+*/
 function updateTitle() {
-    
     var newTitle = replace(document.title);
     if (document.title != newTitle) {
         document.title = newTitle;
@@ -404,7 +387,6 @@ observer.observe(document, {
 });
 
 function onMutation(mutations) {
-
     if (trie != null) {
         for (var i = 0, len = mutations.length; i < len; i++) {
 
@@ -427,7 +409,6 @@ observer.observe(document.querySelector('title'), {
 });
 
 function onTitleMutation(mutations) {
-
     if (trie != null) {
         updateTitle();
     }
@@ -441,6 +422,8 @@ function onTitleMutation(mutations) {
     Read in JSON file specifying words to replace, then call replace to alter the words.
 */
 function drive() {
+    // var startTime = Date.now();
+
     var url = chrome.runtime.getURL("trie.json")
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
@@ -459,8 +442,8 @@ function drive() {
         }
     }
     
-    //var endTime = Date.now();
-    //alert(endTime - startTime);
+    // var endTime = Date.now();
+    // alert(endTime - startTime);
 }
 
 // =======================================================
@@ -470,7 +453,6 @@ function drive() {
 /*
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
-    
 getData( function(dLevel, lLevel) {
     
     diaeresisLevel = dLevel
@@ -480,7 +462,7 @@ getData( function(dLevel, lLevel) {
         return;
     }
     
-    console.log(diaeresisLevel);
+    console.log("Antiquer running with diareses: " + diaeresisLevel + ", ligatures: " + ligatureLevel);
     dashing = diaeresisLevel;
 
     drive();
