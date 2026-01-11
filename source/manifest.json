@@ -23,6 +23,7 @@
                 "*://*/*"
             ],
             "js": [
+                "utils.js",
                 "replacement.js"
             ],
             "run_at": "document_end"
