@@ -129,6 +129,7 @@ function replace(text) {
         match_buffer = "";
     }
     
+    // Returns true if process has reached end of text or if next character is a boundary
     function atEnd(i) {
         if (i == text.length - 1) {
             return true;
@@ -140,7 +141,7 @@ function replace(text) {
     
     for (var i = 0; i < text.length; i++) {
         letter = text.charAt(i);
-        var compLetter = text.charAt(i).toLowerCase();
+        var compLetter = letter.toLowerCase();
         
         if (isBoundary(letter) && letter != "-" ) {
             flush(letter);
@@ -148,8 +149,7 @@ function replace(text) {
             continue;
         }
 
-        if (current_node == null) {
-            
+        if (current_node == null) {  
             if (atBoundary) {
                 var node = trie[compLetter];
                 if (node != null && can_access(node["levels"])) {
@@ -269,6 +269,9 @@ function isBoundary(character) {
     }
 }
 
+/*
+    For a trie node's access level array, return true if the current settings match any of its levels
+*/
 function can_access(arr) {
     var allowed = [];
     switch (diaeresisLevel) {
@@ -453,7 +456,7 @@ function drive() {
 /*
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
-getData( function(dLevel, lLevel) {
+getData(function(dLevel, lLevel) {
     
     diaeresisLevel = dLevel
     ligatureLevel = lLevel
