@@ -23,6 +23,7 @@
                 "*://*/*"
             ],
             "js": [
+                "trie_walk.js",
                 "utils.js",
                 "replacement.js"
             ],

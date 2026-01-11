@@ -82,9 +82,9 @@ function replace(text) {
     var output = "";
     
     var match_buffer = "";
-    var current_node = null;
     var matched_word = "";
     var letter = "";
+    var trieWalker = null;
     
     var atBoundary = true;
     
@@ -94,7 +94,7 @@ function replace(text) {
             matched_word = "";
         }
         
-        current_node = null;
+        trieWalker = null;
         output += match_buffer + letter;
         match_buffer = "";
     }
@@ -115,45 +115,36 @@ function replace(text) {
         
         if (isBoundary(letter) && letter != "-" ) {
             flush(letter);
-            atBoundary = isBoundary(letter);
+            atBoundary = true
             continue;
         }
 
-        if (current_node == null) {  
-            if (atBoundary) {
-                var node = trie[compLetter];
-                if (node != null && can_access(node["levels"])) {
-                    current_node = node;
-                }
-            }
-            
-        } else if (current_node["following"] != null) {
-            var next = current_node["following"][compLetter];
-            
-            if (next != null && can_access(next["levels"])) {
-            
-                current_node = next;
-                
-            } else {
+        // Advance the trie node, flushing if no node is available for this letter
+        if (trieWalker == null && atBoundary) {
+            trieWalker = new TrieWalker(trie);
+            trieWalker.walkLetter(compLetter);
+        } else if (trieWalker != null && !trieWalker.final) {
+            if (!trieWalker.walkLetter(compLetter)) {
                 flush("");
             }
         } else {
             flush("");
         }
-        
-        if (current_node != null) {
-            if (current_node["word"] != null && !(current_node["final"] == true && !atEnd(i))) {
-               
-                matched_word = matchCase(match_buffer + letter, current_node["word"]);
+
+        if (trieWalker != null) {
+            if (trieWalker.word != null && !(trieWalker.final && !atEnd(i))) {
+                // If we have a useable match, apply case matching and store it
+
+                matched_word = matchCase(match_buffer + letter, trieWalker.word);
                 match_buffer = "";
-                    
-            } else if (letter == "-" && i < text.length - 1) {
             
+            } else if (letter == "-" && i < text.length - 1) {
+                // If the following character is a dash, and dash-diaeresization rules apply, use diaeresis and skip ahead
                 var nextLetter = text.charAt(i+1);
                 
                 if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
                     output += matchCase(match_buffer + "-" + nextLetter, match_buffer + diaeresizeVowel(nextLetter));
-                    current_node = null;
+                    trieWalker = null;
                     match_buffer = "";
                     letter = nextLetter;
                     i += 1;
@@ -161,9 +152,11 @@ function replace(text) {
                     flush("-");
                 }
             } else {
+                // Add letter to buffer
                 match_buffer += letter;
             }
         } else {
+            // Add letter straight to output
             output += letter;
         }
         
