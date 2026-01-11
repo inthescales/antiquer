@@ -306,7 +306,7 @@ function onTitleMutation(mutations) {
     Read in JSON file specifying words to replace, then call replace to alter the words.
 */
 function drive() {
-    // var startTime = Date.now();
+    var startTime = Date.now();
 
     var url = chrome.runtime.getURL("trie.json")
     var request = new XMLHttpRequest();
@@ -326,8 +326,8 @@ function drive() {
         }
     }
     
-    // var endTime = Date.now();
-    // alert(endTime - startTime);
+    var endTime = Date.now();
+    console.log("Antiquer time: " + (endTime - startTime).toString());
 }
 
 // =======================================================
