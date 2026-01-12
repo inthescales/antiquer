@@ -8,7 +8,7 @@ var ligatureLevel = "off";
 var dashing = "off";
 
 // =======================================================
-// TEXT MANIPULATION
+// TEXT REPLACEMENT
 // =======================================================
 
 /*
