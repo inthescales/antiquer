@@ -66,7 +66,6 @@ function isBoundary(character) {
         case ";":
         case "-":
         case "~":
-        case "\"":
         case "_":
         case "+":
         case "=":
@@ -80,9 +79,14 @@ function isBoundary(character) {
         case ">":
         case "?":
         case "/":
-        case "'":
-        case "`":
         case "\\":
+        case "'":
+        case "\"":
+        case "`":
+        case "“":
+        case "”":
+        case "‘":
+        case "’":
         case "\n":
         case "\r":
         case "\t":
