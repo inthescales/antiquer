@@ -113,18 +113,20 @@ function replace(text) {
         letter = text.charAt(i);
         var compLetter = letter.toLowerCase();
         
+        // If this is a boundary character, flush, mark it, and continue
         if (isBoundary(letter) && letter != "-" ) {
             flush(letter);
             atBoundary = true
             continue;
         }
 
-        // Advance the trie node, flushing if no node is available for this letter
+        // Advance the trie node, flushing if no node is available for this letter or if node levels are insufficient
         if (trieWalker == null && atBoundary) {
             trieWalker = new TrieWalker(trie);
-            trieWalker.walkLetter(compLetter);
-        } else if (trieWalker != null && !trieWalker.final) {
-            if (!trieWalker.walkLetter(compLetter)) {
+        }
+
+        if (trieWalker != null) {
+            if (!trieWalker.walkLetter(compLetter, diaeresisLevel, ligatureLevel)) {
                 flush("");
             }
         } else {
@@ -137,7 +139,7 @@ function replace(text) {
 
                 matched_word = matchCase(match_buffer + letter, trieWalker.word);
                 match_buffer = "";
-            
+                console.log("STORING: " + matched_word)
             } else if (letter == "-" && i < text.length - 1) {
                 // If the following character is a dash, and dash-diaeresization rules apply, use diaeresis and skip ahead
                 var nextLetter = text.charAt(i+1);
@@ -151,9 +153,12 @@ function replace(text) {
                 } else {
                     flush("-");
                 }
-            } else {
-                // Add letter to buffer
+            } else if (matched_word == "") {
+                // Add letter to buffer if we haven't made a match yet
                 match_buffer += letter;
+            } else {
+                // Add letter straight to output if we've already made a match during this word
+                output += letter
             }
         } else {
             // Add letter straight to output
@@ -166,45 +171,6 @@ function replace(text) {
     output += matched_word + match_buffer;
 
     return output
-}
-
-/*
-    For a trie node's access level array, return true if the current settings match any of its levels
-*/
-function can_access(arr) {
-    var allowed = [];
-    switch (diaeresisLevel) {
-        case "low":
-            allowed = ["diaeresis_low"];
-            break;
-        case "high":
-            allowed = ["diaeresis_low", "diaeresis_high"];
-            break;
-        default:
-            break;
-    }
-    switch (ligatureLevel) {
-        case "low":
-            allowed = allowed.concat("ligature_low");
-            break;
-        case "high":
-            allowed = allowed.concat("ligature_low");
-            allowed = allowed.concat("ligature_high");
-            break;
-            
-        default:
-            break;
-    }
-
-    for (var i = 0; i < arr.length; i++) {
-        for (var j = 0; j < allowed.length; j++) {
-            if (arr[i] == allowed[j]) {
-                return true;
-            }
-        }
-    }
-    
-    return false;
 }
 
 // =======================================================
