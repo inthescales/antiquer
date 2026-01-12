@@ -12,70 +12,6 @@ var dashing = "off";
 // =======================================================
 
 /*
-    Takes in a template word and an input word, and returns that input word with the same
-    case pattern as the template, ignoring dashes.
-    
-    Returns the input word with the case pattern of the template. If the words are of unequal
-    lengths, returns the input unaltered.
-*/
-function matchCase(template, input) {
-    var profile = [];
-    var skipped = 0;
-    var needsChange = false;
-    var isProper = true;
-
-    for (var i = 0; i < template.length; i++) {
-        if (template[i] == "-") {
-            skipped += 1;
-            continue;
-        }
-        
-        if (template[i] == template[i].toUpperCase()) {
-            profile[i-skipped] = 1;
-            needsChange = true;
-            if (i > 0 && i < template.length - 1) {
-                isProper = false;
-            }
-        } else {
-            profile[i-skipped] = 0;
-            if (i == 0) {
-                isProper = false;
-            }
-        }
-        
-        if (i < template.length-1
-        && ((input[i-skipped].toLowerCase() == "æ" && template[i].toLowerCase() == "a" && template[i+1].toLowerCase() == "e")
-          || (input[i-skipped].toLowerCase() == "œ" && template[i].toLowerCase() == "o" && template[i+1].toLowerCase() == "e"))) {
-            
-            if (profile[i-skipped] == 1) {
-                i += 1;
-            }
-            skipped += 1;
-        }
-    }
-
-    if (isProper && skipped > 0) {
-        profile[profile.length-1] = 0;
-    }
-    
-    if (needsChange && profile.length == input.length) {
-        var output = ""
-        for (var i = 0; i < input.length; i++) {
-        
-            if (profile[i] == 0) {
-                output += input[i].toLowerCase();
-            } else {
-                output += input[i].toUpperCase();
-            }
-        }
-        
-        return output;
-    }
-    
-    return input;
-}
-
-/*
     Find and replace instances of words that can take diaereses according to the JSON file.
 */
 function replace(text) {
@@ -88,6 +24,9 @@ function replace(text) {
     
     var atBoundary = true;
     
+    /*
+        Flush any matched word or unmatched characters to output, and reset buffers and trie walker.
+    */
     function flush(letter) {
         if (matched_word != "") {
             output += matched_word;
@@ -227,13 +166,17 @@ function updateTitle() {
     }
 }
 
+// =======================================================
+// OBSERVATION
+// =======================================================
+
 /*
-    Observe changes to the DOM to handle additional changes
+    Observe changes to the DOM to handle additional changes.
 */
 var observer = new MutationObserver(onMutation);
 observer.observe(document, {
     childList: true, // report added/removed nodes
-    subtree: true   // observe any descendant elements
+    subtree: true    // observe any descendant elements
 });
 
 function onMutation(mutations) {
@@ -249,7 +192,7 @@ function onMutation(mutations) {
 }
 
 /*
-    Observe changes to the page title
+    Observe changes to the page title.
 */
 var observer = new MutationObserver(onTitleMutation);
 observer.observe(document.querySelector('title'), {
@@ -293,7 +236,7 @@ function drive() {
     }
     
     var endTime = Date.now();
-    console.log("Antiquer time: " + (endTime - startTime).toString());
+    console.log("Antiquer time elapsed: " + (endTime - startTime).toString());
 }
 
 // =======================================================
@@ -304,16 +247,16 @@ function drive() {
     Get stored data and drive the script with the value recovered, or "low" on failure.
 */
 getData(function(dLevel, lLevel) {
-    
-    diaeresisLevel = dLevel
-    ligatureLevel = lLevel
-
-    if (diaeresisLevel == "off" && ligatureLevel == "off") {
+    if (dLevel == "off" && lLevel == "off") {
+        console.log("Antiquer not running")
         return;
     }
+
+    diaeresisLevel = dLevel
+    ligatureLevel = lLevel
+    dashing = diaeresisLevel;
     
     console.log("Antiquer running with diareses: " + diaeresisLevel + ", ligatures: " + ligatureLevel);
-    dashing = diaeresisLevel;
 
     drive();
 });
