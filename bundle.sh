@@ -27,7 +27,7 @@ build_trie() {
     targetdir=$1
     
     cd trie
-    ruby trie_maker.rb
+    python3 trie_maker.py
     mv "trie.json" "../${targetdir}/trie.json"
     cd ..
     
