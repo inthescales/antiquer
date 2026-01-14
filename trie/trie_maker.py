@@ -1,12 +1,15 @@
 import json
 
+# ==============================================
+# CONFIGURATION
+# ==============================================
+
 pattern_filename = "patterns.json"
+output_filename = "trie.json"
 
-json_data = None
-
-with open(pattern_filename, "r", encoding="utf-8-sig") as pattern_data:
-	text = pattern_data.read()
-	json_data = json.loads(text)
+# ==============================================
+# TYPE DEFINITIONS
+# ==============================================
 
 class Node:
 	def __init__(self, letter, level):
@@ -77,22 +80,37 @@ class Trie:
 
 		return ret
 
+# ==============================================
+# EXECUTION
+# ==============================================
+
+# Read data
+
+json_data = None
+with open(pattern_filename, "r", encoding="utf-8-sig") as pattern_data:
+	text = pattern_data.read()
+	json_data = json.loads(text)
+
+# Build trie
+
 trie = Trie()
 
 for (key, element) in json_data.items():
 	level = key
 	prefixes = element["prefixes"]
-	words = element["words"]
+	word_sets = element["words"]
 
 	for prefix in prefixes:
 		final_node = trie.add_word(prefix, level)
 		dash_node = Node("-", level)
 		final_node.following["-"] = dash_node
 
-	for word in words:
-		for (i, c) in list(enumerate(word)):
-			final_node = trie.add_word(c, level)
-			final_node.word = word[-1]
+	for word_set in word_sets:
+		for word in word_set[:-1]:
+			final_node = trie.add_word(word, level)
+			final_node.word = word_set[-1]
 
-with open("trie.json", "w") as trie_file:
+# Write data
+
+with open(output_filename, "w") as trie_file:
 	trie_file.write(json.dumps(trie.dict))

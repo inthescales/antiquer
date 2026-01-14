@@ -107,9 +107,7 @@
 		]
 	},
     "ligature_low": {
-		"prefixes": [
-
-		],
+		"prefixes": [],
 		"words": [
             ["abscissas", "abscissae", "abscissæ"],
             ["aeciospor", "æciospor"],
