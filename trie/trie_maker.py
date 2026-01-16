@@ -98,17 +98,17 @@ trie = Trie()
 for (key, element) in json_data.items():
 	level = key
 	prefixes = element["prefixes"]
-	word_sets = element["words"]
+	word_set = element["words"]
 
 	for prefix in prefixes:
 		final_node = trie.add_word(prefix, level)
 		dash_node = Node("-", level)
 		final_node.following["-"] = dash_node
 
-	for word_set in word_sets:
-		for word in word_set[:-1]:
-			final_node = trie.add_word(word, level)
-			final_node.word = word_set[-1]
+	for (word, forms) in word_set.items():
+		for form in forms:
+			final_node = trie.add_word(form, level)
+			final_node.word = word
 
 # Write data
 
