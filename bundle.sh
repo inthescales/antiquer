@@ -42,10 +42,16 @@ compile()
     echo "Compiling..."
     
     targetdir=$1
-    common="common/common_${platform}.js"
-      
-    cat $common "source/popup.js" > "${targetdir}/popup.js"
-    cat $common "source/trie_walk.js" "source/utils.js" "source/replacement.js" > "${targetdir}/driver.js"
+    common="source/common/common_${platform}.js"
+    
+    cp "source/manifest.json" "${targetdir}"
+
+    # Popup files
+    cp "source/popup/popup.html" "source/popup/popup.css" "${targetdir}"
+    cat $common "source/popup/popup.js" > "${targetdir}/popup.js"
+
+    # Driver files
+    cat $common source/driver/* > "${targetdir}/driver.js"
     
     echo "Compiled successfully"
 }
@@ -70,7 +76,6 @@ then
     
     mkdir $developdir
     mkdir "${developdir}/${imagedir}"
-    cp $sourcedir/* $developdir
     cp $images "${developdir}/${imagedir}"
     
     build_trie "${developdir}"
@@ -89,7 +94,6 @@ then
     echo "Bundling for release"
 
     mkdir $releasedir
-    cp $sourcedir/* $releasedir
     build_trie "${releasedir}"
     compile "${releasedir}"
     
