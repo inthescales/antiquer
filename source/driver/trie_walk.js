@@ -14,7 +14,7 @@ class TrieWalker {
     walkLetter(letter, diaeresisLevel, ligatureLevel) {
         var newNode = null;
         if (this.node == null) {
-            newNode = trie[letter];
+            newNode = this.trie[letter];
         } else if (this.node.following != null) {
             newNode = this.node.following[letter];
         }

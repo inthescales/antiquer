@@ -3,6 +3,7 @@
 extension_name="antiquer"
 
 mode=$1
+mode_test="test"
 mode_develop="develop"
 mode_release="release"
 mode_clean="clean"
@@ -14,6 +15,7 @@ platform_firefox="firefox"
 sourcedir="source"
 imagedir="resources"
 
+testdir="test"
 developdir="develop"
 releasedir="release"
 
@@ -57,7 +59,10 @@ compile()
 }
 
 # Validate arguments
-if test "${platform}" != "${platform_chrome}" && test "${platform}" != "${platform_firefox}" && test "$mode" != "$mode_clean"
+if test "${platform}" != "${platform_chrome}" \
+   && test "${platform}" != "${platform_firefox}" \
+   && test "$mode" != "$mode_test" \
+   && test "$mode" != "$mode_clean"
 then
 
     echo "Error: invalid platform"
@@ -65,7 +70,28 @@ then
 fi
 
 # Process
-if test "$mode" == "$mode_develop"
+if test "$mode" == "$mode_test"
+then
+
+    echo "Cleaning..."
+    rm -rf $testdir
+    echo "Clean finished"
+
+    echo "Bundling for test"
+
+    mkdir $testdir
+    build_trie "${testdir}"
+    cat "source/driver/trie_walk.js" \
+        "source/driver/utils.js" \
+        "source/driver/replacement.js" \
+    > "${testdir}/antiquer.js"
+
+    echo "\nexports.replace = replace;" \
+    >> "${testdir}/antiquer.js"
+
+    echo "Bundled successfully"
+
+elif test "$mode" == "$mode_develop"
 then
 
     echo "Cleaning..."
@@ -108,6 +134,7 @@ then
 
     echo "Cleaning..."
 
+    rm -rf $testdir
     rm -rf $developdir
     rm -rf $releasedir
     rm $extension_name.zip
