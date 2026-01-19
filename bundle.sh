@@ -28,10 +28,7 @@ build_trie() {
     
     targetdir=$1
     
-    cd trie
-    python3 trie_maker.py
-    mv "trie.json" "../${targetdir}/trie.json"
-    cd ..
+    python3 source/trie/trie_maker.py data/patterns.json "${targetdir}/trie.json"
     
     echo "Built trie"
 }

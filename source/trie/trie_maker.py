@@ -1,11 +1,12 @@
 import json
+import sys
 
 # ==============================================
 # CONFIGURATION
 # ==============================================
 
-pattern_filename = "patterns.json"
-output_filename = "trie.json"
+pattern_filename = sys.argv[1]
+output_filename = sys.argv[2]
 
 # ==============================================
 # TYPE DEFINITIONS
