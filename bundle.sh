@@ -41,23 +41,13 @@ compile()
 {
     echo "Compiling..."
     
-    targetdir=$1    
-    replacement="${targetdir}/replacement.js"
-    popup="${targetdir}/popup.js"
+    targetdir=$1
     common="common/common_${platform}.js"
       
-    prepend "${common}" "${replacement}"
-    prepend "${common}" "${popup}"
+    cat $common "source/popup.js" > "${targetdir}/popup.js"
+    cat $common "source/trie_walk.js" "source/utils.js" "source/replacement.js" > "${targetdir}/driver.js"
     
     echo "Compiled successfully"
-}
-
-prepend()
-{
-    cat $1 $2 > "temp"
-    rm $2
-    cp "temp" $2
-    rm "temp"
 }
 
 # Validate arguments

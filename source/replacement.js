@@ -88,10 +88,7 @@ function replace(text) {
                     }
                 }
 
-                console.log("OUTPUT: " + output)
-                console.log("PREFIX: " + prefix)
                 if (is_valid_prefix(prefix)){
-                    console.log("VALID")
                     output = output.substring(0, output.length - prefix.length)
                     output += matchCase(prefix + "-" + nextLetter, prefix + diaeresizeVowel(nextLetter));
                     trieWalker = null;
@@ -99,7 +96,6 @@ function replace(text) {
                     matched_word = "";
                     i += 1;
                 } else {
-                    console.log("INVALID")
                     // Skip case
                     flush("-")
                 }
