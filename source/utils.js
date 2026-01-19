@@ -123,7 +123,7 @@ function diaeresizeVowel(vowel) {
     lengths, returns the input unaltered.
 */
 function matchCase(template, input) {
-    var profile = [];
+    var profile = Array(template.length).fill(0)
     var skipped = 0;
     var needsChange = false;
     var isProper = true;

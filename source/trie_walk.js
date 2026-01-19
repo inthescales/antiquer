@@ -74,7 +74,15 @@ class TrieWalker {
             return false;
         }
 
-        return this.node["final"] == true
+        return this.node["final"] == true;
+    }
+
+    get prefix() {
+        if (this.node == null) {
+            return false;
+        }
+
+        return this.node["prefix"] == true;
     }
 
     /*

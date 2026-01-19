@@ -18,6 +18,7 @@ class Node:
 		self.following = {}
 		self.word = None
 		self.final = False
+		self.prefix = False
 		
 	def add_level(self, level):
 		if level not in self.levels:
@@ -34,6 +35,9 @@ class Node:
 
 		if self.word is not None:
 			ret["word"] = self.word
+
+		if self.prefix == True:
+			ret["prefix"] = True
 
 		for (key, node) in self.following.items():
 			ret["following"][key] = node.dict
@@ -53,6 +57,10 @@ class Trie:
 		for (i, c) in list(enumerate(word)):
 			if c == ".":
 				current.final = True
+				return current
+
+			if c == "-":
+				current.prefix = True
 				return current
 
 			if current is None:
@@ -95,22 +103,24 @@ with open(pattern_filename, "r", encoding="utf-8-sig") as pattern_data:
 
 trie = Trie()
 
-for (key, element) in json_data.items():
-	level = key
-	prefixes = element["prefixes"]
-	word_set = element["words"]
+prefixes = json_data["prefixes"]
+replacement = json_data["replacement"]
 
-	for prefix in prefixes:
-		final_node = trie.add_word(prefix, level)
-		dash_node = Node("-", level)
-		final_node.following["-"] = dash_node
+for (key, element) in replacement.items():
+	level = key
+	word_set = element["words"]
 
 	for (word, forms) in word_set.items():
 		for form in forms:
 			final_node = trie.add_word(form, level)
 			final_node.word = word
 
+out_dict = {
+	"prefixes": prefixes,
+	"trie": trie.dict
+}
+
 # Write data
 
 with open(output_filename, "w") as trie_file:
-	trie_file.write(json.dumps(trie.dict))
+	trie_file.write(json.dumps(out_dict))

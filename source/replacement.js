@@ -2,6 +2,7 @@
 // GLOBAL VARIABLES
 // =======================================================
 
+var prefixes = []
 var trie = null;
 var diaeresisLevel = "off";
 var ligatureLevel = "off";
@@ -10,6 +11,19 @@ var dashing = "off";
 // =======================================================
 // TEXT REPLACEMENT
 // =======================================================
+
+/*
+    Returns true if the given string is in the prefix list.
+*/
+function is_valid_prefix(prefix) {
+    for (var i = 0; i < prefixes.length; i++) {
+        if (prefix.toLowerCase() == prefixes[i]) {
+            return true;
+        }
+    }
+
+    return false;
+}
 
 /*
     Find and replace instances of words that can take diaereses according to the JSON file.
@@ -27,15 +41,15 @@ function replace(text) {
     /*
         Flush any matched word or unmatched characters to output, and reset buffers and trie walker.
     */
-    function flush(letter) {
+    function flush(letter = "") {
         if (matched_word != "") {
             output += matched_word;
             matched_word = "";
         }
-        
-        trieWalker = null;
         output += match_buffer + letter;
         match_buffer = "";
+
+        trieWalker = null;
     }
     
     // Returns true if process has reached end of text or if next character is a boundary
@@ -52,10 +66,48 @@ function replace(text) {
         letter = text.charAt(i);
         var compLetter = letter.toLowerCase();
         
-        // If this is a boundary character, flush, mark it, and continue
+        // If this is a non-dash boundary character, flush, mark it, and continue
         if (isBoundary(letter) && letter != "-" ) {
             flush(letter);
-            atBoundary = true
+            atBoundary = true;
+            continue;
+        }
+
+        // If this is a dash, convert to a diaeresis if appropriate
+        if (letter == "-" && i < text.length - 1) {
+            var nextLetter = text.charAt(i+1);
+            if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1)))) {
+                flush();
+                // Convert case
+                var prefix = "";
+                for (var p = output.length - 1; p >= 0; p--) {
+                    if (!isBoundary(output[p])) {
+                        prefix = output[p] + prefix;
+                    } else {
+                        break
+                    }
+                }
+
+                console.log("OUTPUT: " + output)
+                console.log("PREFIX: " + prefix)
+                if (is_valid_prefix(prefix)){
+                    console.log("VALID")
+                    output = output.substring(0, output.length - prefix.length)
+                    output += matchCase(prefix + "-" + nextLetter, prefix + diaeresizeVowel(nextLetter));
+                    trieWalker = null;
+                    match_buffer = "";
+                    matched_word = "";
+                    i += 1;
+                } else {
+                    console.log("INVALID")
+                    // Skip case
+                    flush("-")
+                }
+            } else {
+                // Skip case
+                flush("-");
+            }
+
             continue;
         }
 
@@ -64,40 +116,33 @@ function replace(text) {
             trieWalker = new TrieWalker(trie);
         }
 
+        // Trie to walk the trie, flushing if we wall out
         if (trieWalker != null) {
             if (!trieWalker.walkLetter(compLetter, diaeresisLevel, ligatureLevel)) {
-                flush("");
+                flush()
             }
-        } else {
-            flush("");
         }
 
         if (trieWalker != null) {
-            if (trieWalker.word != null && !(trieWalker.final && !atEnd(i))) {
-                // If we have a useable match, apply case matching and store it
+            if (trieWalker.word != null) {
+                if (
+                    !(trieWalker.final && !atEnd(i))
+                    && !(trieWalker.prefix && !(atEnd(i) && text.charAt(i+1) == "-"))
+                ) {
+                    // If we have a useable match, apply case matching and store it
 
-                matched_word = matchCase(match_buffer + letter, trieWalker.word);
-                match_buffer = "";
-                console.log("STORING: " + matched_word)
-            } else if (letter == "-" && i < text.length - 1) {
-                // If the following character is a dash, and dash-diaeresization rules apply, use diaeresis and skip ahead
-                var nextLetter = text.charAt(i+1);
-                
-                if (isVowel(nextLetter) && (dashing == "high" || (dashing == "low" && nextLetter == text.charAt(i-1))) ) {
-                    output += matchCase(match_buffer + "-" + nextLetter, match_buffer + diaeresizeVowel(nextLetter));
-                    trieWalker = null;
+                    matched_word = matchCase(match_buffer + letter, trieWalker.word);
                     match_buffer = "";
-                    letter = nextLetter;
-                    i += 1;
-                } else {
-                    flush("-");
+                    flush();
+                } 
+                else {
+                    // Failed some environment requirements - cancel the match
+                    // flush(letter)
+                    match_buffer += letter
                 }
-            } else if (matched_word == "") {
-                // Add letter to buffer if we haven't made a match yet
-                match_buffer += letter;
             } else {
-                // Add letter straight to output if we've already made a match during this word
-                output += letter
+                // We haven't reached a word-bearing node yet
+                match_buffer += letter
             }
         } else {
             // Add letter straight to output
@@ -107,7 +152,7 @@ function replace(text) {
         atBoundary = isBoundary(letter);
     }
     
-    output += matched_word + match_buffer;
+    flush();
 
     return output
 }
@@ -225,7 +270,9 @@ function drive() {
         if (request.readyState === XMLHttpRequest.DONE && request.status === 200) {
         
             var response = request.responseText;
-            trie = JSON.parse(response);
+            let parsed_data = JSON.parse(response);
+            trie = parsed_data["trie"]
+            prefixes = parsed_data["prefixes"]
 
             if (trie != null) {
                 walk(document.body)
