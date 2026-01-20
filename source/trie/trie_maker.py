@@ -107,9 +107,8 @@ trie = Trie()
 prefixes = json_data["prefixes"]
 replacement = json_data["replacement"]
 
-for (key, element) in replacement.items():
+for (key, word_set) in replacement.items():
 	level = key
-	word_set = element["words"]
 
 	for (word, forms) in word_set.items():
 		for form in forms:
