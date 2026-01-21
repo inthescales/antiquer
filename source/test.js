@@ -56,6 +56,8 @@ test("aegypt", "aegypt", "off", "low");
 test("aegypt", "ægypt", "off", "high");
 test("egypt", "ægypt", "off", "high");
 
+// TODO: extra text before and after, test dots and dashes
+
 if (errors.length > 0) {
 	console.log(errors.length + " ERRORS:");
 	for (var i = 0; i < errors.length; i++) {
