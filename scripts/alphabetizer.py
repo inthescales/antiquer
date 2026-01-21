@@ -1,4 +1,6 @@
 class Alphabetizer():
+    """Alphabetizes lists according to a custom alphabetical order"""
+
     _priority_list = [
         ["a", "ä"],
         "æ",
@@ -58,6 +60,10 @@ class Alphabetizer():
         else:
             return len(self._priority_list)
 
-    # Returns the given words in sorted order
-    def sorted(self, words, key=lambda word: word):
-        return sorted(words, key=lambda word: [self._get_sort_key(char) for char in key(word)])
+    def sorted(self, element_list, key=lambda element: element):
+        """Returns the input list in sorted order."""
+
+        return sorted(
+            element_list,
+            key=lambda element: [self._get_sort_key(char) for char in key(element)]
+        )

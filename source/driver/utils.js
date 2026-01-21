@@ -119,8 +119,7 @@ function diaeresizeVowel(vowel) {
     Takes in a template word and an input word, and returns that input word with the same
     case pattern as the template, ignoring dashes.
     
-    Returns the input word with the case pattern of the template. If the words are of unequal
-    lengths, returns the input unaltered.
+    Returns the input word with the case pattern of the template.
 */
 function matchCase(template, input) {
     var profile = Array(template.length).fill(0)
@@ -160,7 +159,8 @@ function matchCase(template, input) {
         }
     }
     
-    if (needsChange) {
+    // Apply the case profile to the input word
+    if (needsChange && input.length >= profile.length - skipped) {
         var output = ""
         for (var i = 0; i < input.length; i++) {
         
