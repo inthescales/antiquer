@@ -56,7 +56,20 @@ test("aegypt", "aegypt", "off", "low");
 test("aegypt", "ægypt", "off", "high");
 test("egypt", "ægypt", "off", "high");
 
-// TODO: extra text before and after, test dots and dashes
+// Entries with dots only match at word end
+test("dais", "daïs", "high", "off")
+test("daisy", "daisy", "high", "off")
+
+// Entries with dashes only match in prefixes
+test("eco-friendly", "œco-friendly", "off", "high")
+test("ecoute", "ecoute", "off", "high")
+test("eco", "eco", "off", "high")
+
+// Conversions go correctly with extra text on either side
+test("But, cooperation is key", "But, coöperation is key", "low", "low")
+test("deescalate, please", "deëscalate, please", "low", "low")
+test("half-demon", "half-dæmon", "low", "low")
+test("eco-naifs", "œco-naïfs", "high", "high")
 
 if (errors.length > 0) {
 	console.log(errors.length + " ERRORS:");

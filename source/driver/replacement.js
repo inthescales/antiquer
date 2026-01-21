@@ -87,10 +87,12 @@ function replace(text, dLevel, lLevel, trie, prefixes) {
                     i += 1;
                 } else {
                     // Skip case
+                    atBoundary = true;
                     flush("-")
                 }
             } else {
                 // Skip case
+                atBoundary = true;
                 flush("-");
             }
 
