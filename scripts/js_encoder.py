@@ -3,7 +3,10 @@ import json
 class PatternsEncoder(json.JSONEncoder):
     """Custom JSON encoder for formatting the patterns file"""
 
-    element_threshold = 8
+    dict_sort_threshold = 4
+    """The minimum number of elements in a dict for it to be sorted"""
+
+    list_break_threshold = 8
     """The minimum number of elements in a list for it to be broken onto multiple lines"""
 
     def __init__(self, *args, **kwargs):
@@ -29,7 +32,7 @@ class PatternsEncoder(json.JSONEncoder):
         )
 
     def _encode_list(self, o):
-        if len(o) < self.element_threshold:
+        if len(o) < self.list_break_threshold:
             return "[" + ", ".join(self.encode(el) for el in o) + "]"
         else:
             self.indentation_level += 1
@@ -41,8 +44,9 @@ class PatternsEncoder(json.JSONEncoder):
         if not o:
             return "{}"
 
-        # Sort keys
-        o = dict(sorted(o.items(), key=lambda x: x[0]))
+        # Sort keys for word lists only
+        if len(o.keys()) > self.dict_sort_threshold:
+            o = dict(sorted(o.items(), key=lambda x: x[0]))
 
         self.indentation_level += 1
         output = [

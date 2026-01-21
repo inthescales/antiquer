@@ -4,7 +4,7 @@ import sys
 
 from collections import OrderedDict
 
-from format_encoder import PatternsEncoder
+from js_encoder import PatternsEncoder
 
 # Read command input --------------------
 
@@ -30,6 +30,7 @@ with open(data_path, "r", encoding="utf-8-sig") as file_data:
 # Output data ---------------------------
 
 output = json.dumps(json_data, ensure_ascii=False, cls=PatternsEncoder, indent=4)
+output += "\n"
 
 if in_place:
     with open(data_path, "w", encoding="utf-8-sig") as file_data:
