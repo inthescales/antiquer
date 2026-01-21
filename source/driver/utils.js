@@ -126,43 +126,41 @@ function matchCase(template, input) {
     var profile = Array(template.length).fill(0)
     var skipped = 0;
     var needsChange = false;
-    var isProper = true;
 
     for (var i = 0; i < template.length; i++) {
+        // Skip dashes
         if (template[i] == "-") {
             skipped += 1;
             continue;
         }
-        
+
+        // Mark the current character's case in the profile
         if (template[i] == template[i].toUpperCase()) {
-            profile[i-skipped] = 1;
-            needsChange = true;
-            if (i > 0 && i < template.length - 1) {
-                isProper = false;
+            if (i > 0 && template[i-1] == "-") {
+                // If following a dash, copy the case of the previous character
+                profile[i-skipped] = profile[i-skipped-1];
+            } else {
+                profile[i-skipped] = 1;
+                needsChange = true;
             }
         } else {
             profile[i-skipped] = 0;
-            if (i == 0) {
-                isProper = false;
-            }
         }
-        
-        if (i < template.length-1
-        && ((input[i-skipped].toLowerCase() == "æ" && template[i].toLowerCase() == "a" && template[i+1].toLowerCase() == "e")
-          || (input[i-skipped].toLowerCase() == "œ" && template[i].toLowerCase() == "o" && template[i+1].toLowerCase() == "e"))) {
-            
-            if (profile[i-skipped] == 1) {
-                i += 1;
-            }
+
+        // If the the original text used a digraph that we are replacing with a ligature, skip the next letter
+        if (
+            i < template.length-1
+            && (
+                (input[i-skipped].toLowerCase() == "æ" && template[i].toLowerCase() == "a" && template[i+1].toLowerCase() == "e")
+                || (input[i-skipped].toLowerCase() == "œ" && template[i].toLowerCase() == "o" && (template[i+1].toLowerCase() == "e" || template[i+1].toLowerCase() == "i"))
+            )
+        ) {
+            i += 1;
             skipped += 1;
         }
     }
-
-    if (isProper && skipped > 0) {
-        profile[profile.length-1] = 0;
-    }
     
-    if (needsChange && profile.length == input.length) {
+    if (needsChange) {
         var output = ""
         for (var i = 0; i < input.length; i++) {
         

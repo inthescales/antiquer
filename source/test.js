@@ -12,7 +12,7 @@ var errors = [];
 function test(word, expected, dLevel, lLevel) {
 	const result = replace(word, dLevel, lLevel);
 	if (result != expected) {
-		errors = errors.concat([[word, expected, dLevel, lLevel]]);
+		errors = errors.concat([[word, expected, result, dLevel, lLevel]]);
 	}
 }
 
@@ -49,6 +49,7 @@ test("eco-organizer", "œcoörganizer", "low", "high")
 // Standard ligature replacement
 test("demon", "dæmon", "off", "low");
 test("daemon", "dæmon", "low", "low");
+test("larvae", "larvæ", "off", "low")
 
 // Extra ligature replacement
 test("egypt", "egypt", "off", "low");
@@ -59,6 +60,7 @@ test("egypt", "ægypt", "off", "high");
 // Entries with dots only match at word end
 test("dais", "daïs", "high", "off")
 test("daisy", "daisy", "high", "off")
+test("\"daisy\"", "\"daisy\"", "high", "off")
 
 // Entries with dashes only match in prefixes
 test("eco-friendly", "œco-friendly", "off", "high")
@@ -66,16 +68,29 @@ test("ecoute", "ecoute", "off", "high")
 test("eco", "eco", "off", "high")
 
 // Conversions go correctly with extra text on either side
-test("But, cooperation is key", "But, coöperation is key", "low", "low")
 test("deescalate, please", "deëscalate, please", "low", "low")
 test("half-demon", "half-dæmon", "low", "low")
+test("a \"caique\"", "a \"caïque\"", "low", "low")
+test("But, cooperation is key", "But, coöperation is key", "low", "low")
 test("eco-naifs", "œco-naïfs", "high", "high")
+
+// Case is preserved
+test("chloe", "chloë", "low", "low")
+test("Chloe", "Chloë", "low", "low")
+test("ChLoE", "ChLoË", "low", "low")
+test("CHLOE", "CHLOË", "low", "low")
+test("re-earn", "reëarn", "low", "low")
+test("Re-Earn", "Reëarn", "low", "low")
+test("RE-EARN", "REËARN", "low", "low")
+test("Economy", "Œconomy", "low", "low")
+test("Moirae", "Mœræ", "off", "high")
+test("MOIRAE", "MŒRÆ", "off", "high")
 
 if (errors.length > 0) {
 	console.log(errors.length + " ERRORS:");
 	for (var i = 0; i < errors.length; i++) {
 		const error = errors[i];
-		console.log(" - " + error[0] + " != " + error[1] + "\t(" + error[2] + ", " + error[3] + ")")
+		console.log(" - " + error[0] + " -/-> " + error[1] + "\t\t(got '" + error[2] + "')\t\t(" + error[3] + ", " + error[4] + ")")
 	}
 } else {
 	console.log("All tests passed");

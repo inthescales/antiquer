@@ -66,7 +66,17 @@ function replace(text, dLevel, lLevel, trie, prefixes) {
         // If this is a dash, convert to a diaeresis if appropriate
         if (letter == "-" && i < text.length - 1) {
             var nextLetter = text.charAt(i+1);
-            if (isVowel(nextLetter) && (dLevel == "high" || (dLevel == "low" && nextLetter == text.charAt(i-1)))) {
+            if (
+                isVowel(nextLetter) 
+                && (
+                    dLevel == "high"
+                    || (
+                        dLevel == "low"
+                        && nextLetter.toLowerCase() == text.charAt(i-1).toLowerCase()
+                        )
+                    )
+                )
+             {
                 flush();
                 // Convert case
                 var prefix = "";
