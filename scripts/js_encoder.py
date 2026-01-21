@@ -1,5 +1,7 @@
 import json
 
+from alphabetizer import Alphabetizer
+
 class PatternsEncoder(json.JSONEncoder):
     """Custom JSON encoder for formatting the patterns file"""
 
@@ -11,6 +13,7 @@ class PatternsEncoder(json.JSONEncoder):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self.alphabetizer = Alphabetizer()
         self.indentation_level = 0
 
     def encode(self, o):
@@ -35,8 +38,9 @@ class PatternsEncoder(json.JSONEncoder):
         if len(o) < self.list_break_threshold:
             return "[" + ", ".join(self.encode(el) for el in o) + "]"
         else:
+            sorted_o = self.alphabetizer.sorted(o)
             self.indentation_level += 1
-            output = [self.indent_str + self.encode(el) for el in o]
+            output = [self.indent_str + self.encode(el) for el in sorted_o]
             self.indentation_level -= 1
             return "[\n" + ",\n".join(output) + "\n" + self.indent_str + "]"
 
@@ -46,7 +50,7 @@ class PatternsEncoder(json.JSONEncoder):
 
         # Sort keys for word lists only
         if len(o.keys()) > self.dict_sort_threshold:
-            o = dict(sorted(o.items(), key=lambda x: x[0]))
+            o = dict(self.alphabetizer.sorted(o.items(), key=lambda x: x[0]))
 
         self.indentation_level += 1
         output = [
