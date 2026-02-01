@@ -49,7 +49,7 @@ test("eco-organizer", "œcoörganizer", "low", "high")
 // Standard ligature replacement
 test("demon", "dæmon", "off", "low");
 test("daemon", "dæmon", "low", "low");
-test("larvae", "larvæ", "off", "low")
+test("larvae", "larvæ", "off", "low");
 
 // Extra ligature replacement
 test("egypt", "egypt", "off", "low");
