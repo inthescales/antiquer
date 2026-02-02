@@ -86,6 +86,13 @@ test("Economy", "Œconomy", "low", "low")
 test("Moirae", "Mœræ", "off", "high")
 test("MOIRAE", "MŒRÆ", "off", "high")
 
+// Special tests for 'manœuvre'
+test("manoeuvre", "manœuvre", "off", "low")
+test("maneuver", "manœuvre", "off", "low")
+test("maneuvering", "manœuvring", "off", "low")
+test("maneuvers", "manœuvres", "off", "low")
+test("maneuverer", "manœuvrer", "off", "low")
+
 if (errors.length > 0) {
 	console.log(errors.length + " ERRORS:");
 	for (var i = 0; i < errors.length; i++) {
