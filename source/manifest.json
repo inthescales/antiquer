@@ -1,5 +1,5 @@
 {
-"manifest_version": 3,
+    "manifest_version": 3,
     "name": "Antiquer",
     "short_name": "Antiquer",
     "description": "Add diaereses and ligatures to English text.",
@@ -37,5 +37,13 @@
                 "*://*/*"
             ]
         }
-    ]
+    ],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "{1f27c6e1-0f65-4bdc-b3ed-22bfc96a5ec0}",
+            "data_collection_permissions": {
+                "required": ["none"]
+            }
+        }
+    }
 }
