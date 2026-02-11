@@ -4,5 +4,6 @@
 develop/
 release/
 test/
+*.zip
 
 notes
