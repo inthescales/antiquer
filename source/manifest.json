@@ -3,7 +3,7 @@
     "name": "Antiquer",
     "short_name": "Antiquer",
     "description": "Add diaereses and ligatures to English text.",
-    "version": "2.4",
+    "version": "2.4.1",
     "icons": { 
         "16": "resources/icon_16x.png",
         "48": "resources/icon_48x.png",
