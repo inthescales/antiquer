@@ -17,9 +17,8 @@ class Node:
 		self.letter = letter
 		self.levels = [level]
 		self.following = {}
-		self.word = None
-		self.final = False
-		self.prefix = False
+		self.transforms_simple = None
+		self.transforms_comple = None
 		
 	def add_level(self, level):
 		if level not in self.levels:
@@ -30,15 +29,14 @@ class Node:
 		ret = {
 			"letter": self.letter,
 			"levels": self.levels,
-			"following": {},
-			"final": self.final
+			"following": {}
 		}
 
-		if self.word is not None:
-			ret["word"] = self.word
+		if self.transforms_simple is not None:
+			ret["transforms_simple"] = self.transforms_simple
 
-		if self.prefix == True:
-			ret["prefix"] = True
+		if self.transforms_comple is not None:
+			ret["transforms_comple"] = self.transforms_comple
 
 		for (key, node) in self.following.items():
 			ret["following"][key] = node.dict
@@ -49,20 +47,23 @@ class Trie:
 	def __init__(self):
 		self.initials = {}
 
-	def add_word(self, word, level):
+	def add_word(self, word, replace, level):
 		if len(word) == 0:
 			return
 
 		current = None
 
+		final_only = False
+		prefix_only = False
+
 		for (i, c) in list(enumerate(word)):
 			if c == ".":
-				current.final = True
-				return current
+				final_only = True
+				continue
 
-			if c == "-":
-				current.prefix = True
-				return current
+			elif c == "-":
+				prefix_only = True
+				continue
 
 			if current is None:
 				if c not in self.initials:
@@ -79,7 +80,18 @@ class Trie:
 					current = current.following[c]
 					current.add_level(level)
 		
-		return current
+		# Create transform dict
+
+		transform_dict = { "form": replace }
+		if final_only:
+			transform_dict["final"] = True
+		if prefix_only:
+			transform_dict["prefix"] = True
+
+		if current.transforms_simple == None:
+			current.transforms_simple = {}
+
+		current.transforms_simple[level] = transform_dict
 
 	@property
 	def dict(self):
@@ -112,8 +124,7 @@ for (key, word_set) in replacement.items():
 
 	for (word, forms) in word_set.items():
 		for form in forms:
-			final_node = trie.add_word(form, level)
-			final_node.word = word
+			trie.add_word(form, word, level)
 
 out_dict = {
 	"prefixes": prefixes,

@@ -122,22 +122,18 @@ function replace(text, dLevel, lLevel, trie, prefixes) {
         }
 
         if (trieWalker != null) {
-            if (trieWalker.word != null) {
-                if (
-                    !(trieWalker.final && !atEnd(i))
-                    && !(trieWalker.prefix && !(atEnd(i) && text.charAt(i+1) == "-"))
-                ) {
-                    // If we have a useable match, apply case matching and store it
+            let form = trieWalker.form(
+                dLevel, 
+                lLevel,
+                atEnd(i),
+                (atEnd(i) && text.charAt(i+1) == "-")
+            );
+            if (form != null) {
+                // If we have a useable match, apply case matching and store it
 
-                    matched_word = matchCase(match_buffer + letter, trieWalker.word);
-                    match_buffer = "";
-                    flush();
-                } 
-                else {
-                    // Failed some environment requirements - cancel the match
-                    // flush(letter)
-                    match_buffer += letter
-                }
+                matched_word = matchCase(match_buffer + letter, form);
+                match_buffer = "";
+                flush();
             } else {
                 // We haven't reached a word-bearing node yet
                 match_buffer += letter

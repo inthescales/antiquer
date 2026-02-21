@@ -54,7 +54,7 @@
         "unco"
     ],
     "replacement": {
-        "diaeresis_low": {
+        "dlow": {
             "aïoli": ["aioli."],
             "brontë": ["bronte."],
             "brontës": ["brontes."],
@@ -109,7 +109,7 @@
             "zoömorph": ["zoomorph"],
             "zooplankton": ["zoöplankton"]
         },
-        "diaeresis_high": {
+        "dhigh": {
             "agroëcolog": ["agroecolog"],
             "antiïmmigra": ["antiimigra"],
             "antiïmperial": ["antiimperial"],
@@ -157,7 +157,7 @@
             "staïd": ["staid"],
             "whereäs": ["whereas"]
         },
-        "ligature_low": {
+        "llow": {
             "abscissæ": ["abscissas", "abscissae"],
             "acanthæsthe": ["acanthaesthe", "acanthesthe"],
             "achæan": ["achaean"],
@@ -452,7 +452,7 @@
             "zooxanthellæ": ["zooxanthellae", "zooxanthellas."],
             "zoöxanthellæ": ["zoöxanthellae", "zoöxanthellas."]
         },
-        "ligature_high": {
+        "lhigh": {
             "adhær": ["adher"],
             "adhæs": ["adhes"],
             "amœbæ": ["amoebas", "amœbas"],
