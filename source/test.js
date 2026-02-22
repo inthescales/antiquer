@@ -91,6 +91,11 @@ test("phoebe", "phoebë", "high", "off")
 test("phoebe", "phœbe", "off", "low")
 test("phoebe", "phœbë", "high", "low")
 
+// Overlapping with enumerated forms to allow plural
+test("oothecae", "oöthecae", "low", "off")
+test("oothecae", "oothecæ", "off", "low")
+test("oothecae", "oöthecæ", "low", "low")
+
 // præ- only appears at the correct levels
 test("pre-emancipation", "pre-emancipation", "off", "off")
 test("pre-emancipation", "preëmancipation", "low", "off")
