@@ -152,6 +152,14 @@
             "oöthecal": ["oothecal."],
             "oöthecas": ["oothecas."],
             "protozoön": ["protozoon"],
+            "zoöglea": ["zooglea."],
+            "zoögloea": ["zoogloea."],
+            "zoögleae": ["zoogleae."],
+            "zoögloeae": ["zoogloeae."],
+            "zoögleal": ["zoogleal."],
+            "zoögloeal": ["zoogloeal."],
+            "zoögleas": ["zoogleas."],
+            "zoögloeas": ["zoogloeas."],
             "zoögraph": ["zoograph"],
             "zoölog": ["zoolog"],
             "zoömorph": ["zoomorph"],
@@ -674,8 +682,9 @@
         },
         "both_scientific": {
             "oöthecæ": ["oothecas", "oothecae"],
-            "zoöglœa": ["zoogloea", "zoögloea", "zooglœa", "zooglea", "zoöglea"],
-            "zoöglœæ": ["zooglœæ", "zoogloeae", "zoögloeae", "zoogloeæ", "zoögloeæ", "zooglœae", "zoöglœae", "zoogleae", "zoögleae", "zoogleæ", "zoögleæ"],
+            "zoöglœa": ["zoogloea.", "zoögloea.", "zooglœa.", "zooglea.", "zoöglea."],
+            "zoöglœæ": ["zooglœæ", "zoogloeae", "zoögloeae", "zoogloeæ", "zoögloeæ", "zooglœae", "zoöglœae", "zoogleae", "zoögleae", "zoogleæ", "zoögleæ", "zoogleas", "zoögleas", "zoogloeas", "zoögloeas", "zooglœas", "zoöglœas"],
+            "zoöglœal": ["zoogloeal.", "zoögloeal.", "zooglœal.", "zoogleal.", "zoögleal."],
             "zoöxanthellæ": ["zooxanthellae", "zoöxanthellae", "zooxanthellæ", "zooxanthellas", "zoöxanthellas"]
         }
     }
