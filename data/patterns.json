@@ -55,10 +55,17 @@
     ],
     "levels": {
         "low,-": [
-            "low,-"
+            "dia_prefix_same",
+            "dia_french",
+            "dia_names_common",
+            "dia_scientific"
         ],
         "high,-": [
-            "high,-"
+            "dia_greek_names_in_-e",
+            "dia_prefix_different",
+            "dia_prefix_i",
+            "dia_names_rare",
+            "dia_hypercorrect"
         ],
         "-,low": [
             "-,low"
@@ -70,20 +77,28 @@
             "both_scientific"
         ],
         "high,low": [
-            "both_greek_names"
+            "both_greek_names_in_-e"
         ],
         "low,high": [
             "pre-e_prefix"
         ]
     },
     "categories": {
-        "low,-": {
+        "dia_french": {
             "aïoli": ["aioli."],
+            "caïque": ["caique"],
+            "naïf": ["naif"],
+            "naïv": ["naiv"]
+        },
+        "dia_names_common": {
             "brontë": ["bronte."],
             "brontës": ["brontes."],
-            "caïque": ["caique"],
             "chloë": ["chloe."],
-            "coëd": ["coed"],
+            "noël": ["noel"],
+            "raël": ["rael"],
+            "zoë": ["zoe."]
+        },
+        "dia_prefix_same": {
             "coöcurr": ["coocurr"],
             "coöpera": ["coopera"],
             "coöpt": ["coopt"],
@@ -93,24 +108,9 @@
             "deëmphasi": ["deemphasi"],
             "deënable": ["deenable"],
             "deëscalat": ["deescalat"],
-            "microörgan": ["microorgan"],
-            "naïf": ["naif"],
-            "naïv": ["naiv"],
-            "noël": ["noel"],
-            "noö": ["noo-"],
-            "noögen": ["noogen"],
-            "noölog": ["noolog"],
-            "noömet": ["noomet"],
-            "noöscop": ["nooscop"],
-            "noöspher": ["noospher"],
-            "noötrop": ["nootrop"],
-            "oöcyt": ["oocyt"],
-            "oöthec": ["oothec"],
             "preëminen": ["preeminen"],
             "preëmpt": ["preempt"],
             "preëxist": ["preexist"],
-            "protozoön": ["protozoon"],
-            "raël": ["rael"],
             "reëducat": ["reeducat"],
             "reëlect": ["reelect"],
             "reëlevat": ["reelevat"],
@@ -125,39 +125,37 @@
             "reëscalat": ["reescalat"],
             "reëstablish": ["reestablish"],
             "reëvaluat": ["reevaluat"],
-            "reëxamin": ["reexamin"],
-            "zoë": ["zoe."],
+            "reëxamin": ["reexamin"]
+        },
+        "dia_scientific": {
+            "microörgan": ["microorgan"],
+            "noö": ["noo-"],
+            "noögen": ["noogen"],
+            "noölog": ["noolog"],
+            "noömet": ["noomet"],
+            "noöscop": ["nooscop"],
+            "noöspher": ["noospher"],
+            "noötrop": ["nootrop"],
+            "oöcyt": ["oocyt"],
+            "oöthec": ["oothec"],
+            "protozoön": ["protozoon"],
             "zoögraph": ["zoograph"],
             "zoölog": ["zoolog"],
             "zoömorph": ["zoomorph"],
             "zooplankton": ["zoöplankton"]
         },
-        "high,-": {
+        "dia_prefix_different": {
             "agroëcolog": ["agroecolog"],
-            "antiïmmigra": ["antiimigra"],
-            "antiïmperial": ["antiimperial"],
-            "antiïnflam": ["antiinflam"],
             "autoïmmun": ["autoimmun"],
-            "averroës": ["averroes"],
-            "beëlzebub": ["beelzebub"],
             "coäuth": ["coauth"],
+            "coëd": ["coed"],
             "coërc": ["coerc"],
             "coëvol": ["coevol"],
             "coëxist": ["coexist"],
             "coïnhabit": ["coinhabit"],
-            "daïs": ["dais."],
-            "daïses": ["daises"],
             "deäctivate": ["deactivate"],
             "hypoällerg": ["hypoallerg"],
-            "israël": ["israel."],
-            "israëlite": ["israelite"],
-            "meänder": ["meander"],
-            "naïad": ["naiad"],
-            "noësis": ["noesis"],
-            "noët": ["noet"],
             "orthoëp": ["orthoep"],
-            "phoebë": ["phoebe"],
-            "raphaël": ["raphael"],
             "reäct": ["react"],
             "reäddress": ["readdress"],
             "reärchitect": ["rearchitect"],
@@ -177,9 +175,32 @@
             "reörient": ["reorient"],
             "reüp": ["reup"],
             "reüse": ["reuse"],
-            "reüsing": ["reusing"],
+            "reüsing": ["reusing"]
+        },
+        "dia_prefix_i": {
+            "antiïmmigra": ["antiimigra"],
+            "antiïmperial": ["antiimperial"],
+            "antiïnflam": ["antiinflam"]
+        },
+        "dia_names_rare": {
+            "averroës": ["averroes"],
+            "beëlzebub": ["beelzebub"],
+            "israël": ["israel."],
+            "israëlite": ["israelite"],
+            "raphaël": ["raphael"]
+        },
+        "dia_hypercorrect": {
+            "daïs": ["dais."],
+            "daïses": ["daises"],
+            "meänder": ["meander"],
+            "naïad": ["naiad"],
+            "noësis": ["noesis"],
+            "noët": ["noet"],
             "staïd": ["staid"],
             "whereäs": ["whereas"]
+        },
+        "dia_greek_names_in_-e": {
+            "phoebë": ["phoebe"]
         },
         "-,low": {
             "abscissæ": ["abscissas", "abscissae"],
@@ -605,7 +626,7 @@
             "vertebræ": ["vertebras."],
             "vulvæ": ["vulvas."]
         },
-        "both_greek_names": {
+        "both_greek_names_in_-e": {
             "phœbë": ["phoebe"]
         },
         "pre-e_prefix": {
