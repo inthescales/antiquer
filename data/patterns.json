@@ -196,11 +196,25 @@
             "naïad": ["naiad"],
             "noësis": ["noesis"],
             "noët": ["noet"],
+            "poëm": ["poem"],
+            "poët": ["poet"],
             "staïd": ["staid"],
             "whereäs": ["whereas"]
         },
         "dia_greek_names_in_-e": {
-            "phoebë": ["phoebe"]
+            "antigonë": ["antigone"],
+            "arachnë": ["arachne"],
+            "aphroditë": ["aphrodite"],
+            "calliopë": ["calliope"],
+            "daphnë": ["daphne"],
+            "eurydicë": ["eurydice"],
+            "euterpë": ["euterpe"],
+            "hermionë": ["hermione"],
+            "melponemë": ["melponeme"],
+            "phoebë": ["phoebe"],
+            "penelopë": ["penelope"],
+            "persephonë": ["persephone"],
+            "terpsichorë": ["terpsichore"]
         },
         "-,low": {
             "abscissæ": ["abscissas", "abscissae"],
