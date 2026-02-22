@@ -17,8 +17,7 @@ class Node:
 		self.letter = letter
 		self.levels = [level]
 		self.following = {}
-		self.transforms_simple = None
-		self.transforms_comple = None
+		self.transforms = None
 		
 	def add_level(self, level):
 		if level not in self.levels:
@@ -32,11 +31,8 @@ class Node:
 			"following": {}
 		}
 
-		if self.transforms_simple is not None:
-			ret["transforms_simple"] = self.transforms_simple
-
-		if self.transforms_comple is not None:
-			ret["transforms_comple"] = self.transforms_comple
+		if self.transforms is not None:
+			ret["transforms"] = self.transforms
 
 		for (key, node) in self.following.items():
 			ret["following"][key] = node.dict
@@ -88,10 +84,10 @@ class Trie:
 		if prefix_only:
 			transform_dict["prefix"] = True
 
-		if current.transforms_simple == None:
-			current.transforms_simple = {}
+		if current.transforms == None:
+			current.transforms = {}
 
-		current.transforms_simple[level] = transform_dict
+		current.transforms[level] = transform_dict
 
 	@property
 	def dict(self):

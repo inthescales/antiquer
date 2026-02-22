@@ -49,19 +49,19 @@ class TrieWalker {
             return null
         }
 
-        if (this.node["transforms_simple"] == null) {
+        if (this.node["transforms"] == null) {
             return null;
         }
 
-        let levels = ["dhigh", "lhigh", "dlow", "llow"];
+        let levels = ["high,high", "high,low", "low,high", "low,low", "high,-", "-,high", "low,-", "-,low"];
         for (var i = 0; i < levels.length; i++) {
             let level = levels[i];
             if (
-                this.node["transforms_simple"][level] != null
+                this.node["transforms"][level] != null
                 && this.check_req(level, dLevel, lLevel)
             ) {
-                if (this.check_env(this.node["transforms_simple"][level], isFinal, isPrefix)) {
-                    return this.node["transforms_simple"][level]["form"];
+                if (this.check_env(this.node["transforms"][level], isFinal, isPrefix)) {
+                    return this.node["transforms"][level]["form"];
                 }
             }
         }
@@ -76,13 +76,21 @@ class TrieWalker {
     */
     check_req(requirement, dLevel, lLevel) {
         switch (requirement) {
-            case "dlow":
+            case "high,high":
+                return dLevel == "high" && lLevel == "high";
+            case "high,low":
+                return dLevel == "high" && (lLevel == "high" || lLevel == "low");
+            case "low,high":
+                return (dLevel == "high" || dLevel == "low") && lLevel == "high";
+            case "low,low":
+                return (dLevel == "high" || dLevel == "low") && (lLevel == "high" || lLevel == "low")
+            case "low,-":
                 return dLevel == "low" || dLevel == "high";
-            case "dhigh":
+            case "high,-":
                 return dLevel == "high";
-            case "llow":
+            case "-,low":
                 return lLevel == "low" || lLevel == "high";
-            case "lhigh":
+            case "-,high":
                 return lLevel == "high";
             default:
                 return false;

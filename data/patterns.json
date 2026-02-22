@@ -54,7 +54,7 @@
         "unco"
     ],
     "replacement": {
-        "dlow": {
+        "low,-": {
             "aïoli": ["aioli."],
             "brontë": ["bronte."],
             "brontës": ["brontes."],
@@ -109,7 +109,7 @@
             "zoömorph": ["zoomorph"],
             "zooplankton": ["zoöplankton"]
         },
-        "dhigh": {
+        "high,-": {
             "agroëcolog": ["agroecolog"],
             "antiïmmigra": ["antiimigra"],
             "antiïmperial": ["antiimperial"],
@@ -133,6 +133,7 @@
             "noësis": ["noesis"],
             "noët": ["noet"],
             "orthoëp": ["orthoep"],
+            "phoebë": ["phoebe"],
             "raphaël": ["raphael"],
             "reäct": ["react"],
             "reäddress": ["readdress"],
@@ -157,7 +158,7 @@
             "staïd": ["staid"],
             "whereäs": ["whereas"]
         },
-        "llow": {
+        "-,low": {
             "abscissæ": ["abscissas", "abscissae"],
             "acanthæsthe": ["acanthaesthe", "acanthesthe"],
             "achæan": ["achaean"],
@@ -394,7 +395,8 @@
             "personæ": ["personae"],
             "pharmacopœia": ["pharmacopoeia.", "pharmacopeia."],
             "pharmacopœiæ": ["pharmacopoeias.", "pharmacopoeiae.", "pharmacopeias.", "pharmacopeiae.", "pharmacopœias.", "pharmacopœiae."],
-            "phœb": ["phoeb"],
+            "phœbe": ["phoebe"],
+            "phœbus": ["phoebus"],
             "phœnix": ["phoenix", "phenix"],
             "pinnæ": ["pinnas.", "pinnae."],
             "plantæ": ["plantae."],
@@ -452,7 +454,7 @@
             "zooxanthellæ": ["zooxanthellae", "zooxanthellas."],
             "zoöxanthellæ": ["zoöxanthellae", "zoöxanthellas."]
         },
-        "lhigh": {
+        "-,high": {
             "adhær": ["adher"],
             "adhæs": ["adhes"],
             "amœbæ": ["amoebas", "amœbas"],
@@ -577,6 +579,9 @@
             "vaginæ": ["vaginas."],
             "vertebræ": ["vertebras."],
             "vulvæ": ["vulvas."]
+        },
+        "high,low": {
+            "phœbë": ["phoebe"]
         }
     }
 }

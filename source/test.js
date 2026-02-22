@@ -93,6 +93,10 @@ test("maneuvering", "manœuvring", "off", "low")
 test("maneuvers", "manœuvres", "off", "low")
 test("maneuverer", "manœuvrer", "off", "low")
 
+test("phoebe", "phoebë", "high", "off")
+test("phoebe", "phœbe", "off", "low")
+test("phoebe", "phœbë", "high", "low")
+
 if (errors.length > 0) {
 	console.log(errors.length + " ERRORS:");
 	for (var i = 0; i < errors.length; i++) {
