@@ -582,6 +582,11 @@
         },
         "high,low": {
             "phœbë": ["phoebe"]
+        },
+        "low,low": {
+            "zoöglœa": ["zoogloea", "zoögloea", "zooglœa", "zooglea", "zoöglea"],
+            "zoöglœæ": ["zooglœæ", "zoogloeae", "zoögloeae", "zoogloeæ", "zoögloeæ", "zooglœae", "zoöglœae", "zoogleae", "zoögleae", "zoogleæ", "zoögleæ"],
+            "zoöxanthellæ": ["zooxanthellae", "zoöxanthellae", "zooxanthellæ"]
         }
     }
 }
