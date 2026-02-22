@@ -86,16 +86,28 @@ test("Economy", "Œconomy", "low", "low")
 test("Moirae", "Mœræ", "off", "high")
 test("MOIRAE", "MŒRÆ", "off", "high")
 
+// Overlapping transformations of both kinds
+test("phoebe", "phoebë", "high", "off")
+test("phoebe", "phœbe", "off", "low")
+test("phoebe", "phœbë", "high", "low")
+
+// præ- only appears at the correct levels
+test("pre-emancipation", "pre-emancipation", "off", "off")
+test("pre-emancipation", "preëmancipation", "low", "off")
+test("pre-emancipation", "præ-emancipation", "off", "high")
+
+// præe-... overrides preë-
+test("preeminent", "preeminent", "off", "off")
+test("preeminent", "preëminent", "low", "off")
+test("preeminent", "præeminent", "off", "high")
+test("preeminent", "præeminent", "low", "high")
+
 // Special tests for 'manœuvre'
 test("manoeuvre", "manœuvre", "off", "low")
 test("maneuver", "manœuvre", "off", "low")
 test("maneuvering", "manœuvring", "off", "low")
 test("maneuvers", "manœuvres", "off", "low")
 test("maneuverer", "manœuvrer", "off", "low")
-
-test("phoebe", "phoebë", "high", "off")
-test("phoebe", "phœbe", "off", "low")
-test("phoebe", "phœbë", "high", "low")
 
 if (errors.length > 0) {
 	console.log(errors.length + " ERRORS:");

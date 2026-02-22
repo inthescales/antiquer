@@ -529,6 +529,7 @@
             "plantæ": ["plants."],
             "pœnal": ["poenal", "penal"],
             "pœnolog": ["penolog"],
+            "præ": ["pre-"],
             "præamble": ["praeamble", "preamble"],
             "præced": ["praeced", "preced"],
             "præcip": ["praecip", "precip"],
@@ -547,6 +548,7 @@
             "prælapsarian": ["praelapsarian", "prelapsarian"],
             "præmatur": ["praematur", "prematur"],
             "præmeditat": ["praemeditat", "premeditat"],
+            "præeminen": ["preeminen"],
             "præmium": ["premium", "praemium"],
             "præmonit": ["praemonit", "premonit"],
             "prænup": ["praenup", "prenup"],
@@ -582,6 +584,11 @@
         },
         "high,low": {
             "phœbë": ["phoebe"]
+        },
+        "low,high": {
+            "præeminen": ["preeminen"],
+            "præempt": ["preempt"],
+            "præexist": ["preexist"]
         },
         "low,low": {
             "zoöglœa": ["zoogloea", "zoögloea", "zooglœa", "zooglea", "zoöglea"],
