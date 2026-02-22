@@ -53,7 +53,30 @@
         "ultra",
         "unco"
     ],
-    "replacement": {
+    "levels": {
+        "low,-": [
+            "low,-"
+        ],
+        "high,-": [
+            "high,-"
+        ],
+        "-,low": [
+            "-,low"
+        ],
+        "-,high": [
+            "-,high"
+        ],
+        "low,low": [
+            "both_scientific"
+        ],
+        "high,low": [
+            "both_greek_names"
+        ],
+        "low,high": [
+            "pre-e_prefix"
+        ]
+    },
+    "categories": {
         "low,-": {
             "aïoli": ["aioli."],
             "brontë": ["bronte."],
@@ -582,15 +605,15 @@
             "vertebræ": ["vertebras."],
             "vulvæ": ["vulvas."]
         },
-        "high,low": {
+        "both_greek_names": {
             "phœbë": ["phoebe"]
         },
-        "low,high": {
+        "pre-e_prefix": {
             "præeminen": ["preeminen"],
             "præempt": ["preempt"],
             "præexist": ["preexist"]
         },
-        "low,low": {
+        "both_scientific": {
             "zoöglœa": ["zoogloea", "zoögloea", "zooglœa", "zooglea", "zoöglea"],
             "zoöglœæ": ["zooglœæ", "zoogloeae", "zoögloeae", "zoogloeæ", "zoögloeæ", "zooglœae", "zoöglœae", "zoogleae", "zoögleae", "zoogleæ", "zoögleæ"],
             "zoöxanthellæ": ["zooxanthellae", "zoöxanthellae", "zooxanthellæ"]

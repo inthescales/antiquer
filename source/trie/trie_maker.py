@@ -113,14 +113,14 @@ with open(pattern_filename, "r", encoding="utf-8-sig") as pattern_data:
 trie = Trie()
 
 prefixes = json_data["prefixes"]
-replacement = json_data["replacement"]
+levels = json_data["levels"]
+categories = json_data["categories"]
 
-for (key, word_set) in replacement.items():
-	level = key
-
-	for (word, forms) in word_set.items():
-		for form in forms:
-			trie.add_word(form, word, level)
+for (level, level_categories) in levels.items():
+	for category in level_categories:
+		for (word, forms) in categories[category].items():
+			for form in forms:
+				trie.add_word(form, word, level)
 
 out_dict = {
 	"prefixes": prefixes,
