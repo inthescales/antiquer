@@ -98,7 +98,7 @@ test("oothecae", "oothecæ", "off", "low")
 test("oöthecae", "oöthecæ", "off", "low")
 test("oothecae", "oöthecæ", "low", "low")
 
-// Test compact expansion and replacement
+// Test compact expansion
 test("zoogloeae", "zoögloeae", "low", "off")
 test("zoogleae", "zoögleae", "low", "off")
 test("zoogloeae", "zooglœæ", "off", "low")
@@ -111,6 +111,12 @@ test("zoöglœae", "zoöglœæ", "low", "low")
 test("zoögloeæ", "zoöglœæ", "low", "low")
 test("zoögleæ", "zoöglœæ", "low", "low")
 test("zoöglœæ", "zoöglœæ", "low", "low")
+
+// Test conversion form substitution
+test("zoogloea", "zoögloea", "low", "off")	// 'oe' is preserved	o is given diaeresis
+test("zooglœa", "zoöglœa", "low", "off")	// 'œ' is preserved		o is given diaeresis
+test("zoogleae", "zooglœæ", "off", "low")	// 'o' is preserved		œæ ligatures are used
+test("zoögleae", "zoöglœæ", "off", "low")	// 'ö' is preserved		œæ ligatures are used
 
 // præ- only appears at the correct levels
 test("pre-emancipation", "pre-emancipation", "off", "off")
