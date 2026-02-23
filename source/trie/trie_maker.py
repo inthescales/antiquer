@@ -171,10 +171,10 @@ for (level, level_categories) in levels.items():
 	for category in level_categories:
 		for (word, forms) in categories[category].items():
 			for unpacked in [f for form in forms for f in expand_compact(form)]:
-				form = unpacked[0]
+				input_form = unpacked[0]
 				choices = unpacked[1]
-				print(form + " - " + substitute_word(word, choices))
-				trie.add_word(form, substitute_word(word, choices), level)
+				result_form = substitute_word(word, choices)
+				trie.add_word(input_form, result_form, level)
 
 out_dict = {
 	"prefixes": prefixes,
