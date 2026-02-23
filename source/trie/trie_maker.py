@@ -98,6 +98,39 @@ class Trie:
 		return ret
 
 # ==============================================
+# HELPERS
+# ==============================================
+
+def expand_compact(form):
+	"""Returns a list of use strings expanded from the compact form given."""
+
+	buffer = ""
+	results = []
+
+	def flush():
+		nonlocal buffer, results
+
+		if len(results) == 0:
+			results.append(buffer)
+		else:
+			results = [r + buffer for r in results]
+		buffer = ""
+
+	for char in form:
+		if char == "[":
+			flush()
+		elif char == "]":
+			variants = buffer.split(",")
+			results = [r + v for v in variants for r in results]
+			buffer = ""
+		else:
+			buffer += char
+
+	flush()
+
+	return results
+
+# ==============================================
 # EXECUTION
 # ==============================================
 
@@ -119,7 +152,8 @@ categories = json_data["categories"]
 for (level, level_categories) in levels.items():
 	for category in level_categories:
 		for (word, forms) in categories[category].items():
-			for form in forms:
+			for form in [f for form in forms for f in expand_compact(form)]:
+				print(form)
 				trie.add_word(form, word, level)
 
 out_dict = {

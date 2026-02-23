@@ -94,7 +94,22 @@ test("phoebe", "phœbë", "high", "low")
 // Overlapping with enumerated forms to allow plural
 test("oothecae", "oöthecae", "low", "off")
 test("oothecae", "oothecæ", "off", "low")
+test("oöthecae", "oöthecæ", "off", "low")
 test("oothecae", "oöthecæ", "low", "low")
+
+// Test compact expansion
+test("zoogloeae", "zoögloeae", "low", "off")
+test("zoogleae", "zoögleae", "low", "off")
+test("zoogloeae", "zooglœæ", "off", "low")
+test("zoogleae", "zooglœæ", "off", "low")
+test("zoogloeae", "zoöglœæ", "low", "low")
+test("zoogleae", "zoöglœæ", "low", "low")
+test("zoögloeae", "zoöglœæ", "low", "low")
+test("zoögleae", "zoöglœæ", "low", "low")
+test("zoöglœae", "zoöglœæ", "low", "low")
+test("zoögloeæ", "zoöglœæ", "low", "low")
+test("zoögleæ", "zoöglœæ", "low", "low")
+test("zoöglœæ", "zoöglœæ", "low", "low")
 
 // præ- only appears at the correct levels
 test("pre-emancipation", "pre-emancipation", "off", "off")
