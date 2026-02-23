@@ -102,8 +102,13 @@ class Trie:
 # ==============================================
 
 def expand_compact(form):
-	"""Returns a list of use strings expanded from the compact form given."""
+	"""
+	Expand a single word string from the data into a set of forms that should be converted.
 
+	Returns a tuple containing:
+	- The input form to be accepted
+	- A list of the variant choices made to arrive at that form
+	"""
 	buffer = ""
 	results = []
 
@@ -111,9 +116,9 @@ def expand_compact(form):
 		nonlocal buffer, results
 
 		if len(results) == 0:
-			results.append(buffer)
+			results.append([buffer, []])
 		else:
-			results = [r + buffer for r in results]
+			results = [[r + buffer, c] for (r, c) in results]
 		buffer = ""
 
 	for char in form:
@@ -121,7 +126,7 @@ def expand_compact(form):
 			flush()
 		elif char == "]":
 			variants = buffer.split(",")
-			results = [r + v for v in variants for r in results]
+			results = [[r + v, c + [v]] for v in variants for (r, c) in results]
 			buffer = ""
 		else:
 			buffer += char
@@ -129,6 +134,19 @@ def expand_compact(form):
 	flush()
 
 	return results
+
+def substitute_word(word, choices):
+	"""Apply substitutions to a replacement form, based on the list of choices."""
+
+	result = word
+
+	# Remove behavior indicators from choices
+	choices = [c.replace(".", "") for c in choices]
+
+	for i in range(0, len(choices)):
+		result = result.replace(f"[{i}]", choices[i])
+
+	return result
 
 # ==============================================
 # EXECUTION
@@ -152,9 +170,11 @@ categories = json_data["categories"]
 for (level, level_categories) in levels.items():
 	for category in level_categories:
 		for (word, forms) in categories[category].items():
-			for form in [f for form in forms for f in expand_compact(form)]:
-				print(form)
-				trie.add_word(form, word, level)
+			for unpacked in [f for form in forms for f in expand_compact(form)]:
+				form = unpacked[0]
+				choices = unpacked[1]
+				print(form + " - " + substitute_word(word, choices))
+				trie.add_word(form, substitute_word(word, choices), level)
 
 out_dict = {
 	"prefixes": prefixes,

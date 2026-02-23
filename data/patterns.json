@@ -148,18 +148,10 @@
             "oöcyt": ["oocyt"],
             "oöthec": ["oothec."],
             "oötheca": ["ootheca."],
-            "oöthecae": ["oothecae."],
-            "oöthecal": ["oothecal."],
-            "oöthecas": ["oothecas."],
+            "oöthec[0]": ["oothec[ae.,æ.,al,as.]"],
             "protozoön": ["protozoon"],
-            "zoöglea": ["zooglea."],
-            "zoögloea": ["zoogloea."],
-            "zoögleae": ["zoogleae."],
-            "zoögloeae": ["zoogloeae."],
-            "zoögleal": ["zoogleal."],
-            "zoögloeal": ["zoogloeal."],
-            "zoögleas": ["zoogleas."],
-            "zoögloeas": ["zoogloeas."],
+            "zoögl[0]a": ["zoogl[e,oe,œ]a."],
+            "zoögl[0][1]": ["zoogl[e,oe,œ][ae.,æ.,al,as.]"],
             "zoögraph": ["zoograph"],
             "zoölog": ["zoolog"],
             "zoömorph": ["zoomorph"],
@@ -241,7 +233,6 @@
         },
         "lig_french": {
             "bœuf": ["boeuf"],
-            "d'œuvre": ["d'oeuvre"],
             "manœuvr": ["man[e,oe]uvr"],
             "manœuvre": ["maneuver[.,e]"],
             "manœuvres": ["maneuvers"],
@@ -321,8 +312,7 @@
             "toxæmi": ["tox[ae,e]mi"],
             "uræmi": ["ur[ae,e]mi"],
             "viræmia": ["vir[ae,e]mia"],
-            "zooglœa": ["zoogl[e,oe]a."],
-            "zoöglœa": ["zoögl[e,oe]a."]
+            "zo[0]glœa": ["zo[o,ö]gl[e,oe]a."]
         },
         "lig_latinate": {
             "ambilæv": ["ambilev"],
@@ -393,8 +383,7 @@
             "synæresis": ["syn[ae,e]re"],
             "tænia": ["taenia."],
             "vitæ": ["vitae"],
-            "zooglœæ": ["zoogl[e,oe]a[e,s]."],
-            "zoöglœæ": ["zoögl[e,oe]a[e,e]."]
+            "zo[0]glœæ": ["zo[o,ö]gl[e,oe]a[e,e]."]
         },
         "lig_plurals_in_ae": {
             "alumnæ": ["alumna[e,s]"],
@@ -454,8 +443,7 @@
             "nebulæ": ["nebulae"],
             "nymphæ": ["nymphae"],
             "onomatopœiæ": ["onomatop[oe,œ]i[ae,æ]."],
-            "oothecæ": ["ootheca[e,s]"],
-            "oöthecæ": ["oötheca[e,s]"],
+            "o[0]thecæ": ["o[o,ö]theca[e,s]"],
             "palæstræ": ["pal[ae,æ]str[ae,æ,as]."],
             "panacææ": ["panac[ae,æ][ae,æ]."],
             "papillæ": ["papilla[e,s]."],
@@ -499,8 +487,7 @@
             "vibratiunculæ": ["vibratiuncula[e,s]."],
             "vulvæ": ["vulvae"],
             "zonæ": ["zona[e,s]."],
-            "zooglœæ": ["zoogl[e,oe,œ][ae,æ,as]."],
-            "zoöglœæ": ["zoögl[e,oe,œ][ae,æ,as]."]
+            "zo[0]glœæ": ["zo[o,ö]gl[e,oe,œ][ae,æ,as]."]
         },
         "lig_greek_latin_names": {
             "achæan": ["achaean"],
@@ -525,8 +512,7 @@
             "lætitia": ["l[ae,e]titia"],
             "mœsia": ["moesia"],
             "œdip": ["[e,oe,oi]dip"],
-            "phœbe": ["phoebe"],
-            "phœbus": ["phoebus"],
+            "phœb[0]": ["phoeb[e,ë,us]"],
             "rhætia": ["rhaetia"]
         },
         "lig_old_english_names": {
@@ -538,11 +524,11 @@
         "lig_french_high": {
             "færie": ["fairie"],
             "færy": ["fairy"],
-            "mœurs": ["mores."]
+            "mœurs": ["mores.", "moeurs."]
         },
         "lig_latinate_hypercorrect": {
-            "adhær": ["adher"],
-            "adhæs": ["adhes"],
+            "adhær": ["adh[ae,e]r"],
+            "adhæs": ["adh[ae,e]s"],
             "ædific": ["[ae,e]dific"],
             "æmulat": ["[ae,e]mulat"],
             "ænigma": ["[ae,e]nigma"],

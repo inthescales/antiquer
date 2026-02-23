@@ -90,6 +90,7 @@ test("MOIRAE", "MŒRÆ", "off", "high")
 test("phoebe", "phoebë", "high", "off")
 test("phoebe", "phœbe", "off", "low")
 test("phoebe", "phœbë", "high", "low")
+test("phoebus", "phœbus", "high", "low")
 
 // Overlapping with enumerated forms to allow plural
 test("oothecae", "oöthecae", "low", "off")
@@ -97,7 +98,7 @@ test("oothecae", "oothecæ", "off", "low")
 test("oöthecae", "oöthecæ", "off", "low")
 test("oothecae", "oöthecæ", "low", "low")
 
-// Test compact expansion
+// Test compact expansion and replacement
 test("zoogloeae", "zoögloeae", "low", "off")
 test("zoogleae", "zoögleae", "low", "off")
 test("zoogloeae", "zooglœæ", "off", "low")
