@@ -59,6 +59,7 @@ test("egypt", "ægypt", "off", "high");
 
 // Entries with dots only match at word end
 test("dais", "daïs", "high", "off")
+test("daises", "daïses", "high", "off")
 test("daisy", "daisy", "high", "off")
 test("\"daisy\"", "\"daisy\"", "high", "off")
 

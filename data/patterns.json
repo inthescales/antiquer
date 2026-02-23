@@ -199,13 +199,11 @@
         "dia_names_rare": {
             "averroës": ["averroes"],
             "beëlzebub": ["beelzebub"],
-            "israël": ["israel."],
-            "israëlite": ["israelite"],
+            "israël": ["israel"],
             "raphaël": ["raphael"]
         },
         "dia_hypercorrect": {
-            "daïs": ["dais."],
-            "daïses": ["daises"],
+            "daïs[0]": ["dais[,es]."],
             "meänder": ["meander"],
             "naïad": ["naiad"],
             "noësis": ["noesis"],
@@ -235,9 +233,8 @@
         "lig_french": {
             "bœuf": ["boeuf"],
             "manœuvr": ["man[e,oe]uvr"],
-            "manœuvre": ["maneuver[.,e]"],
-            "manœuvres": ["maneuvers"],
-            "manœuvri": ["maneuveri"],
+            "manœuvre[1]": ["man[e,oe]uver[s,]."],
+            "manœuvr[1]": ["man[e,oe]uver[e,i]"],
             "œuvre": ["oeuvre"],
             "færie": ["faerie"],
             "færy": ["faery"],
