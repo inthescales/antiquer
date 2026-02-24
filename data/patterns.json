@@ -100,7 +100,8 @@
     "categories": {
         "both_greek_names": {
             "æetes": ["aetes"],
-            "phœbë": ["ph[oe,œ]b[e,ë]"]
+            "phœbë": ["ph[oe,œ]b[e,ë]"],
+            "œnoë": ["[oe,œ]no[e,ë]"]
         },
         "both_dia_overriding": {
             "diaëres": ["diaeres"]
@@ -113,9 +114,14 @@
             "mediæval": ["medi[ae,e]val"]
         },
         "both_pre-e_prefix": {
+            "præeclampsi": ["pre[e,ë]clampsi"],
+            "præelect": ["pre[e,ë]lect"],
             "præeminen": ["pre[e,ë]minen"],
             "præempt": ["pre[e,ë]mpt"],
-            "præexist": ["pre[e,ë]xist"]
+            "præestablish": ["pre[e,ë]stablish"],
+            "præexil": ["pre[e,ë]xil"],
+            "præexist": ["pre[e,ë]xist"],
+            "præexponent": ["pre[e,ë]xponent"]
         },
         "both_scientific": {
             "oöthecæ": ["o[o,ö]thec[ae,æ,as]."],
@@ -137,9 +143,12 @@
         "dia_greek_names": {
             "aeëtes": ["aeetes."],
             "aëtius": ["aetius."],
+            "briseïs": ["briseis"],
             "caïssa": ["caissa"],
             "laocoön": ["laocoon"],
-            "nausicaä": ["nausicaa"]
+            "nausicaä": ["nausicaa"],
+            "orseïs": ["orseis"],
+            "phaët[0]on": ["phaet[,h]on"]
         },
         "dia_greek_names_in_-e": {
             "anaxaretë": ["anaxarete"],
@@ -157,6 +166,8 @@
             "melponemë": ["melponeme"],
             "meroë": ["meroe"],
             "mnemosynë": ["mnemosyne"],
+            "[0]noë": ["[oe,œ]noe"],
+            "pasiphaë": ["pasiphae"],
             "penelopë": ["penelope"],
             "persephonë": ["persephone"],
             "phoebë": ["phoebe"],
@@ -189,9 +200,10 @@
             "noës[0]s": ["noes[e,i]s"],
             "noët": ["noet"],
             "noöne": ["noone"],
+            "oenochoë": ["oenochoe"],
+            "paranoïa": ["paranoia"],
             "pharaöh": ["pharaoh"],
-            "poëm": ["poem"],
-            "poët": ["poet"],
+            "poë[0]": ["poe[m,s,t]"],
             "seeër": ["seer"],
             "staïd": ["staid"],
             "whereäs": ["whereas"]
@@ -277,9 +289,14 @@
             "deënable": ["deenable"],
             "deëscalat": ["deescalat"],
             "discoördinat": ["discoordinat"],
+            "preëclampsi": ["preeclampsi"],
+            "preëlect": ["preelect"],
             "preëminen": ["preeminen"],
             "preëmpt": ["preempt"],
+            "preëstablish": ["preestablish"],
+            "preëxil": ["preexil"],
             "preëxist": ["preexist"],
+            "preëxponent": ["preexponent"],
             "reëducat": ["reeducat"],
             "reëlect": ["reelect"],
             "reëlevat": ["reelevat"],
@@ -305,7 +322,9 @@
             "cocaïne": ["cocaine"],
             "dëalate": ["dealate"],
             "diploë": ["diploe"],
-            "elaïd": ["elaid"]
+            "elaïd": ["elaid"],
+            "oleïc": ["oleic"],
+            "phloëm": ["phloem"]
         },
         "dia_classical_same": {
             "eleëmosyn": ["eleemosyn"]
@@ -332,9 +351,21 @@
             "noöspher": ["noospher"],
             "noötrop": ["nootrop"],
             "oöcyt": ["oocyt"],
+            "oögene": ["oogene"],
+            "oögon[0]": ["oogon[e,i]"],
+            "oöid": ["ooid"],
+            "oölit[0]": ["oolit[e,i]"],
+            "oölog[0]": ["oolog[i,y]"],
+            "oömycete": ["oomycete"],
+            "oöphor": ["oophor"],
+            "oöphyt": ["oophyt"],
+            "oöspher": ["oospher"],
+            "oöspor": ["oospor"],
+            "oöstegit": ["oostegit"],
             "oöthec": ["oothec."],
             "oötheca": ["ootheca."],
             "oöthec[0]": ["oothec[ae.,æ.,al,as.]"],
+            "oötid": ["ootid"],
             "protozoön": ["protozoon"],
             "zoögl[0]a": ["zoogl[e,oe,œ]a."],
             "zoögl[0][1]": ["zoogl[e,oe,œ][ae.,æ.,al,as.]"],
@@ -542,6 +573,7 @@
             "lætitia": ["l[ae,e]titia"],
             "mœsia": ["moesia"],
             "œdip": ["[e,oe,oi]dip"],
+            "œno[0]": ["[oe,œ]no[e,ë]"],
             "phœb[0]": ["phoeb[e,ë,us]"],
             "rhætia": ["rhaetia"]
         },
