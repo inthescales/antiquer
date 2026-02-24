@@ -108,7 +108,8 @@
         "both_lig_overriding": {
             "archæi": ["arch[a,ae]i"],
             "coëval": ["coeval"],
-            "fær[0]": ["fa[e,i]r[ie,y]"]
+            "fær[0]": ["fa[e,i]r[ie,y]"],
+            "judæi": ["jud[a,ae]i"]
         },
         "both_pre-e_prefix": {
             "præeminen": ["pre[e,ë]minen"],
@@ -135,7 +136,8 @@
         "dia_greek_names": {
             "aeëtes": ["aeetes."],
             "aëtius": ["aetius."],
-            "caïssa": ["caissa"]
+            "caïssa": ["caissa"],
+            "laocoön": ["laocoon"]
         },
         "dia_greek_names_in_-e": {
             "anaxaretë": ["anaxarete"],
@@ -177,6 +179,8 @@
             "hebraï": ["hebrai"],
             "[0]pakoë": ["[,h]ypakoe"],
             "ïamb": ["iamb"],
+            "juda[0]ï": ["juda[e,]i"],
+            "koinë": ["koine"],
             "meänder": ["meander"],
             "naïad": ["naiad"],
             "noësis": ["noesis"],
@@ -577,7 +581,7 @@
             "hetæra": ["hetaera."],
             "hyæna.": ["hy[ae,e]na."],
             "hypæthr": ["hyp[ae,e]thr"],
-            "judæic": ["jud[a,ae]ic"],
+            "judæi": ["jud[a,ae]i"],
             "judæo": ["jud[ae,e]o"],
             "logorrhœ": ["logorrh[e,oe]"],
             "longæv": ["long[ae,e]v"],
