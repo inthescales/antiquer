@@ -58,7 +58,8 @@
             "dia_prefix_same",
             "dia_french",
             "dia_names_common",
-            "dia_scientific_same"
+            "dia_scientific_same",
+            "dia_classical_same"
         ],
         "high,-": [
             "dia_greek_names_in_-e",
@@ -92,6 +93,7 @@
             "both_lig_overriding"
         ],
         "low,high": [
+            "both_dia_overriding",
             "both_pre-e_prefix"
         ]
     },
@@ -100,8 +102,13 @@
             "æetes": ["aetes"],
             "phœbë": ["ph[oe,œ]b[e,ë]"]
         },
+        "both_dia_overriding": {
+            "diaëres": ["diaeres"]
+        },
         "both_lig_overriding": {
-            "archæi": ["arch[a,ae]i"]
+            "archæi": ["arch[a,ae]i"],
+            "coëval": ["coeval"],
+            "fær[0]": ["fa[e,i]r[ie,y]"]
         },
         "both_pre-e_prefix": {
             "præeminen": ["pre[e,ë]minen"],
@@ -121,6 +128,7 @@
             "chemonaïv": ["chemonaïv"],
             "caïc": ["caic"],
             "caïque": ["caique"],
+            "faïence": ["faience"],
             "naïf": ["naif"],
             "naïv": ["naiv"]
         },
@@ -137,6 +145,7 @@
             "arcinoë": ["arcinoe"],
             "calliopë": ["calliope"],
             "callirrhoë": ["callirrhoe"],
+            "danaë": ["danae."],
             "daphnë": ["daphne"],
             "eurydicë": ["eurydice"],
             "euterpë": ["euterpe"],
@@ -159,11 +168,17 @@
             "catastrophë": ["catastrophe"],
             "chaldaï": ["chaldai"],
             "daïs[0]": ["dais[,es]."],
+            "deësis": ["deesis"],
+            "deëti": ["deeti"],
+            "deïs[0]": ["deis[m,t]"],
+            "extraördinary": ["extraordinary"],
+            "faër[0]": ["fa[e,i]r[ie,y]"],
             "meänder": ["meander"],
             "naïad": ["naiad"],
             "noësis": ["noesis"],
             "noët": ["noet"],
             "noöne": ["noone"],
+            "pharaöh": ["pharaoh"],
             "poëm": ["poem"],
             "poët": ["poet"],
             "staïd": ["staid"],
@@ -174,6 +189,7 @@
             "brontë": ["bronte"],
             "brontës": ["brontes."],
             "chloë": ["chloe."],
+            "eloïse": ["eloise"],
             "noël": ["noel"],
             "raël": ["rael"],
             "zoë": ["zoe."]
@@ -188,13 +204,18 @@
         "dia_prefix_different": {
             "agroëcolog": ["agroecolog"],
             "autoïmmun": ["autoimmun"],
+            "coädmin": ["coadmin"],
+            "coälition": ["coalition"],
             "coäuth": ["coauth"],
             "coëd": ["coed"],
+            "coëfficien": ["coefficien"],
             "coërc": ["coerc"],
             "coëvol": ["coevol"],
             "coëxist": ["coexist"],
+            "coïnci": ["coinci"],
             "coïnhabit": ["coinhabit"],
             "deäctivate": ["deactivate"],
+            "diaëres": ["diaeres"],
             "hypoällerg": ["hypoallerg"],
             "orthoëp": ["orthoep"],
             "reäct": ["react"],
@@ -224,15 +245,19 @@
             "antiïnflam": ["antiinflam"]
         },
         "dia_prefix_same": {
-            "coöcurr": ["coocurr"],
+            "coöcur": ["cooccur"],
+            "coöfficial": ["coofficial"],
             "coöpera": ["coopera"],
             "coöpt": ["coopt"],
             "coördinat": ["coordinat"],
+            "coörigin": ["coorigin"],
             "coöwn": ["coown"],
+            "cryptozoölog": ["cryptozoolog"],
             "deëlevate": ["deelevate"],
             "deëmphasi": ["deemphasi"],
             "deënable": ["deenable"],
             "deëscalat": ["deescalat"],
+            "discoördinat": ["discoordinat"],
             "preëminen": ["preeminen"],
             "preëmpt": ["preempt"],
             "preëxist": ["preexist"],
@@ -257,7 +282,14 @@
             "aëtheogam": ["aetheogam"],
             "alnöit": ["alnoit"],
             "cacoë": ["cacoe"],
-            "chiliaëdr": ["chiliaedr"]
+            "chiliaëdr": ["chiliaedr"],
+            "cocaïne": ["cocaine"],
+            "dëalate": ["dealate"],
+            "diploë": ["diploe"],
+            "elaïd": ["elaid"]
+        },
+        "dia_classical_same": {
+            "eleëmosyn": ["eleemosyn"]
         },
         "dia_scientific_same": {
             "achroö": ["achroo"],
@@ -265,6 +297,11 @@
             "boöt[0]": ["boot[es,id]"],
             "cacoö": ["cacoo"],
             "chroö": ["chroo"],
+            "electroösmo": ["electroosmo"],
+            "enzoöt": ["enzoot"],
+            "eozoön": ["eozoon"],
+            "epizoö[0]": ["epizoo[n,t]"],
+            "epoöphor": ["epoophor"],
             "microörgan": ["microorgan"],
             "noö": ["noo-"],
             "noögen": ["noogen"],
@@ -447,8 +484,7 @@
         },
         "lig_french": {
             "bœuf": ["boeuf"],
-            "færie": ["faerie"],
-            "færy": ["faery"],
+            "fær[0]": ["faer[ie,y]"],
             "manœuvr": ["man[e,oe]uvr"],
             "manœuvre[1]": ["man[e,oe]uver[s,]."],
             "manœuvr[1]": ["man[e,oe]uver[e,i]"],
@@ -457,8 +493,7 @@
             "œuvre": ["oeuvre"]
         },
         "lig_french_high": {
-            "færie": ["fairie"],
-            "færy": ["fairy"],
+            "fær[0]": ["fair[ie,y]"],
             "mœurs": ["moeurs.", "mores."]
         },
         "lig_greek_latin_names": {
@@ -475,6 +510,7 @@
             "æthiop": ["aethiop"],
             "cæsar": ["c[ae,e]sar"],
             "crœsus": ["croesus"],
+            "cyrenaïca": ["cyrenaica"],
             "epænetus": ["epaenetus"],
             "gæa": ["g[ae,ai]a"],
             "hephæst": ["heph[ae,e]st"],
@@ -520,7 +556,7 @@
             "dæmons": ["d[ae,e]mons."],
             "diarrhœa": ["diarrh[e,oe]a."],
             "diarrœæ": ["diarrh[e,oe,œ][ae,æ,as]"],
-            "diæres": ["di[ae,e]res"],
+            "diæres": ["diaeres"],
             "encyclopæd": ["encyclop[ae,e]d"],
             "eudæmon": ["eud[ae,ai,e]mon"],
             "fæcal": ["f[ae,e]cal"],
