@@ -107,9 +107,10 @@
         },
         "both_lig_overriding": {
             "archæi": ["arch[a,ae]i"],
-            "coëval": ["coeval"],
+            "coæval": ["co[ae,e]val"],
             "fær[0]": ["fa[e,i]r[ie,y]"],
-            "judæi": ["jud[a,ae]i"]
+            "judæi": ["jud[a,ae]i"],
+            "mediæval": ["medi[ae,e]val"]
         },
         "both_pre-e_prefix": {
             "præeminen": ["pre[e,ë]minen"],
@@ -137,7 +138,8 @@
             "aeëtes": ["aeetes."],
             "aëtius": ["aetius."],
             "caïssa": ["caissa"],
-            "laocoön": ["laocoon"]
+            "laocoön": ["laocoon"],
+            "nausicaä": ["nausicaa"]
         },
         "dia_greek_names_in_-e": {
             "anaxaretë": ["anaxarete"],
@@ -153,6 +155,7 @@
             "euterpë": ["euterpe"],
             "hermionë": ["hermione"],
             "melponemë": ["melponeme"],
+            "meroë": ["meroe"],
             "mnemosynë": ["mnemosyne"],
             "penelopë": ["penelope"],
             "persephonë": ["persephone"],
@@ -183,7 +186,7 @@
             "koinë": ["koine"],
             "meänder": ["meander"],
             "naïad": ["naiad"],
-            "noësis": ["noesis"],
+            "noës[0]s": ["noes[e,i]s"],
             "noët": ["noet"],
             "noöne": ["noone"],
             "pharaöh": ["pharaoh"],
@@ -209,7 +212,10 @@
             "beëlzebub": ["beelzebub"],
             "haïti": ["haiti"],
             "israël": ["israel"],
-            "raphaël": ["raphael"]
+            "mäori": ["maori"],
+            "nimuë": ["nimue"],
+            "raphaël": ["raphael"],
+            "zaïre": ["zaire"]
         },
         "dia_prefix_different": {
             "agroëcolog": ["agroecolog"],
@@ -220,6 +226,7 @@
             "coëd": ["coed"],
             "coëfficien": ["coefficien"],
             "coërc": ["coerc"],
+            "coëval": ["co[ae,e]val"],
             "coëvol": ["coevol"],
             "coëxist": ["coexist"],
             "coïnci": ["coinci"],
@@ -227,6 +234,7 @@
             "deäctivate": ["deactivate"],
             "diaëres": ["diaeres"],
             "hypoällerg": ["hypoallerg"],
+            "mediëval": ["medi[ae,e]val"],
             "orthoëp": ["orthoep"],
             "reäct": ["react"],
             "reäddress": ["readdress"],
@@ -252,7 +260,8 @@
         "dia_prefix_i": {
             "antiïmmigra": ["antiimigra"],
             "antiïmperial": ["antiimperial"],
-            "antiïnflam": ["antiinflam"]
+            "antiïnflam": ["antiinflam"],
+            "naziïsm": ["naziism"]
         },
         "dia_prefix_same": {
             "coöcur": ["cooccur"],
@@ -313,6 +322,7 @@
             "epizoö[0]": ["epizoo[n,t]"],
             "epoöphor": ["epoophor"],
             "hyperoödon": ["hyperoodon"],
+            "macroörgan": ["macroorgan"],
             "microörgan": ["microorgan"],
             "noö": ["noo-"],
             "noögen": ["noogen"],
