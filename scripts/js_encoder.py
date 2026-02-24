@@ -3,13 +3,7 @@ import json
 from alphabetizer import Alphabetizer
 
 class PatternsEncoder(json.JSONEncoder):
-    """Custom JSON encoder for formatting the patterns file"""
-
-    dict_sort_threshold = 4
-    """The minimum number of elements in a dict for it to be sorted"""
-
-    list_break_threshold = 8
-    """The minimum number of elements in a list for it to be broken onto multiple lines and sorted"""
+    """Custom JSON encoder for formatting the patterns file."""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -22,6 +16,9 @@ class PatternsEncoder(json.JSONEncoder):
         elif isinstance(obj, dict):
             return self._encode_dict(obj)
 
+        return self.default_encode(obj)
+
+    def default_encode(self, obj):
         return json.dumps(
             obj,
             skipkeys=self.skipkeys,
@@ -34,30 +31,39 @@ class PatternsEncoder(json.JSONEncoder):
             default=self.default if hasattr(self, "default") else None,
         )
 
-    def _encode_list(self, list_in):
-        """Encode a list, keeping it on one line if its element count is below the threshold."""
+    def _encode_list(self, list_in, one_line=False, sort=False):
+        """Encode a list with the given styling parameters."""
 
-        if len(list_in) < self.list_break_threshold:
-            return "[" + ", ".join([self.encode(element) for element in list_in]) + "]"
+        list_elements = list_in
+        if sort:
+            list_elements = self.alphabetizer.sorted(list_in)
+
+        if one_line:
+            return "[" + ", ".join([self.encode(element) for element in list_elements]) + "]"
         else:
-            # Sort the list only if it's broken on multiple lines (heuristic)
-            list_sorted = self.alphabetizer.sorted(list_in)
-
             self.indentation_level += 1
-            output = [self.indent_str + self.encode(element) for element in list_sorted]
+            output = [self.indent_str + self.encode(element) for element in list_elements]
             self.indentation_level -= 1
 
             return "[\n" + ",\n".join(output) + "\n" + self.indent_str + "]"
 
-    def _encode_dict(self, dict_in):
-        """Encode a dict, sorting it if its element count is above the threshold."""
+    def _encode_dict(self, dict_in, chain=[]):
+        """Encode a dict, determining style for any contained lists based on its parentage chain."""
 
-        # Sort keys for word lists only
-        if len(dict_in.keys()) > self.dict_sort_threshold:
+        is_word_list = "categories" in chain
+
+        if is_word_list:
             dict_in = dict(self.alphabetizer.sorted(dict_in.items(), key=lambda x: x[0]))
 
         self.indentation_level += 1
-        output = [self.indent_str + self.encode(key) + ": " + self.encode(val) for (key, val) in dict_in.items()]
+        output = []
+        for (key, val) in dict_in.items():
+            if type(val) == dict:
+                output.append(self.indent_str + self.encode(key) + ": " + self._encode_dict(val, chain + [key]))
+            elif type(val) == list:
+                output.append(self.indent_str + self.encode(key) + ": " + self._encode_list(val, one_line=is_word_list, sort=is_word_list))
+            else:
+                output.append(self.indent_str + self.encode(key) + ": " + self.default_encode(val))
         self.indentation_level -= 1
 
         return "{\n" + ",\n".join(output) + "\n" + self.indent_str + "}"
