@@ -58,14 +58,15 @@
             "dia_prefix_same",
             "dia_french",
             "dia_names_common",
-            "dia_scientific"
+            "dia_scientific_same"
         ],
         "high,-": [
             "dia_greek_names_in_-e",
             "dia_prefix_different",
             "dia_prefix_i",
             "dia_names_rare",
-            "dia_hypercorrect"
+            "dia_hypercorrect",
+            "dia_scientific_different"
         ],
         "-,low": [
             "lig_french",
@@ -87,15 +88,20 @@
             "both_scientific"
         ],
         "high,low": [
-            "both_greek_names_in_-e"
+            "both_greek_names",
+            "both_lig_overriding"
         ],
         "low,high": [
             "both_pre-e_prefix"
         ]
     },
     "categories": {
-        "both_greek_names_in_-e": {
+        "both_greek_names": {
+            "æetes": ["aetes"],
             "phœbë": ["ph[oe,œ]b[e,ë]"]
+        },
+        "both_lig_overriding": {
+            "archæi": ["arch[a,ae]i"]
         },
         "both_pre-e_prefix": {
             "præeminen": ["pre[e,ë]minen"],
@@ -111,16 +117,26 @@
         },
         "dia_french": {
             "aïoli": ["aioli."],
+            "bionaïv": ["bionaiv"],
+            "chemonaïv": ["chemonaïv"],
+            "caïc": ["caic"],
             "caïque": ["caique"],
             "naïf": ["naif"],
             "naïv": ["naiv"]
+        },
+        "dia_greek_names": {
+            "aeëtes": ["aeetes."],
+            "aëtius": ["aetius."],
+            "caïssa": ["caissa"]
         },
         "dia_greek_names_in_-e": {
             "anaxaretë": ["anaxarete"],
             "antigonë": ["antigone"],
             "aphroditë": ["aphrodite"],
             "arachnë": ["arachne"],
+            "arcinoë": ["arcinoe"],
             "calliopë": ["calliope"],
+            "callirrhoë": ["callirrhoe"],
             "daphnë": ["daphne"],
             "eurydicë": ["eurydice"],
             "euterpë": ["euterpe"],
@@ -133,18 +149,29 @@
             "terpsichorë": ["terpsichore"]
         },
         "dia_hypercorrect": {
+            "aëro": ["aero"],
+            "aërat": ["aerat"],
+            "aëri[0]": ["aeri[a,c,f]"],
+            "anaër": ["anaer"],
+            "apostrophë": ["apostrophe"],
+            "aramaï": ["aramaï"],
+            "arch[0]ï": ["arch[a,ae]i"],
+            "catastrophë": ["catastrophe"],
+            "chaldaï": ["chaldai"],
             "daïs[0]": ["dais[,es]."],
             "meänder": ["meander"],
             "naïad": ["naiad"],
             "noësis": ["noesis"],
             "noët": ["noet"],
+            "noöne": ["noone"],
             "poëm": ["poem"],
             "poët": ["poet"],
             "staïd": ["staid"],
             "whereäs": ["whereas"]
         },
         "dia_names_common": {
-            "brontë": ["bronte."],
+            "anaïs": ["anais"],
+            "brontë": ["bronte"],
             "brontës": ["brontes."],
             "chloë": ["chloe."],
             "noël": ["noel"],
@@ -153,6 +180,7 @@
         },
         "dia_names_rare": {
             "averroës": ["averroes"],
+            "camoëns": ["camões"],
             "beëlzebub": ["beelzebub"],
             "israël": ["israel"],
             "raphaël": ["raphael"]
@@ -224,7 +252,19 @@
             "reëvaluat": ["reevaluat"],
             "reëxamin": ["reexamin"]
         },
-        "dia_scientific": {
+        "dia_scientific_different": {
+            "aëdes": ["aedes"],
+            "aëtheogam": ["aetheogam"],
+            "alnöit": ["alnoit"],
+            "cacoë": ["cacoe"],
+            "chiliaëdr": ["chiliaedr"]
+        },
+        "dia_scientific_same": {
+            "achroö": ["achroo"],
+            "alcoö": ["alcoo"],
+            "boöt[0]": ["boot[es,id]"],
+            "cacoö": ["cacoo"],
+            "chroö": ["chroo"],
             "microörgan": ["microorgan"],
             "noö": ["noo-"],
             "noögen": ["noogen"],
@@ -424,6 +464,7 @@
         "lig_greek_latin_names": {
             "achæan": ["achaean"],
             "achæmenid": ["achaemenid"],
+            "æetes": ["aeetes"],
             "alphæus": ["alphaeus"],
             "ææa": ["aeaea"],
             "æmili": ["aemili"],
@@ -621,6 +662,7 @@
             "aquæ": ["aquae"],
             "archæbacteri": ["archaebacteri"],
             "archæi": ["arch[a,ae]i"],
+            "archæo": ["arch[a,ae]o"],
             "archæolog": ["arch[ae,e]olog"],
             "azotæmi": ["azot[ae,e]mi"],
             "æci": ["aeci"],
