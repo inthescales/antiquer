@@ -138,7 +138,8 @@
             "caïque": ["caique"],
             "faïence": ["faience"],
             "naïf": ["naif"],
-            "naïv": ["naiv"]
+            "naïv": ["naiv"],
+            "seminaï[0]": ["seminai[f,v]"]
         },
         "dia_greek_names": {
             "aeëtes": ["aeetes."],
@@ -204,9 +205,14 @@
             "paranoïa": ["paranoia"],
             "pharaöh": ["pharaoh"],
             "poë[0]": ["poe[m,s,t]"],
+            "poïesis": ["poiesis"],
             "seeër": ["seer"],
             "staïd": ["staid"],
-            "whereäs": ["whereas"]
+            "vacuä": ["vacua."],
+            "variët[0]": ["variet[i,y"],
+            "whereäs": ["whereas"],
+            "whoëver": ["whoever"],
+            "[0]soëver": ["[how,when,what,who,whom]soever"]
         },
         "dia_names_common": {
             "anaïs": ["anais"],
@@ -282,7 +288,8 @@
             "antiïmmigra": ["antiimigra"],
             "antiïmperial": ["antiimperial"],
             "antiïnflam": ["antiinflam"],
-            "naziïsm": ["naziism"]
+            "naziïsm": ["naziism"],
+            "skiïng": ["skiing"]
         },
         "dia_prefix_same": {
             "coöcur": ["cooccur"],
@@ -336,7 +343,10 @@
             "reëxpan[0]": ["reexpan[d,s]"],
             "reëxpla[0]n": ["reexpla[,i]n"],
             "reëxpress": ["reexpress"],
-            "reëxten[0]": ["reexten[d,s]"]
+            "reëxten[0]": ["reexten[d,s]"],
+            "uncoöperat": ["cooperat"],
+            "uncoöpt": ["uncoopt"],
+            "uncoördinat": ["uncoordinat"]
         },
         "dia_scientific_different": {
             "aëdes": ["aedes"],
@@ -349,7 +359,9 @@
             "diploë": ["diploe"],
             "elaïd": ["elaid"],
             "oleïc": ["oleic"],
-            "phloëm": ["phloem"]
+            "phloëm": ["phloem"],
+            "uropoïe[0]i": ["uropoie[s,t]i"],
+            "zoëa": ["zoea"]
         },
         "dia_classical_same": {
             "eleëmosyn": ["eleemosyn"]
@@ -392,12 +404,47 @@
             "oöthec[0]": ["oothec[ae.,æ.,al,as.]"],
             "oötid": ["ootid"],
             "protozoön": ["protozoon"],
+            "spermatozoö": ["spermatozoo"],
+            "zoöchem": ["zoochem"],
+            "zoöchlor": ["zoochlor"],
+            "zoöcid": ["zoocid"],
+            "zoöcyst": ["zoocyst"],
+            "zoöcyt": ["zoocyt"],
+            "zoödendr": ["zoodendr"],
+            "zoöeryth": ["zooeryth"],
+            "zoögam": ["zoogam"],
+            "zoögen": ["zoogen"],
+            "zoögeograph": ["zoogeograph"],
             "zoögl[0]a": ["zoogl[e,oe,œ]a."],
             "zoögl[0][1]": ["zoogl[e,oe,œ][ae.,æ.,al,as.]"],
             "zoögraph": ["zoograph"],
+            "zoöid": ["zooid"],
+            "zoölat": ["zoolat"],
             "zoölog": ["zoolog"],
+            "zoömelan": ["zoomelan"],
             "zoömorph": ["zoomorph"],
+            "zoön": ["zoon"],
+            "zoönom[0]": ["zoonom[i,y]"],
+            "zoöno[0]": ["zoono[s,t]"],
+            "zoöparasit": ["zooparasit"],
+            "zoöpath": ["zoopath"],
+            "zoöphag": ["zoophag"],
+            "zoöphil": ["zoophil"],
+            "zoöphit": ["zoophit"],
+            "zoöphob": ["zoophob"],
+            "zoöphyt": ["zoophyt"],
             "zoöplankton": ["zooplankton"],
+            "zoöprax": ["zooprax"],
+            "zoöpsia": ["zoopsia"],
+            "zoöpti": ["zoopti"],
+            "zoöpsych": ["zoopsych"],
+            "zoösperm": ["zoosperm"],
+            "zoöspher": ["zoospher"],
+            "zoöspor": ["zoospor"],
+            "zoöthome": ["zoothome"],
+            "zoötic": ["zootic"],
+            "zoötom": ["zootom"],
+            "zoötroph": ["zootroph"],
             "zoöxanthella": ["zooxanthella."]
         },
         "lig_ae_plurals_if_written": {
