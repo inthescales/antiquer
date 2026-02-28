@@ -1,4 +1,4 @@
-{
+﻿{
     "prefixes": [
         "acro",
         "aero",
@@ -98,13 +98,13 @@
         ]
     },
     "categories": {
-        "both_greek_names": {
-            "æetes": ["aetes"],
-            "phœbë": ["ph[oe,œ]b[e,ë]"],
-            "œnoë": ["[oe,œ]no[e,ë]"]
-        },
         "both_dia_overriding": {
             "diaëres": ["diaeres"]
+        },
+        "both_greek_names": {
+            "æetes": ["aetes"],
+            "œnoë": ["[oe,œ]no[e,ë]"],
+            "phœbë": ["ph[oe,œ]b[e,ë]"]
         },
         "both_lig_overriding": {
             "archæi": ["arch[a,ae]i"],
@@ -112,8 +112,8 @@
             "fær[0]": ["fa[e,i]r[ie,y]"],
             "judæi": ["jud[a,ae]i"],
             "mediæval": ["medi[ae,e]val"],
-            "[0]pœ[1]": ["[anthro,anthropo,argyro,epo,etho,glosso,logo,mytho,onomato,patho,pharmaco,prosopo,melo]p[e,oe][ia.,ic.,s,t,y]"],
-            "[0]nœa": ["[,meta,para,pro,hypo]n[oe,oi]a"]
+            "[0]nœa": ["[,meta,para,pro,hypo]n[oe,oi]a"],
+            "[0]pœ[1]": ["[anthro,anthropo,argyro,epo,etho,glosso,logo,mytho,onomato,patho,pharmaco,prosopo,melo]p[e,oe][ia.,ic.,s,t,y]"]
         },
         "both_pre-e_prefix": {
             "præeclampsi": ["pre[e,ë]clampsi"],
@@ -132,12 +132,15 @@
             "zoöglœæ": ["zo[o,ö]gl[e,oe,œ][ae,as,æ]."],
             "zoöxanthellæ": ["zo[o,ö]xanthell[ae,æ,as]."]
         },
+        "dia_classical_same": {
+            "eleëmosyn": ["eleemosyn"]
+        },
         "dia_french": {
             "aïoli": ["aioli."],
             "bionaïv": ["bionaiv"],
-            "chemonaïv": ["chemonaïv"],
             "caïc": ["caic"],
             "caïque": ["caique"],
+            "chemonaïv": ["chemonaïv"],
             "faïence": ["faience"],
             "naïf": ["naif"],
             "naïv": ["naiv"],
@@ -169,17 +172,17 @@
             "melponemë": ["melponeme"],
             "meroë": ["meroe"],
             "mnemosynë": ["mnemosyne"],
-            "[0]noë": ["[oe,œ]noe"],
             "pasiphaë": ["pasiphae"],
             "penelopë": ["penelope"],
             "persephonë": ["persephone"],
             "phoebë": ["phoebe"],
-            "terpsichorë": ["terpsichore"]
+            "terpsichorë": ["terpsichore"],
+            "[0]noë": ["[oe,œ]noe"]
         },
         "dia_hypercorrect": {
-            "aëro": ["aero"],
             "aërat": ["aerat"],
             "aëri[0]": ["aeri[a,c,f]"],
+            "aëro": ["aero"],
             "anaër": ["anaer"],
             "apostrophë": ["apostrophe"],
             "aramaï": ["aramaï"],
@@ -194,7 +197,6 @@
             "faër[0]": ["fa[e,i]r[ie,y]"],
             "freeë[0]": ["free[r,st]"],
             "hebraï": ["hebrai"],
-            "[0]pakoë": ["[,h]ypakoe"],
             "ïamb": ["iamb"],
             "juda[0]ï": ["juda[e,]i"],
             "koinë": ["koine"],
@@ -204,7 +206,6 @@
             "noët": ["noet"],
             "noöne": ["noone"],
             "oenochoë": ["oenochoe"],
-            "[0]noïa": ["[,meta,para,pro,hypo]noia"],
             "pharaöh": ["pharaoh"],
             "poë[0]": ["poe[m,s,t]"],
             "poïesis": ["poiesis"],
@@ -214,6 +215,8 @@
             "variët[0]": ["variet[i,y"],
             "whereäs": ["whereas"],
             "whoëver": ["whoever"],
+            "[0]noïa": ["[,meta,para,pro,hypo]noia"],
+            "[0]pakoë": ["[,h]ypakoe"],
             "[0]poeï": ["[argyro,epo,etho,glosso,mytho,onomato,patho,pharmaco,prosopo]p[e,oe]i"],
             "[0]soëver": ["[how,what,when,where,who,whom,why]soever"]
         },
@@ -229,8 +232,8 @@
         },
         "dia_names_rare": {
             "averroës": ["averroes"],
-            "camoëns": ["camões"],
             "beëlzebub": ["beelzebub"],
+            "camoëns": ["camões"],
             "haïti": ["haiti"],
             "israël": ["israel"],
             "mäori": ["maori"],
@@ -366,9 +369,6 @@
             "uropoïe[0]i": ["uropoie[s,t]i"],
             "zoëa": ["zoea"]
         },
-        "dia_classical_same": {
-            "eleëmosyn": ["eleemosyn"]
-        },
         "dia_scientific_same": {
             "achroö": ["achroo"],
             "alcoö": ["alcoo"],
@@ -439,8 +439,8 @@
             "zoöplankton": ["zooplankton"],
             "zoöprax": ["zooprax"],
             "zoöpsia": ["zoopsia"],
-            "zoöpti": ["zoopti"],
             "zoöpsych": ["zoopsych"],
+            "zoöpti": ["zoopti"],
             "zoösperm": ["zoosperm"],
             "zoöspher": ["zoospher"],
             "zoöspor": ["zoospor"],
@@ -551,8 +551,6 @@
             "alumnæ": ["alumna[e,s]"],
             "amnesiæ": ["amnesia[e,s]."],
             "aulæ": ["aula[e,s]"],
-            "[0]æsthesiæ": ["[,acanth,an,dys,syn]asthesia[e,s]."],
-            "cœnæsthesiæ": ["cenasthesia[e,s]."],
             "caricæ": ["carica[e,s]."],
             "cassiæ": ["cassia[e,s]."],
             "cathedræ": ["cathedra[e,s]"],
@@ -560,6 +558,7 @@
             "conjunctivæ": ["conjunctiva[e,s]"],
             "coryzæ": ["coryza[e,s]."],
             "coxæ": ["coxa[e,s]."],
+            "cœnæsthesiæ": ["cenasthesia[e,s]."],
             "exedræ": ["exedra[e,s]."],
             "fabellæ": ["fabella[e,s]."],
             "faunæ": ["fauna[e,s]."],
@@ -606,18 +605,19 @@
             "vesicæ": ["vesica[e,s]."],
             "vibratiunculæ": ["vibratiuncula[e,s]."],
             "zonæ": ["zona[e,s]."],
-            "zo[0]glœæ": ["zo[o,ö]gl[e,oe,œ][ae,æ,as]."]
+            "zo[0]glœæ": ["zo[o,ö]gl[e,oe,œ][ae,æ,as]."],
+            "[0]æsthesiæ": ["[,acanth,an,dys,syn]asthesia[e,s]."]
         },
         "lig_french": {
             "bœuf": ["boeuf"],
             "cœur": ["coeur"],
             "fær[0]": ["faer[ie,y]"],
-            "[0]manœuvr": ["[,out,un]man[e,oe]uvr"],
-            "[0]manœuvre[2]": ["[,out]man[e,oe]uver[s,]."],
-            "[0]manœuvr[2]": ["[,out,un]man[e,oe]uver[a,e,i,o,u,y]"],
             "mœurs": ["moeurs."],
             "œil": ["oeil"],
-            "œuvre": ["oeuvre"]
+            "œuvre": ["oeuvre"],
+            "[0]manœuvr": ["[,out,un]man[e,oe]uvr"],
+            "[0]manœuvre[2]": ["[,out]man[e,oe]uver[s,]."],
+            "[0]manœuvr[2]": ["[,out,un]man[e,oe]uver[a,e,i,o,u,y]"]
         },
         "lig_french_high": {
             "fær[0]": ["fair[ie,y]"],
@@ -627,9 +627,9 @@
             "achæan": ["achaean"],
             "achæmenid": ["achaemenid"],
             "acœtes": ["acoetes"],
-            "æetes": ["aeetes"],
             "alphæus": ["alphaeus"],
             "ææa": ["aeaea"],
+            "æetes": ["aeetes"],
             "æmili": ["aemili"],
             "ænon": ["aenon"],
             "æoli": ["aeoli", "eoli"],
@@ -679,8 +679,6 @@
             "athenæum": ["athen[ae,e]um"],
             "æon": ["[ae,e]on"],
             "ærug": ["aerug"],
-            "[0]æsthe[2]": ["[,acanth,an,dys,syn][ae,e]sthe[sia.,sis.,t]"],
-            "cœnæsthe[1]": ["cen[ae,e]sthe[sia.,sis.,t]"],
             "æstival": ["[ae,e]stiva"],
             "æther": ["[ae,e]ther"],
             "cæsura": ["c[ae,e]sura"],
@@ -689,9 +687,10 @@
             "chimær": ["chim[ae,e]r"],
             "choeni[0]": ["choeni[c,x]"],
             "coæval": ["co[ae,e]val"],
+            "cœnæsthe[1]": ["cen[ae,e]sthe[sia.,sis.,t]"],
+            "cœno": ["c[e,oe]no"],
             "cœnob": ["c[e,oe]nob"],
             "cœnœci": ["c[e,oe,œ]n[e,oe,œ]ci"],
-            "cœno": ["c[e,oe]no"],
             "cyclopædia": ["cyclop[ae,e]dia."],
             "cyclopædiæ": ["cyclop[ae,æ,e]diae"],
             "dædal": ["d[ae,e]dal"],
@@ -702,7 +701,7 @@
             "defœdat": ["defoedat"],
             "diæres": ["diaeres"],
             "encyclopæd": ["encyclop[ae,e]d"],
-            "epopœa": ["epopoea", "epopee"],
+            "epopœa": ["epopee", "epopoea"],
             "eudæmon": ["eud[ae,ai,e]mon"],
             "fæcal": ["f[ae,e]cal"],
             "fæces": ["f[ae,e]ces"],
@@ -722,13 +721,12 @@
             "mediæval": ["medi[ae,e]val"],
             "metœc[1]": ["met[oe,y]c[us.,i"],
             "naturæ": ["naturae."],
-            "[0]pœ[1]": ["[anthro,anthropo,argyro,epo,etho,glosso,mytho,onomato,patho,pharmaco,prosopo]p[e,oe][ia.,ic.,s,t,y]"],
             "œconom": ["[e,oe]conom"],
             "œcophob": ["[e,oe,oi]cophob"],
             "œcotour": ["[e,oe]cotour"],
             "œcumen": ["[e,oe,o]cumen"],
-            "œ[1]ist": ["[oe,oi][c,k]ist"],
             "œno": ["oeno"],
+            "œ[1]ist": ["[oe,oi][c,k]ist"],
             "palæo": ["pal[ae,e]o"],
             "palæstra.": ["palaestra."],
             "panacæa": ["panac[ae,e]a."],
@@ -743,18 +741,20 @@
             "pædophil": ["p[ae,e]dophil"],
             "pæon": ["paeon"],
             "phœni[0]": ["ph[e,oe]ni[c,x]"],
-            "syrophœnic": ["syroph[e,oe]nic"],
-            "prætor": ["pr[ae,e]tor"],
-            "proœm": ["pr[oe,ooe]m", "proheme"],
-            "primæval": ["prim[ae,e]val"],
             "pomœri": ["pom[a,e,oe]ri"],
+            "prætor": ["pr[ae,e]tor"],
+            "primæval": ["prim[ae,e]val"],
+            "proœm": ["proheme", "pr[oe,ooe]m"],
             "quæstor": ["qu[ae,e]stor"],
             "solœcis[0]": ["solecis[m,t]"],
             "subpœna": ["subp[e,oe]na."],
             "synæresis": ["syn[ae,e]re"],
+            "syrophœnic": ["syroph[e,oe]nic"],
             "tænia": ["taenia."],
             "vitæ": ["vitae"],
-            "zo[0]glœæ": ["zo[o,ö]gl[e,oe]a[e,e]."]
+            "zo[0]glœæ": ["zo[o,ö]gl[e,oe]a[e,e]."],
+            "[0]æsthe[2]": ["[,acanth,an,dys,syn][ae,e]sthe[sia.,sis.,t]"],
+            "[0]pœ[1]": ["[anthro,anthropo,argyro,epo,etho,glosso,mytho,onomato,patho,pharmaco,prosopo]p[e,oe][ia.,ic.,s,t,y]"]
         },
         "lig_latinate_hypercorrect": {
             "adhæ[1]": ["adh[ae,e][r,s]"],
@@ -775,11 +775,11 @@
             "ætern": ["[ae,e]tern"],
             "cælestial": ["c[ae,e]lestial"],
             "cæremon": ["c[ae,e]remon"],
-            "cœmeter[0]": ["cemeter[i,y]"],
             "cohæ[1]": ["coh[ae,e][r,s]"],
             "comœdi": ["com[e,oe]di"],
             "comœdy": ["com[e,oe]dy"],
             "confœdera": ["conf[e,oe]dera"],
+            "cœmeter[0]": ["cemeter[i,y]"],
             "defœderat": ["def[e,oe]derat"],
             "diocœs": ["dioc[e,oe]s"],
             "effœte": ["effete"],
@@ -841,12 +841,11 @@
         "lig_scientific": {
             "abscissæ": ["abscissa[e,s]"],
             "acœlom": ["acoelom"],
-            "ædœolog": ["[ae,æ]d[oe,œ]log"],
             "alæ": ["alae."],
             "algæ": ["alga[e,s]"],
-            "amœb[0]": ["amoeb[a.,al,ias,ic,o,u]"],
             "amœbæ": ["am[oe,œ]b[ae,æ]"],
             "amœbæan": ["am[oe,œ]bean"],
+            "amœb[0]": ["amoeb[a.,al,ias,ic,o,u]"],
             "anæmi": ["an[ae,e]mi"],
             "andrœeci": ["androeci"],
             "anœstrus": ["an[e,oe]strus"],
@@ -862,17 +861,16 @@
             "æciospor": ["aeciospor"],
             "æcium": ["aecium"],
             "ædicul": ["aedicul"],
+            "ædœolog": ["[ae,æ]d[oe,œ]log"],
             "æschynite": ["[ae,e]schynite"],
             "æscul": ["[ae,e]scul"],
             "ætiolog": ["[ae,e]tiolog"],
             "bacteræmia": ["bacter[ae,e]mia"],
-            "[0]rrhœ[2]": ["[,ameno,antidia,antigono,azoto,balanobleno,bleno,chylo,cryptomeno,cysto,dacryo,dia,dysmen,galacto,gastro,gono,hydro,hypermeno,laryngo,leuco,leuko,logo,lympho,meno,metro,myxo,oligomeno,oto,polymeno,prostato,pyo,rhino,sebo,spermato,steato,trico,urethro]rrh[e,oe][a.,al,i]"],
-            "[0]rrhœæ": ["[,ameno,antidia,antigono,azoto,balanobleno,bleno,chylo,cryptomeno,cysto,dacryo,dia,dysmen,galacto,gastro,gono,hydro,hypermeno,laryngo,leuco,leuko,logo,lympho,meno,metro,myxo,oligomeno,oto,polymeno,prostato,pyo,rhino,sebo,spermato,steato,trico,urethro]rrh[e,oe,œ][ae.,æ.,as.]"],
             "cæsium": ["c[ae,e]sium"],
             "chætophor": ["ch[ae,e]tophor"],
             "cœlacanth": ["coelacanth"],
-            "cœli[0]": ["c[oe,e]li[a.,ac,o]"],
             "cœliæ": ["c[oe,œ]li[ae,æ,as]"],
+            "cœli[0]": ["c[oe,e]li[a.,ac,o]"],
             "cœlo": ["coelo"],
             "cœnenchym": ["coenenchym"],
             "cœptis": ["coeptis"],
@@ -880,7 +878,6 @@
             "epicœl": ["epicoel"],
             "epicœne[0]": ["epicene[.,i,s.]"],
             "euchrœa": ["euchroea"],
-            "[0]pnœ[2]": ["[,a,brady,dis,eu,hyper,hypo,ortho,platy,poly,tachy]pn[e,oe][a.,i]"],
             "exocœlom": ["exoc[e,oe]lom"],
             "frænum": ["fr[ae,e]num"],
             "gynæco": ["gyn[ae,e]co"],
@@ -897,17 +894,15 @@
             "hypnopædi": ["hypnop[ae,e]di"],
             "ischæmia": ["isch[ae,e]mia"],
             "leukæmia": ["leuk[ae,e]mia"],
-            "[0]œdem": ["[,angio,lymph,myx,papill][e,oe]dem"],
-            "œgophon": ["[e,oe]gophon"],
             "metæstrus": ["met[e,oe]strus"],
             "myelocœl": ["myeloc[e,oe]l"],
             "orthopædi": ["orthop[ae,e]di"],
             "œco": ["eco-"],
             "œcolog": ["[e,oe]colog"],
+            "œgophon": ["[e,oe]gophon"],
             "œnanth": ["oenanth"],
             "œsophag": ["[e,oe]sophag"],
             "œstro[0]": ["[e,oe]stro[gen,mani,n]"],
-            "[0]œstr[1]": ["[,di][e,oe]str[i,uat,us.]"],
             "œsyp": ["oesyp"],
             "pangæa": ["pang[ae,e]a."],
             "pœ[1]il": ["p[oe,oi][c,k]il"],
@@ -918,8 +913,13 @@
             "viræmia": ["vir[ae,e]mia"],
             "zoœci": ["zooeci"],
             "zo[0]glœa": ["zo[o,ö]gl[e,oe]a."],
+            "[0]nœa": ["[,meta,para,pro,hypo]n[oe,oi]a"],
             "[0]œci": ["[ant,aut,di,eury,heter,met,mono,par,peri,sten,syn,tri][ae,e,oe,oi]c[i,o,u]"],
-            "[0]nœa": ["[,meta,para,pro,hypo]n[oe,oi]a"]
+            "[0]œdem": ["[,angio,lymph,myx,papill][e,oe]dem"],
+            "[0]œstr[1]": ["[,di][e,oe]str[i,uat,us.]"],
+            "[0]pnœ[2]": ["[,a,brady,dis,eu,hyper,hypo,ortho,platy,poly,tachy]pn[e,oe][a.,i]"],
+            "[0]rrhœæ": ["[,ameno,antidia,antigono,azoto,balanobleno,bleno,chylo,cryptomeno,cysto,dacryo,dia,dysmen,galacto,gastro,gono,hydro,hypermeno,laryngo,leuco,leuko,logo,lympho,meno,metro,myxo,oligomeno,oto,polymeno,prostato,pyo,rhino,sebo,spermato,steato,trico,urethro]rrh[e,oe,œ][ae.,æ.,as.]"],
+            "[0]rrhœ[2]": ["[,ameno,antidia,antigono,azoto,balanobleno,bleno,chylo,cryptomeno,cysto,dacryo,dia,dysmen,galacto,gastro,gono,hydro,hypermeno,laryngo,leuco,leuko,logo,lympho,meno,metro,myxo,oligomeno,oto,polymeno,prostato,pyo,rhino,sebo,spermato,steato,trico,urethro]rrh[e,oe][a.,al,i]"]
         }
     }
 }
